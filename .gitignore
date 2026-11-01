@@ -1,0 +1,21 @@
+# Rust
+target/
+
+# Node
+node_modules/
+dist/
+*.log
+
+# Secrets and local state
+.env
+.env.*
+!.env.example
+*.key
+*-credentials.json
+.near-credentials/
+
+# Local data and tooling
+*.sqlite
+*.sqlite-*
+.claude/settings.local.json
+.audit/
