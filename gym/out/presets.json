@@ -1,0 +1,726 @@
+{
+ "generated_by": "node gym/gym.mjs",
+ "data": {
+  "from": "2026-09-22",
+  "to": "2026-10-18",
+  "coins": 25,
+  "tier": {
+   "name": "rising",
+   "peak_mc_near": 10000,
+   "coins": 25,
+   "ids": [
+    "nearly-993927",
+    "nearkat-630f25",
+    "rheascot-3c1058",
+    "babynearly-2",
+    "nearlycat",
+    "rich",
+    "slug",
+    "illia",
+    "eclipse",
+    "batman-4",
+    "ninu-4",
+    "nstocks",
+    "nearly10",
+    "nearkat-9",
+    "diarhea",
+    "claw-2",
+    "nearians-2",
+    "singularty",
+    "dragon-3",
+    "trade-2",
+    "nomo",
+    "ai-8",
+    "babyninu",
+    "qcat-3",
+    "sherifchenko"
+   ]
+  }
+ },
+ "metric": "Tokens per NEAR of income, unspent NEAR marked at the last price after the pool fee, per coin over instant buying of the same income; median over coins.",
+ "held_out": "cv: 5-fold by coin, each fold's setting chosen on the other coins. time: chosen on activity before the split, scored after it.",
+ "income_model": {
+  "token_tax_per_side": 0.04,
+  "dragon_share_of_buy_volume": 0.0024,
+  "dragon_share_of_all_volume": 0.012,
+  "fee_batches": "every 60 min at :12",
+  "cost_per_buy": 0.05
+ },
+ "default": "hoarder",
+ "presets": [
+  {
+   "name": "hoarder",
+   "suits": "Smallest daily budget in one breath, no dip extras. Buys the most tokens per NEAR on top coins after their peak, and holds the most NEAR back.",
+   "describe": "budget 10%, one breath, no dips, cap 2%, spike 15%",
+   "settings": {
+    "budget_bps": 1000,
+    "steps_bps": [
+     2000,
+     3500,
+     5000
+    ],
+    "extra_bps": [
+     0,
+     0,
+     0
+    ],
+    "cap_bps": 200,
+    "hunt": false,
+    "sell_multiple_bps": 25000,
+    "max_sell_bps": 1000
+   },
+   "needs_contract_change": null,
+   "chosen_on": "whole",
+   "held_out": {
+    "cv_vs_instant": {
+     "n": 25,
+     "p25": 0.9451,
+     "p50": 1.6934,
+     "p75": 2.2465,
+     "beats": 0.72
+    },
+    "cv_vs_dca": {
+     "n": 25,
+     "p25": 1.1525,
+     "p50": 1.4818,
+     "p75": 2.2025,
+     "beats": 0.84
+    },
+    "time_split": {
+     "chosen": "budget 40%, spread 6h, gap 15 min, no dips, cap 2.5%, spike 15%",
+     "in_sample": {
+      "n": 23,
+      "p25": 0.81584,
+      "p50": 1.1372,
+      "p75": 2.0055,
+      "beats": 0.52174
+     },
+     "held_out": {
+      "n": 25,
+      "p25": 0.9531,
+      "p50": 1.0088,
+      "p75": 1.1107,
+      "beats": 0.56
+     }
+    },
+    "by_tier": {
+     "rising": {
+      "n": 25,
+      "p25": 0.9451,
+      "p50": 1.6934,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "top": {
+      "n": 14,
+      "p25": 0.9451,
+      "p50": 1.493,
+      "p75": 2.23,
+      "beats": 0.71429
+     },
+     "breakout": {
+      "n": 6,
+      "p25": 0.86911,
+      "p50": 1.321,
+      "p75": 1.493,
+      "beats": 0.66667
+     }
+    }
+   },
+   "in_sample": {
+    "whole": 1.7617,
+    "before": 1.0011,
+    "after": 1.1399,
+    "robust": 0.89815,
+    "dca": 1.4837
+   },
+   "unspent_share": 0.22919,
+   "sandwich": {
+    "share_of_near_over_break_even": 0,
+    "if_depth_half": 0,
+    "slices_per_active_day": 1.35
+   },
+   "seed_spread_vs_instant": [
+    1.7617,
+    1.7005,
+    1.7474
+   ],
+   "hunt": null,
+   "without_tax": {
+    "name": "hoarder",
+    "vsInstant": {
+     "n": 25,
+     "p25": 0.87516,
+     "p50": 1.6798,
+     "p75": 3.0104,
+     "beats": 0.72
+    },
+    "hoardVsTax": {
+     "n": 25,
+     "p25": 0.094762,
+     "p50": 0.096403,
+     "p75": 0.098791,
+     "beats": 0
+    },
+    "incomeVsTax": 0.091745,
+    "unspent": 0.1841,
+    "exposure": {
+     "slices": 462,
+     "fill": {
+      "p50": 0.0013313,
+      "p90": 0.0028797,
+      "max": 0.024204
+     },
+     "overBreakEven": 0.32121,
+     "overIfDepthHalf": 0.63677,
+     "slicesPerDay": 0.90909
+    }
+   }
+  },
+  {
+   "name": "steady",
+   "suits": "Spreads each day's budget over hours in small slices, no dip extras. For a creator who wants buys visible through the day. Needs a spread setting the contract does not have yet.",
+   "describe": "budget 10%, spread 6h, gap 15 min, no dips, cap 2%, spike 15%",
+   "settings": {
+    "budget_bps": 1000,
+    "steps_bps": [
+     2000,
+     3500,
+     5000
+    ],
+    "extra_bps": [
+     0,
+     0,
+     0
+    ],
+    "cap_bps": 200,
+    "hunt": false,
+    "sell_multiple_bps": 25000,
+    "max_sell_bps": 1000
+   },
+   "needs_contract_change": {
+    "spread_hours": 6,
+    "slice_gap_seconds": 900
+   },
+   "chosen_on": "whole",
+   "held_out": {
+    "cv_vs_instant": {
+     "n": 25,
+     "p25": 0.9194,
+     "p50": 1.7165,
+     "p75": 2.2994,
+     "beats": 0.72
+    },
+    "cv_vs_dca": {
+     "n": 25,
+     "p25": 1.1211,
+     "p50": 1.5279,
+     "p75": 2.217,
+     "beats": 0.84
+    },
+    "time_split": {
+     "chosen": "budget 40%, spread 6h, gap 15 min, no dips, cap 2%, spike 15%",
+     "in_sample": {
+      "n": 23,
+      "p25": 0.81584,
+      "p50": 1.1405,
+      "p75": 2.0055,
+      "beats": 0.52174
+     },
+     "held_out": {
+      "n": 25,
+      "p25": 0.9531,
+      "p50": 1.0088,
+      "p75": 1.1107,
+      "beats": 0.56
+     }
+    },
+    "by_tier": {
+     "rising": {
+      "n": 25,
+      "p25": 0.9194,
+      "p50": 1.7165,
+      "p75": 2.2994,
+      "beats": 0.72
+     },
+     "top": {
+      "n": 14,
+      "p25": 0.9194,
+      "p50": 1.5275,
+      "p75": 2.2994,
+      "beats": 0.71429
+     },
+     "breakout": {
+      "n": 6,
+      "p25": 0.86233,
+      "p50": 1.3083,
+      "p75": 1.5275,
+      "beats": 0.66667
+     }
+    }
+   },
+   "in_sample": {
+    "whole": 1.6988,
+    "before": 1.0119,
+    "after": 1.1727,
+    "robust": 0.89258,
+    "dca": 1.5279
+   },
+   "unspent_share": 0.20793,
+   "sandwich": {
+    "share_of_near_over_break_even": 0,
+    "if_depth_half": 0,
+    "slices_per_active_day": 20.909
+   },
+   "seed_spread_vs_instant": [
+    1.6988,
+    1.7156,
+    1.7144
+   ],
+   "hunt": null,
+   "without_tax": {
+    "name": "steady",
+    "vsInstant": {
+     "n": 25,
+     "p25": 0.8774,
+     "p50": 1.6833,
+     "p75": 3.0745,
+     "beats": 0.72
+    },
+    "hoardVsTax": {
+     "n": 25,
+     "p25": 0.093841,
+     "p50": 0.095361,
+     "p75": 0.097746,
+     "beats": 0
+    },
+    "incomeVsTax": 0.091748,
+    "unspent": 0.18526,
+    "exposure": {
+     "slices": 9984,
+     "fill": {
+      "p50": 0.000049949,
+      "p90": 0.00012582,
+      "max": 0.0072501
+     },
+     "overBreakEven": 0,
+     "overIfDepthHalf": 0.018883,
+     "slicesPerDay": 20.455
+    }
+   }
+  },
+  {
+   "name": "dip-hunter",
+   "suits": "Shallow dip steps with large extras, so most income reaches the market. For a creator who wants more buy pressure on dips and accepts fewer tokens per NEAR.",
+   "describe": "budget 10%, one breath, steps 10/20/30, extras 10/15/20, cap 2%, spike 15%",
+   "settings": {
+    "budget_bps": 1000,
+    "steps_bps": [
+     1000,
+     2000,
+     3000
+    ],
+    "extra_bps": [
+     1000,
+     1500,
+     2000
+    ],
+    "cap_bps": 200,
+    "hunt": false,
+    "sell_multiple_bps": 25000,
+    "max_sell_bps": 1000
+   },
+   "needs_contract_change": null,
+   "chosen_on": "whole",
+   "held_out": {
+    "cv_vs_instant": {
+     "n": 25,
+     "p25": 0.86742,
+     "p50": 1.1273,
+     "p75": 1.6667,
+     "beats": 0.72
+    },
+    "cv_vs_dca": {
+     "n": 25,
+     "p25": 1.0527,
+     "p50": 1.1881,
+     "p75": 1.3031,
+     "beats": 0.76
+    },
+    "time_split": {
+     "chosen": "budget 15%, one breath, steps 10/20/30, extras 20/25/25, cap 2%, spike 15%",
+     "in_sample": {
+      "n": 23,
+      "p25": 0.71293,
+      "p50": 1.097,
+      "p75": 1.5758,
+      "beats": 0.56522
+     },
+     "held_out": {
+      "n": 25,
+      "p25": 1.0081,
+      "p50": 1.0772,
+      "p75": 1.1786,
+      "beats": 0.84
+     }
+    },
+    "by_tier": {
+     "rising": {
+      "n": 25,
+      "p25": 0.86742,
+      "p50": 1.1273,
+      "p75": 1.6667,
+      "beats": 0.72
+     },
+     "top": {
+      "n": 14,
+      "p25": 0.81795,
+      "p50": 1.1127,
+      "p75": 1.3174,
+      "beats": 0.64286
+     },
+     "breakout": {
+      "n": 6,
+      "p25": 0.81795,
+      "p50": 1.1127,
+      "p75": 1.1969,
+      "beats": 0.66667
+     }
+    }
+   },
+   "in_sample": {
+    "whole": 1.1969,
+    "before": 1.0586,
+    "after": 1.1437,
+    "robust": 1.001,
+    "dca": 1.294
+   },
+   "unspent_share": 0.076729,
+   "sandwich": {
+    "share_of_near_over_break_even": 0,
+    "if_depth_half": 0,
+    "slices_per_active_day": 2.3333
+   },
+   "seed_spread_vs_instant": [
+    1.1969,
+    1.2018,
+    1.2079
+   ],
+   "hunt": null,
+   "without_tax": {
+    "name": "dip-hunter",
+    "vsInstant": {
+     "n": 25,
+     "p25": 0.91247,
+     "p50": 1.1577,
+     "p75": 1.9433,
+     "beats": 0.68
+    },
+    "hoardVsTax": {
+     "n": 25,
+     "p25": 0.087638,
+     "p50": 0.094533,
+     "p75": 0.097952,
+     "beats": 0
+    },
+    "incomeVsTax": 0.091454,
+    "unspent": 0.058488,
+    "exposure": {
+     "slices": 815,
+     "fill": {
+      "p50": 0.00065689,
+      "p90": 0.002721,
+      "max": 0.021195
+     },
+     "overBreakEven": 0.16388,
+     "overIfDepthHalf": 0.44747,
+     "slicesPerDay": 1.6667
+    }
+   }
+  },
+  {
+   "name": "swift",
+   "suits": "Large budget in one breath. For a coin still in its launch run, where each day of waiting costs tokens.",
+   "describe": "budget 40%, one breath, no dips, cap 2%, spike 15%",
+   "settings": {
+    "budget_bps": 4000,
+    "steps_bps": [
+     2000,
+     3500,
+     5000
+    ],
+    "extra_bps": [
+     0,
+     0,
+     0
+    ],
+    "cap_bps": 200,
+    "hunt": false,
+    "sell_multiple_bps": 25000,
+    "max_sell_bps": 1000
+   },
+   "needs_contract_change": null,
+   "chosen_on": "before",
+   "held_out": {
+    "cv_vs_instant": {
+     "n": 23,
+     "p25": 0.72784,
+     "p50": 0.97831,
+     "p75": 2.0161,
+     "beats": 0.47826
+    },
+    "cv_vs_dca": {
+     "n": 25,
+     "p25": 0.99842,
+     "p50": 1.2198,
+     "p75": 1.3994,
+     "beats": 0.72
+    },
+    "time_split": {
+     "chosen": "budget 40%, one breath, no dips, cap 2%, spike 15%",
+     "in_sample": {
+      "n": 23,
+      "p25": 0.79015,
+      "p50": 1.064,
+      "p75": 1.9914,
+      "beats": 0.52174
+     },
+     "held_out": {
+      "n": 25,
+      "p25": 0.95846,
+      "p50": 1.0297,
+      "p75": 1.1223,
+      "beats": 0.56
+     }
+    },
+    "by_tier": {
+     "rising": {
+      "n": 23,
+      "p25": 0.72784,
+      "p50": 0.97831,
+      "p75": 2.0161,
+      "beats": 0.47826
+     },
+     "top": {
+      "n": 13,
+      "p25": 0.69751,
+      "p50": 0.95169,
+      "p75": 2.0161,
+      "beats": 0.38462
+     },
+     "breakout": {
+      "n": 6,
+      "p25": 0.56684,
+      "p50": 0.72784,
+      "p75": 0.95169,
+      "beats": 0.16667
+     }
+    }
+   },
+   "in_sample": {
+    "whole": 1.1003,
+    "before": 1.064,
+    "after": 1.0297,
+    "robust": 0.90868,
+    "dca": 1.0897
+   },
+   "unspent_share": 0.023644,
+   "sandwich": {
+    "share_of_near_over_break_even": 0,
+    "if_depth_half": 0,
+    "slices_per_active_day": 1.9167
+   },
+   "seed_spread_vs_instant": [
+    1.1003,
+    1.1184,
+    1.1144
+   ],
+   "hunt": null,
+   "without_tax": {
+    "name": "swift",
+    "vsInstant": {
+     "n": 25,
+     "p25": 0.7854,
+     "p50": 1.0562,
+     "p75": 1.7115,
+     "beats": 0.6
+    },
+    "hoardVsTax": {
+     "n": 25,
+     "p25": 0.092019,
+     "p50": 0.093877,
+     "p75": 0.096881,
+     "beats": 0
+    },
+    "incomeVsTax": 0.091341,
+    "unspent": 0.012279,
+    "exposure": {
+     "slices": 446,
+     "fill": {
+      "p50": 0.00047518,
+      "p90": 0.0067162,
+      "max": 0.020408
+     },
+     "overBreakEven": 0.4437,
+     "overIfDepthHalf": 0.85051,
+     "slicesPerDay": 0.90909
+    }
+   }
+  },
+  {
+   "name": "harvester",
+   "suits": "The hoarder with Hunt on: sells a small slice of the hoard while the price is far above its cost. For a creator who wants profit taken back into NEAR.",
+   "describe": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2x 5%/day",
+   "settings": {
+    "budget_bps": 1000,
+    "steps_bps": [
+     2000,
+     3500,
+     5000
+    ],
+    "extra_bps": [
+     0,
+     0,
+     0
+    ],
+    "cap_bps": 200,
+    "hunt": true,
+    "sell_multiple_bps": 20000,
+    "max_sell_bps": 500
+   },
+   "needs_contract_change": null,
+   "chosen_on": "whole",
+   "held_out": {
+    "cv_vs_instant": {
+     "n": 25,
+     "p25": 0.9451,
+     "p50": 1.6934,
+     "p75": 2.2465,
+     "beats": 0.72
+    },
+    "cv_vs_dca": {
+     "n": 25,
+     "p25": 1.1525,
+     "p50": 1.4818,
+     "p75": 2.2025,
+     "beats": 0.84
+    },
+    "time_split": {
+     "chosen": "budget 40%, spread 6h, gap 15 min, no dips, cap 2.5%, spike 15%",
+     "in_sample": {
+      "n": 23,
+      "p25": 0.81584,
+      "p50": 1.1372,
+      "p75": 2.0055,
+      "beats": 0.52174
+     },
+     "held_out": {
+      "n": 25,
+      "p25": 0.9531,
+      "p50": 1.0088,
+      "p75": 1.1107,
+      "beats": 0.56
+     }
+    },
+    "by_tier": {
+     "rising": {
+      "n": 25,
+      "p25": 0.9451,
+      "p50": 1.6934,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "top": {
+      "n": 14,
+      "p25": 0.9451,
+      "p50": 1.493,
+      "p75": 2.23,
+      "beats": 0.71429
+     },
+     "breakout": {
+      "n": 6,
+      "p25": 0.86911,
+      "p50": 1.321,
+      "p75": 1.493,
+      "beats": 0.66667
+     }
+    }
+   },
+   "in_sample": {
+    "whole": 1.7617,
+    "before": 1.0011,
+    "after": 1.1399,
+    "robust": 0.89815,
+    "dca": 1.4837
+   },
+   "unspent_share": 0.22919,
+   "sandwich": {
+    "share_of_near_over_break_even": 0,
+    "if_depth_half": 0,
+    "slices_per_active_day": 1.35
+   },
+   "seed_spread_vs_instant": [
+    1.7617,
+    1.7005,
+    1.7474
+   ],
+   "hunt": {
+    "inSample": {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2x 5%/day",
+     "n": 25,
+     "p25": 1,
+     "p50": 1,
+     "p75": 1.0017,
+     "beats": 0.48
+    },
+    "heldOut": {
+     "n": 25,
+     "p25": 1,
+     "p50": 1,
+     "p75": 1.0017,
+     "beats": 0.48
+    },
+    "hoardKeptHeldOut": {
+     "n": 25,
+     "p25": 0.99915,
+     "p50": 1,
+     "p75": 1.0003,
+     "beats": 0.36
+    },
+    "chosenCounts": {
+     "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2x 5%/day": 5
+    }
+   },
+   "without_tax": {
+    "name": "harvester",
+    "vsInstant": {
+     "n": 25,
+     "p25": 0.96341,
+     "p50": 1.6798,
+     "p75": 3.0104,
+     "beats": 0.72
+    },
+    "hoardVsTax": {
+     "n": 25,
+     "p25": 0.093306,
+     "p50": 0.095809,
+     "p75": 0.099212,
+     "beats": 0
+    },
+    "incomeVsTax": 0.091715,
+    "unspent": 0.20492,
+    "exposure": {
+     "slices": 462,
+     "fill": {
+      "p50": 0.0013313,
+      "p90": 0.0029112,
+      "max": 0.024204
+     },
+     "overBreakEven": 0.31365,
+     "overIfDepthHalf": 0.6427,
+     "slicesPerDay": 0.90909
+    }
+   }
+  }
+ ]
+}

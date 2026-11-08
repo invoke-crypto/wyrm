@@ -19,3 +19,18 @@ dist/
 *.sqlite-*
 .claude/settings.local.json
 .audit/
+
+# Agent and session notes
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+HANDOFF.md
+
+# Working docs kept locally, not published
+concept/
+docs/PLAN-v2.md
+docs/design/v2/BRIEF.md
+docs/design/v2/candidate-a/
+docs/design/v2/candidate-b/
+docs/design/v2/migration.md
+docs/design/v2/risks.md
