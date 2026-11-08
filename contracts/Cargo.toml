@@ -1,5 +1,5 @@
 [workspace]
-members = ["wyrm-types"]
+members = ["wyrm-types", "tithe", "scale-vault"]
 resolver = "2"
 
 [workspace.dependencies]
