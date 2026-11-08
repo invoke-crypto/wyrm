@@ -1,0 +1,24 @@
+{
+  "account_id": "nearlytrade.near",
+  "method": "get_tax",
+  "args": {
+    "launch_id": "3657"
+  },
+  "block_height": 223062091,
+  "result": {
+    "buy_bps": 100,
+    "sell_bps": 100,
+    "creator_bps": 3300,
+    "burn_bps": 3300,
+    "holders_bps": 3400,
+    "platform_bps": 4000,
+    "pending": "0",
+    "holders_bucket": "148738217903600726483238",
+    "burned": "948472938899534603864138",
+    "paid_creator": "1102454159909772862476286",
+    "paid_holders": "987123643821619798492335",
+    "paid_platform": "2227180121029844166618761",
+    "selling": "0",
+    "floor": "0"
+  }
+}

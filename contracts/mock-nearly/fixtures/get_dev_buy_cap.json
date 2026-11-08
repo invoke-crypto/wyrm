@@ -1,0 +1,7 @@
+{
+  "account_id": "nearlytrade.near",
+  "method": "get_dev_buy_cap",
+  "args": {},
+  "block_height": 223062091,
+  "result": "42937723901259853156565656"
+}

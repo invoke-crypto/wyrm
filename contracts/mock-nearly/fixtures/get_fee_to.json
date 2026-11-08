@@ -1,0 +1,9 @@
+{
+  "account_id": "nearlytrade.near",
+  "method": "get_fee_to",
+  "args": {
+    "launch_id": "3657"
+  },
+  "block_height": 223062091,
+  "result": null
+}

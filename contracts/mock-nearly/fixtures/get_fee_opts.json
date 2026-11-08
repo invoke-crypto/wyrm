@@ -1,0 +1,15 @@
+{
+  "account_id": "nearlytrade.near",
+  "method": "get_fee_opts",
+  "args": {
+    "launch_id": "3657"
+  },
+  "block_height": 223062091,
+  "result": {
+    "mode": "creator",
+    "creator_share_bps": 6000,
+    "bucket": "0",
+    "burned": "0",
+    "paid_holders": "0"
+  }
+}

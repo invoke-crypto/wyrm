@@ -1,0 +1,45 @@
+{
+  "account_id": "nearlytrade.near",
+  "method": "get_launch",
+  "args": {
+    "launch_id": "3657"
+  },
+  "block_height": 223062091,
+  "result": {
+    "id": 3657,
+    "token": "bigreen.nearlytrade.near",
+    "creator": "blueisgreen.near",
+    "name": "Blue is Green",
+    "symbol": "BIGREEN",
+    "icon": null,
+    "description": "See for yourself",
+    "links": {
+      "website": null,
+      "twitter": "https://x.com/AlexAuroraDev/status/2118010938704244841?a=3lGb-4uwzKYl_Fshf3E&s=19",
+      "telegram": null
+    },
+    "created_at_ms": 1793808799643,
+    "total_supply": "1000000000000000000000000000",
+    "pool_id": "bigreen.nearlytrade.near|wrap.near|10000",
+    "token_is_x": true,
+    "init_point": 0,
+    "left_point": 200,
+    "right_point": 500000,
+    "lpt_id": "bigreen.nearlytrade.near|wrap.near|10000#25319",
+    "step": "Done",
+    "inflight": false,
+    "dev_buy_near": "30000000000000000000000000",
+    "dev_buy_exact": false,
+    "dev_buy_tokens": "0",
+    "dev_buy_held": "0",
+    "claims": 1,
+    "fees_near_total": "2381500971171229535072038",
+    "fees_token_total": "1438435388185610896347768",
+    "creator_token_fees": "0",
+    "protocol_token_fees": "0",
+    "quote": "wrap.near",
+    "fees_quote_total": "0",
+    "creator_quote_fees": "0",
+    "protocol_quote_fees": "0"
+  }
+}

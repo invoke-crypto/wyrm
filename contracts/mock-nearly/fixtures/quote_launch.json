@@ -1,0 +1,20 @@
+{
+  "account_id": "nearlytrade.near",
+  "method": "quote_launch",
+  "args": {
+    "icon_bytes": 0,
+    "dev_buy": null,
+    "tax": true,
+    "text_bytes": null
+  },
+  "block_height": 223062091,
+  "result": {
+    "launch_fee": "0",
+    "token_storage": "18650000000000000000000",
+    "record_storage": "42400000000000000000000",
+    "pool_create": "14000000000000000000000",
+    "dcl_storage": "20000000000000000000000",
+    "dev_buy": "0",
+    "total": "95050000000000000000000"
+  }
+}

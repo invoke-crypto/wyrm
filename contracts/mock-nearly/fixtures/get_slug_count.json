@@ -1,0 +1,9 @@
+{
+  "account_id": "nearlytrade.near",
+  "method": "get_slug_count",
+  "args": {
+    "slug": "bigreen"
+  },
+  "block_height": 223062091,
+  "result": 1
+}

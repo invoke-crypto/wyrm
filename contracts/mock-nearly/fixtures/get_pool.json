@@ -1,0 +1,33 @@
+{
+  "account_id": "dclv2.ref-labs.near",
+  "method": "get_pool",
+  "args": {
+    "pool_id": "bigreen.nearlytrade.near|wrap.near|10000"
+  },
+  "block_height": 223062091,
+  "result": {
+    "pool_id": "bigreen.nearlytrade.near|wrap.near|10000",
+    "token_x": "bigreen.nearlytrade.near",
+    "token_y": "wrap.near",
+    "fee": 10000,
+    "point_delta": 200,
+    "current_point": 238,
+    "liquidity": "50498695734733140569374",
+    "liquidity_x": "19128246681289931492504",
+    "max_liquidity_per_point": "42529979617665099795447395004595452",
+    "total_fee_x_charged": "482406837607588145586554",
+    "total_fee_y_charged": "595375242792807383768002",
+    "volume_x_in": "241203418803794072793280162",
+    "volume_y_in": "297687621396403691884003438",
+    "volume_x_out": "240720485316604821340968562",
+    "volume_y_out": "292738970073598154238641359",
+    "total_liquidity": "50498695734733140569374",
+    "total_order_x": "0",
+    "total_order_y": "0",
+    "total_x": "999044498099003640555962784",
+    "total_y": "2567150351634308110290041",
+    "state": "Running",
+    "whitelist": null,
+    "tax": null
+  }
+}

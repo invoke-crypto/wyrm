@@ -1,5 +1,5 @@
 [workspace]
-members = ["wyrm-types", "tithe", "scale-vault"]
+members = ["wyrm-types", "tithe", "scale-vault", "mock-dcl", "mock-ft", "mock-nearly"]
 resolver = "2"
 
 [workspace.dependencies]
