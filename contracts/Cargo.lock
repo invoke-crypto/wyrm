@@ -689,6 +689,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "dragon"
+version = "0.1.0"
+dependencies = [
+ "near-contract-standards",
+ "near-sdk",
+ "proptest",
+ "wyrm-types",
+]
+
+[[package]]
 name = "dunce"
 version = "1.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2067,6 +2077,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "scales"
+version = "0.1.0"
+dependencies = [
+ "near-contract-standards",
+ "near-sdk",
+ "proptest",
+ "wyrm-types",
+]
+
+[[package]]
 name = "schemars"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2332,6 +2352,10 @@ dependencies = [
  "base64ct",
  "der",
 ]
+
+[[package]]
+name = "state-cleanup"
+version = "0.1.0"
 
 [[package]]
 name = "static_assertions"

@@ -257,7 +257,7 @@ const HOARDER: Preset = Preset {
         gap_seconds: 60,
     },
     sale: SaleTerms {
-        price: NearToken::from_near(5),
+        price: NearToken::from_near(2),
         creator_bps: 1_000,
         length: envelope::MAINNET_SALE_LENGTH,
     },
@@ -690,23 +690,23 @@ mod tests {
         let pinned = [
             (
                 PresetName::Hoarder,
-                "e9667830e0d67c7bacacc2e33192bee516480716c8e015d6ea3337302b3ebeb1",
+                "558cc494ac4486d2c04aa1577854e6319b060150e3892871f6f9ceac32f0d645",
             ),
             (
                 PresetName::Steady,
-                "8841a211861073ace5e6c8a9ccace33b1d5498c2309fa76d082baccd9357f79d",
+                "9eacd01ec7de12cda24ff1ebf0f7dfe43ada52c54eba4f83dd0699f6370ceeb6",
             ),
             (
                 PresetName::DipHunter,
-                "cdcfb875acc586e17e2b9edb8a96d598ec200ced101eb6e109b582aa512a6f6d",
+                "9628c482a83eb888dd950d923ef3b4f4d27dff9277a009d06b1156cca1194ac9",
             ),
             (
                 PresetName::Swift,
-                "fefc3adbf909608a42052cbb6f4524c64bbf78be07f6c60f5077e24f2b286f99",
+                "71902e6c5f3baf3fdd816d1e3cd348a0de23d6ec892f53ec595aabe1279e6201",
             ),
             (
                 PresetName::Harvester,
-                "2c6e6426b38f9a46b282141290eaec312f5a2b22ba91d926926532a160ae52ec",
+                "5116f1ca7381d22322e8bfe9c918b8bfa2b6f5fa4438817be0d12ed7b3c438f6",
             ),
             (
                 PresetName::Drill,
