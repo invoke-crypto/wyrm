@@ -1,0 +1,14 @@
+{
+  "source": {
+    "engine_version": 200,
+    "presets": {
+      "hoarder": "6kx9i6kbBhmUsJBvxJdJVG1gRtdd2sg51c5JsxxHqpPE",
+      "steady": "BgQFfoJiURM1fyMYKDWpnZQ7gUa8C4KbMwZQXW9tpqKT",
+      "dip-hunter": "B7ADAcHnxZaWMAdFqBf3v3XwXNybv5nJVu25gLvCd8hE",
+      "swift": "8eJauSttdbg5Yp4HMqBmgGkwKvvzPy6YbrgdQJdfAAtg",
+      "harvester": "6TYKKAyTA6MjSu9qFsBXBZ9foaGHyTKeu6okRLDyoaZb",
+      "drill": "CghU3ajVYwMPihjgrvNYZy9V4qBtoKrTvrcGWx4vJdiP"
+    }
+  },
+  "releases": []
+}

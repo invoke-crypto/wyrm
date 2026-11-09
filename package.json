@@ -9,6 +9,8 @@
     "test:wsl": "wsl -d Ubuntu -e bash -c \"bash <(tr -d '\\r' < contracts/wsl-test.sh) \\\"$@\\\"\" wsl-test",
     "gym": "node gym/gym.mjs",
     "keeper": "node keeper/keeper.mjs",
+    "deploy": "node keeper/deploy.mjs",
+    "drill": "node keeper/drill.mjs",
     "verify": "node verify/verify.mjs",
     "audit-dragon": "node verify/audit-dragon.mjs",
     "test": "node --test \"gym/*.test.mjs\" \"keeper/*.test.mjs\" \"verify/*.test.mjs\" \"lair/*.test.mjs\""

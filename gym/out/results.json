@@ -1,0 +1,7462 @@
+{
+ "dataset": {
+  "coins": 2884,
+  "swaps": 252080,
+  "unvaluedSwaps": 887,
+  "from": "2026-09-22T00:29:40.161Z",
+  "to": "2026-10-18T19:20:21.590Z",
+  "usdTrackError": 0.0151
+ },
+ "assumptions": {
+  "income": {
+   "perBuy": 0.0024,
+   "perVolume": 0.012
+  },
+  "cost": 0.05,
+  "tax": 0.04,
+  "feeBatchMin": 60,
+  "feeBatchAt": 12,
+  "seedReserve": 80,
+  "active": {
+   "swaps": 300,
+   "days": 2,
+   "pricedMinutes": 100
+  },
+  "startPrice": 0.0000016249,
+  "attackDrop": 0.12,
+  "attackMinutes": 20,
+  "contractDefaults": {
+   "budget_bps": 2000,
+   "steps_bps": [
+    2000,
+    3500,
+    5000
+   ],
+   "extra_bps": [
+    500,
+    1000,
+    1500
+   ],
+   "cap_bps": 250,
+   "hunt": false,
+   "sell_multiple_bps": 25000,
+   "max_sell_bps": 1000,
+   "paused_until": 0,
+   "window_ms": 86400000,
+   "spike_bps": 1500,
+   "gap_ms": 60000,
+   "spread_ms": 0
+  }
+ },
+ "income": {
+  "coins": 2884,
+  "coinDays": 6144,
+  "dailyVolume": {
+   "n": 6144,
+   "p10": 0.20301,
+   "p25": 1.9813,
+   "p50": 19.7,
+   "p75": 102.61,
+   "p90": 569.81,
+   "p99": 20707,
+   "max": 928930
+  },
+  "dragonPerDay": {
+   "n": 6144,
+   "p10": 0.0025927,
+   "p25": 0.026,
+   "p50": 0.25463,
+   "p75": 1.3405,
+   "p90": 7.562,
+   "p99": 271.67,
+   "max": 12300
+  },
+  "perScalePerDay": {
+   "n": 6144,
+   "p10": 0.000025927,
+   "p25": 0.00026,
+   "p50": 0.0025463,
+   "p75": 0.013405,
+   "p90": 0.07562,
+   "p99": 2.7167,
+   "max": 123
+  },
+  "lifetimeVolume": {
+   "n": 2884,
+   "p10": 1.9222,
+   "p25": 9.8805,
+   "p50": 45.683,
+   "p75": 163.49,
+   "p90": 653.04,
+   "p99": 15726,
+   "max": 3388200
+  },
+  "coinsOverLifetime": {
+   "10": 2117,
+   "100": 970,
+   "1000": 214,
+   "10000": 46
+  }
+ },
+ "broad": {
+  "coins": 58,
+  "activeCoins": 81,
+  "rows": [
+   {
+    "name": "plain DCA",
+    "n": 58,
+    "p10": 1.0035,
+    "p25": 1.1367,
+    "p50": 1.3118,
+    "p75": 1.5514,
+    "p90": 1.9541,
+    "p99": 4.0488,
+    "max": 4.0488,
+    "beats": 0.91379
+   },
+   {
+    "name": "daily lump 30%",
+    "n": 58,
+    "p10": 1.1681,
+    "p25": 1.3458,
+    "p50": 1.7446,
+    "p75": 2.2152,
+    "p90": 2.6748,
+    "p99": 5.2578,
+    "max": 5.2578,
+    "beats": 0.93103
+   },
+   {
+    "name": "contract default",
+    "n": 58,
+    "p10": 1.2467,
+    "p25": 1.5498,
+    "p50": 1.9561,
+    "p75": 2.3672,
+    "p90": 2.9215,
+    "p99": 5.2591,
+    "max": 5.2591,
+    "beats": 0.93103
+   },
+   {
+    "name": "hoarder preset",
+    "n": 58,
+    "p10": 1.214,
+    "p25": 1.739,
+    "p50": 2.225,
+    "p75": 2.6384,
+    "p90": 3.2019,
+    "p99": 5.9459,
+    "max": 5.9459,
+    "beats": 0.93103
+   },
+   {
+    "name": "steady preset",
+    "n": 58,
+    "p10": 1.204,
+    "p25": 1.7583,
+    "p50": 2.2196,
+    "p75": 2.7335,
+    "p90": 3.2024,
+    "p99": 5.7795,
+    "max": 5.7795,
+    "beats": 0.93103
+   },
+   {
+    "name": "dip-hunter preset",
+    "n": 58,
+    "p10": 1.2057,
+    "p25": 1.4933,
+    "p50": 1.9018,
+    "p75": 2.2571,
+    "p90": 2.8484,
+    "p99": 4.7407,
+    "max": 4.7407,
+    "beats": 0.93103
+   },
+   {
+    "name": "swift preset",
+    "n": 58,
+    "p10": 1.1071,
+    "p25": 1.3686,
+    "p50": 1.7353,
+    "p75": 2.1926,
+    "p90": 2.6979,
+    "p99": 4.9721,
+    "max": 4.9721,
+    "beats": 0.93103
+   }
+  ]
+ },
+ "study": {
+  "definition": {
+   "tiers": [
+    {
+     "name": "rising",
+     "peak_mc_near": 10000,
+     "coins": 25,
+     "ids": [
+      "nearly-993927",
+      "nearkat-630f25",
+      "rheascot-3c1058",
+      "babynearly-2",
+      "nearlycat",
+      "rich",
+      "slug",
+      "illia",
+      "eclipse",
+      "batman-4",
+      "ninu-4",
+      "nstocks",
+      "nearly10",
+      "nearkat-9",
+      "diarhea",
+      "claw-2",
+      "nearians-2",
+      "singularty",
+      "dragon-3",
+      "trade-2",
+      "nomo",
+      "ai-8",
+      "babyninu",
+      "qcat-3",
+      "sherifchenko"
+     ]
+    },
+    {
+     "name": "top",
+     "peak_mc_near": 30000,
+     "coins": 14,
+     "ids": [
+      "nearly-993927",
+      "nearkat-630f25",
+      "nearlycat",
+      "rich",
+      "illia",
+      "eclipse",
+      "batman-4",
+      "ninu-4",
+      "nstocks",
+      "diarhea",
+      "singularty",
+      "dragon-3",
+      "nomo",
+      "qcat-3"
+     ]
+    },
+    {
+     "name": "breakout",
+     "peak_mc_near": 100000,
+     "coins": 6,
+     "ids": [
+      "nearly-993927",
+      "batman-4",
+      "ninu-4",
+      "diarhea",
+      "singularty",
+      "nomo"
+     ]
+    }
+   ],
+   "peakOnly": [
+    29,
+    14,
+    6
+   ],
+   "sustain": {
+    "days": 5,
+    "share": 0.01,
+    "min_priced_per_hour": 3
+   },
+   "totalCoins": 2884,
+   "firstMc": {
+    "n": 1913,
+    "p10": 1019.3,
+    "p25": 1034.5,
+    "p50": 1066.5,
+    "p75": 1139.4,
+    "p90": 1360.7,
+    "p99": 3540.4,
+    "max": 15481
+   },
+   "peakMc": {
+    "n": 1913,
+    "p10": 1019.5,
+    "p25": 1035.5,
+    "p50": 1071.5,
+    "p75": 1161.1,
+    "p90": 1628.3,
+    "p99": 14827,
+    "max": 1674300
+   },
+   "pairs": {
+    "wrap.near": 16,
+    "token.rhealab.near": 2,
+    "nearly-993927": 5,
+    "ninu-4": 1,
+    "qtc.omft.near": 1
+   },
+   "peakDay": {
+    "n": 25,
+    "p10": 0,
+    "p25": 0,
+    "p50": 4,
+    "p75": 5,
+    "p90": 15,
+    "p99": 17,
+    "max": 17
+   },
+   "usdTrackError": 0.0151
+  },
+  "split": "2026-10-05T00:00:00.000Z",
+  "coins": 25,
+  "breakEven": 0.055482,
+  "tax": 0.04,
+  "income": {
+   "perBuy": 0.0024,
+   "perVolume": 0.012
+  },
+  "noTax": {
+   "tax": 0,
+   "income": {
+    "perBuy": 0.0024,
+    "perVolume": 0
+   },
+   "breakEven": 0.010218,
+   "presets": [
+    {
+     "name": "hoarder",
+     "vsInstant": {
+      "n": 25,
+      "p25": 0.87516,
+      "p50": 1.6798,
+      "p75": 3.0104,
+      "beats": 0.72
+     },
+     "hoardVsTax": {
+      "n": 25,
+      "p25": 0.094762,
+      "p50": 0.096403,
+      "p75": 0.098791,
+      "beats": 0
+     },
+     "incomeVsTax": 0.091745,
+     "unspent": 0.1841,
+     "exposure": {
+      "slices": 462,
+      "fill": {
+       "p50": 0.0013313,
+       "p90": 0.0028797,
+       "max": 0.024204
+      },
+      "overBreakEven": 0.32121,
+      "overIfDepthHalf": 0.63677,
+      "slicesPerDay": 0.90909
+     }
+    },
+    {
+     "name": "steady",
+     "vsInstant": {
+      "n": 25,
+      "p25": 0.8774,
+      "p50": 1.6833,
+      "p75": 3.0745,
+      "beats": 0.72
+     },
+     "hoardVsTax": {
+      "n": 25,
+      "p25": 0.093841,
+      "p50": 0.095361,
+      "p75": 0.097746,
+      "beats": 0
+     },
+     "incomeVsTax": 0.091748,
+     "unspent": 0.18526,
+     "exposure": {
+      "slices": 9984,
+      "fill": {
+       "p50": 0.000049949,
+       "p90": 0.00012582,
+       "max": 0.0072501
+      },
+      "overBreakEven": 0,
+      "overIfDepthHalf": 0.018883,
+      "slicesPerDay": 20.455
+     }
+    },
+    {
+     "name": "dip-hunter",
+     "vsInstant": {
+      "n": 25,
+      "p25": 0.91247,
+      "p50": 1.1577,
+      "p75": 1.9433,
+      "beats": 0.68
+     },
+     "hoardVsTax": {
+      "n": 25,
+      "p25": 0.087638,
+      "p50": 0.094533,
+      "p75": 0.097952,
+      "beats": 0
+     },
+     "incomeVsTax": 0.091454,
+     "unspent": 0.058488,
+     "exposure": {
+      "slices": 815,
+      "fill": {
+       "p50": 0.00065689,
+       "p90": 0.002721,
+       "max": 0.021195
+      },
+      "overBreakEven": 0.16388,
+      "overIfDepthHalf": 0.44747,
+      "slicesPerDay": 1.6667
+     }
+    },
+    {
+     "name": "swift",
+     "vsInstant": {
+      "n": 25,
+      "p25": 0.7854,
+      "p50": 1.0562,
+      "p75": 1.7115,
+      "beats": 0.6
+     },
+     "hoardVsTax": {
+      "n": 25,
+      "p25": 0.092019,
+      "p50": 0.093877,
+      "p75": 0.096881,
+      "beats": 0
+     },
+     "incomeVsTax": 0.091341,
+     "unspent": 0.012279,
+     "exposure": {
+      "slices": 446,
+      "fill": {
+       "p50": 0.00047518,
+       "p90": 0.0067162,
+       "max": 0.020408
+      },
+      "overBreakEven": 0.4437,
+      "overIfDepthHalf": 0.85051,
+      "slicesPerDay": 0.90909
+     }
+    },
+    {
+     "name": "harvester",
+     "vsInstant": {
+      "n": 25,
+      "p25": 0.96341,
+      "p50": 1.6798,
+      "p75": 3.0104,
+      "beats": 0.72
+     },
+     "hoardVsTax": {
+      "n": 25,
+      "p25": 0.093306,
+      "p50": 0.095809,
+      "p75": 0.099212,
+      "beats": 0
+     },
+     "incomeVsTax": 0.091715,
+     "unspent": 0.20492,
+     "exposure": {
+      "slices": 462,
+      "fill": {
+       "p50": 0.0013313,
+       "p90": 0.0029112,
+       "max": 0.024204
+      },
+      "overBreakEven": 0.31365,
+      "overIfDepthHalf": 0.6427,
+      "slicesPerDay": 0.90909
+     }
+    }
+   ]
+  },
+  "liveImpact": {
+   "block": 222920000,
+   "coins": [
+    {
+     "symbol": "NEARLY",
+     "rows": [
+      {
+       "near": 5,
+       "bps": 2,
+       "implied": 24995
+      },
+      {
+       "near": 10,
+       "bps": 4,
+       "implied": 24990
+      },
+      {
+       "near": 25,
+       "bps": 10,
+       "implied": 24975
+      },
+      {
+       "near": 50,
+       "bps": 21,
+       "implied": 23760
+      },
+      {
+       "near": 100,
+       "bps": 43,
+       "implied": 23156
+      }
+     ],
+     "impliedAt10": 24990,
+     "impliedAt100": 23156,
+     "gymLastDepth": 15350,
+     "sliceAt": {
+      "50": 116.36,
+      "100": 233.9,
+      "150": 352.63,
+      "200": 472.57
+     }
+    },
+    {
+     "symbol": "BATMAN",
+     "rows": [
+      {
+       "near": 10,
+       "bps": 1,
+       "implied": 99990
+      },
+      {
+       "near": 25,
+       "bps": 3,
+       "implied": 83308
+      },
+      {
+       "near": 50,
+       "bps": 7,
+       "implied": 71379
+      },
+      {
+       "near": 100,
+       "bps": 14,
+       "implied": 71329
+      }
+     ],
+     "impliedAt10": 99990,
+     "impliedAt100": 71329,
+     "gymLastDepth": 45300,
+     "sliceAt": {
+      "50": 358.44,
+      "100": 720.49,
+      "150": 1086.2,
+      "200": 1455.7
+     }
+    },
+    {
+     "symbol": "SINGULARTY",
+     "rows": [
+      {
+       "near": 0.5,
+       "bps": 1,
+       "implied": 4999.5
+      },
+      {
+       "near": 1,
+       "bps": 2,
+       "implied": 4999
+      },
+      {
+       "near": 2,
+       "bps": 4,
+       "implied": 4998
+      },
+      {
+       "near": 5,
+       "bps": 10,
+       "implied": 4995
+      },
+      {
+       "near": 10,
+       "bps": 21,
+       "implied": 4751.9
+      },
+      {
+       "near": 25,
+       "bps": 53,
+       "implied": 4692
+      },
+      {
+       "near": 50,
+       "bps": 106,
+       "implied": 4667
+      },
+      {
+       "near": 100,
+       "bps": 210,
+       "implied": 4661.9
+      }
+     ],
+     "impliedAt10": 4751.9,
+     "impliedAt100": 4661.9,
+     "gymLastDepth": 4926,
+     "sliceAt": {
+      "50": 23.427,
+      "100": 47.09,
+      "150": 70.993,
+      "200": 95.141
+     }
+    },
+    {
+     "symbol": "NINU",
+     "rows": [
+      {
+       "near": 0.1,
+       "bps": 1,
+       "implied": 999.9
+      },
+      {
+       "near": 0.5,
+       "bps": 2,
+       "implied": 2499.5
+      },
+      {
+       "near": 1,
+       "bps": 3,
+       "implied": 3332.3
+      },
+      {
+       "near": 2,
+       "bps": 5,
+       "implied": 3998
+      },
+      {
+       "near": 5,
+       "bps": 13,
+       "implied": 3841.2
+      },
+      {
+       "near": 10,
+       "bps": 26,
+       "implied": 3836.2
+      },
+      {
+       "near": 25,
+       "bps": 64,
+       "implied": 3881.3
+      },
+      {
+       "near": 50,
+       "bps": 126,
+       "implied": 3918.3
+      },
+      {
+       "near": 100,
+       "bps": 250,
+       "implied": 3900
+      }
+     ],
+     "impliedAt10": 3836.2,
+     "impliedAt100": 3900,
+     "gymLastDepth": 3917,
+     "sliceAt": {
+      "50": 19.598,
+      "100": 39.394,
+      "150": 59.391,
+      "200": 79.592
+     }
+    },
+    {
+     "symbol": "DRAGON",
+     "rows": [
+      {
+       "near": 0.1,
+       "bps": 1,
+       "implied": 999.9
+      },
+      {
+       "near": 0.5,
+       "bps": 2,
+       "implied": 2499.5
+      },
+      {
+       "near": 1,
+       "bps": 5,
+       "implied": 1999
+      },
+      {
+       "near": 2,
+       "bps": 9,
+       "implied": 2220.2
+      },
+      {
+       "near": 5,
+       "bps": 21,
+       "implied": 2376
+      },
+      {
+       "near": 10,
+       "bps": 42,
+       "implied": 2371
+      },
+      {
+       "near": 25,
+       "bps": 103,
+       "implied": 2402.2
+      },
+      {
+       "near": 50,
+       "bps": 203,
+       "implied": 2413.1
+      },
+      {
+       "near": 100,
+       "bps": 398,
+       "implied": 2412.6
+      }
+     ],
+     "impliedAt10": 2371,
+     "impliedAt100": 2412.6,
+     "gymLastDepth": 2121,
+     "sliceAt": {
+      "50": 12.123,
+      "100": 24.369,
+      "150": 36.74,
+      "200": 49.236
+     }
+    },
+    {
+     "symbol": "XELA",
+     "rows": [
+      {
+       "near": 0.1,
+       "bps": 1,
+       "implied": 999.9
+      },
+      {
+       "near": 0.5,
+       "bps": 4,
+       "implied": 1249.5
+      },
+      {
+       "near": 1,
+       "bps": 9,
+       "implied": 1110.1
+      },
+      {
+       "near": 2,
+       "bps": 19,
+       "implied": 1050.6
+      },
+      {
+       "near": 5,
+       "bps": 48,
+       "implied": 1036.7
+      },
+      {
+       "near": 10,
+       "bps": 96,
+       "implied": 1031.7
+      },
+      {
+       "near": 25,
+       "bps": 236,
+       "implied": 1034.3
+      },
+      {
+       "near": 50,
+       "bps": 462,
+       "implied": 1032.3
+      },
+      {
+       "near": 100,
+       "bps": 884,
+       "implied": 1031.2
+      }
+     ],
+     "impliedAt10": 1031.7,
+     "impliedAt100": 1031.2,
+     "gymLastDepth": null,
+     "sliceAt": {
+      "50": 5.182,
+      "100": 10.416,
+      "150": 15.704,
+      "200": 21.045
+     }
+    }
+   ]
+  },
+  "depth": {
+   "n": 25,
+   "p10": 886.3,
+   "p25": 1321,
+   "p50": 1584,
+   "p75": 2900,
+   "p90": 4027,
+   "p99": 15050,
+   "max": 15050
+  },
+  "impactBySize": [
+   {
+    "lo": 0.5,
+    "hi": 2,
+    "n": 5434,
+    "impliedOverDayDepth": 0.13005,
+    "p25": 0.046849,
+    "p75": 0.42195
+   },
+   {
+    "lo": 2,
+    "hi": 5,
+    "n": 7068,
+    "impliedOverDayDepth": 0.43308,
+    "p25": 0.14929,
+    "p75": 0.95563
+   },
+   {
+    "lo": 5,
+    "hi": 20,
+    "n": 13474,
+    "impliedOverDayDepth": 0.77907,
+    "p25": 0.3633,
+    "p75": 1.319
+   },
+   {
+    "lo": 20,
+    "hi": 50,
+    "n": 10197,
+    "impliedOverDayDepth": 1.1942,
+    "p25": 0.73236,
+    "p75": 1.8263
+   },
+   {
+    "lo": 50,
+    "hi": 200,
+    "n": 11385,
+    "impliedOverDayDepth": 1.549,
+    "p25": 1.0887,
+    "p75": 2.1017
+   },
+   {
+    "lo": 200,
+    "hi": null,
+    "n": 3840,
+    "impliedOverDayDepth": 1.7928,
+    "p25": 1.4365,
+    "p75": 2.1971
+   }
+  ],
+  "baselines": {
+   "dca": {
+    "vsInstant": {
+     "n": 25,
+     "p25": 0.88887,
+     "p50": 1.0232,
+     "p75": 1.1327,
+     "beats": 0.6
+    },
+    "before": {
+     "n": 23,
+     "p25": 0.86629,
+     "p50": 1.0229,
+     "p75": 1.2082,
+     "beats": 0.6087
+    },
+    "after": {
+     "n": 25,
+     "p25": 0.99517,
+     "p50": 1.0146,
+     "p75": 1.0556,
+     "beats": 0.64
+    },
+    "robust": {
+     "n": 25,
+     "p25": 0.86629,
+     "p50": 0.97867,
+     "p75": 1.0123,
+     "beats": 0.4
+    },
+    "unspent": 0.001328
+   },
+   "dailyLump": {
+    "vsInstant": {
+     "n": 25,
+     "p25": 0.87873,
+     "p50": 1.1344,
+     "p75": 1.5659,
+     "beats": 0.64
+    },
+    "before": {
+     "n": 23,
+     "p25": 0.78523,
+     "p50": 1.0916,
+     "p75": 2.1011,
+     "beats": 0.56522
+    },
+    "after": {
+     "n": 25,
+     "p25": 0.9703,
+     "p50": 1.052,
+     "p75": 1.179,
+     "beats": 0.64
+    },
+    "robust": {
+     "n": 25,
+     "p25": 0.6862,
+     "p50": 0.91502,
+     "p75": 1.0916,
+     "beats": 0.32
+    },
+    "unspent": 0.030281
+   },
+   "contract": {
+    "vsInstant": {
+     "n": 25,
+     "p25": 0.99222,
+     "p50": 1.2598,
+     "p75": 1.7273,
+     "beats": 0.72
+    },
+    "before": {
+     "n": 23,
+     "p25": 0.71322,
+     "p50": 1.0277,
+     "p75": 2.1876,
+     "beats": 0.52174
+    },
+    "after": {
+     "n": 25,
+     "p25": 1.0085,
+     "p50": 1.0769,
+     "p75": 1.2102,
+     "beats": 0.8
+    },
+    "robust": {
+     "n": 25,
+     "p25": 0.71322,
+     "p50": 0.94967,
+     "p75": 1.0277,
+     "beats": 0.44
+    },
+    "unspent": 0.06022
+   }
+  },
+  "stages": {
+   "cadence": {
+    "objective": "whole",
+    "candidates": 60,
+    "cv": {
+     "inSample": {
+      "key": "budget 10%, one breath, no dips, cap 2.5%, spike 15%",
+      "n": 25,
+      "p25": 0.90644,
+      "p50": 1.755,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 0.9451,
+      "p50": 1.6934,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "vsDcaHeldOut": {
+      "n": 25,
+      "p25": 1.1525,
+      "p50": 1.4818,
+      "p75": 2.2025,
+      "beats": 0.84
+     },
+     "chosenCounts": {
+      "budget 10%, one breath, no dips, cap 2.5%, spike 15%": 3,
+      "budget 10%, spread 1h, gap 1 min, no dips, cap 2.5%, spike 15%": 1,
+      "budget 10%, spread 1h, gap 15 min, no dips, cap 2.5%, spike 15%": 1
+     },
+     "folds": 5,
+     "byTier": [
+      {
+       "n": 25,
+       "p25": 0.9451,
+       "p50": 1.6934,
+       "p75": 2.2465,
+       "beats": 0.72
+      },
+      {
+       "n": 14,
+       "p25": 0.9451,
+       "p50": 1.493,
+       "p75": 2.23,
+       "beats": 0.71429
+      },
+      {
+       "n": 6,
+       "p25": 0.86911,
+       "p50": 1.321,
+       "p75": 1.493,
+       "beats": 0.66667
+      }
+     ]
+    },
+    "time": {
+     "chosen": "budget 40%, spread 6h, gap 15 min, no dips, cap 2.5%, spike 15%",
+     "trainCoins": 23,
+     "testCoins": 25,
+     "inSample": {
+      "n": 23,
+      "p25": 0.81584,
+      "p50": 1.1372,
+      "p75": 2.0055,
+      "beats": 0.52174
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 0.9531,
+      "p50": 1.0088,
+      "p75": 1.1107,
+      "beats": 0.56
+     },
+     "bestAfter": {
+      "key": "budget 10%, spread 24h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "n": 25,
+      "p25": 1.0091,
+      "p50": 1.1829,
+      "p75": 1.3586,
+      "beats": 0.84
+     }
+    },
+    "rows": [
+     {
+      "key": "budget 20%, one breath, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.3114,
+       "before": 0.98241,
+       "after": 1.1082,
+       "robust": 0.94653,
+       "dca": 1.3463
+      },
+      "unspent": 0.076625,
+      "tpnVsInstant": 1.1643,
+      "exposure": {
+       "slices": 907,
+       "fill": {
+        "p50": 0.015233,
+        "p90": 0.023926,
+        "max": 0.031316
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00047196,
+       "slicesPerDay": 1.4375
+      }
+     },
+     {
+      "key": "budget 10%, one breath, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.755,
+       "before": 1.0011,
+       "after": 1.1375,
+       "robust": 0.89385,
+       "dca": 1.4818
+      },
+      "unspent": 0.22919,
+      "tpnVsInstant": 1.2997,
+      "exposure": {
+       "slices": 764,
+       "fill": {
+        "p50": 0.015031,
+        "p90": 0.023417,
+        "max": 0.031118
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00072905,
+       "slicesPerDay": 1.15
+      }
+     },
+     {
+      "key": "budget 15%, one breath, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.4865,
+       "before": 0.98977,
+       "after": 1.1418,
+       "robust": 0.92384,
+       "dca": 1.5135
+      },
+      "unspent": 0.12428,
+      "tpnVsInstant": 1.2186,
+      "exposure": {
+       "slices": 856,
+       "fill": {
+        "p50": 0.016898,
+        "p90": 0.023304,
+        "max": 0.031205
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00051278,
+       "slicesPerDay": 1.3333
+      }
+     },
+     {
+      "key": "budget 25%, one breath, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.1391,
+       "before": 1.0102,
+       "after": 1.0559,
+       "robust": 0.9318,
+       "dca": 1.2645
+      },
+      "unspent": 0.051684,
+      "tpnVsInstant": 1.1317,
+      "exposure": {
+       "slices": 937,
+       "fill": {
+        "p50": 0.01647,
+        "p90": 0.023972,
+        "max": 0.031129
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.0006697,
+       "slicesPerDay": 1.5
+      }
+     },
+     {
+      "key": "budget 30%, one breath, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 3000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.114,
+       "before": 0.99611,
+       "after": 1.0575,
+       "robust": 0.91442,
+       "dca": 1.1625
+      },
+      "unspent": 0.0379,
+      "tpnVsInstant": 1.1044,
+      "exposure": {
+       "slices": 956,
+       "fill": {
+        "p50": 0.01586,
+        "p90": 0.023924,
+        "max": 0.031395
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00055743,
+       "slicesPerDay": 1.5833
+      }
+     },
+     {
+      "key": "budget 40%, one breath, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 4000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.1003,
+       "before": 1.0596,
+       "after": 1.0297,
+       "robust": 0.90868,
+       "dca": 1.0897
+      },
+      "unspent": 0.023644,
+      "tpnVsInstant": 1.0968,
+      "exposure": {
+       "slices": 974,
+       "fill": {
+        "p50": 0.015509,
+        "p90": 0.024224,
+        "max": 0.031427
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00042776,
+       "slicesPerDay": 1.625
+      }
+     },
+     {
+      "key": "budget 10%, spread 1h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.6934,
+       "before": 1.0022,
+       "after": 1.1559,
+       "robust": 0.89282,
+       "dca": 1.5695
+      },
+      "unspent": 0.21537,
+      "tpnVsInstant": 1.4522,
+      "exposure": {
+       "slices": 2192,
+       "fill": {
+        "p50": 0.0028897,
+        "p90": 0.0087366,
+        "max": 0.031147
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00037681,
+       "slicesPerDay": 4.4762
+      }
+     },
+     {
+      "key": "budget 15%, spread 1h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.5649,
+       "before": 0.9935,
+       "after": 1.1219,
+       "robust": 0.97049,
+       "dca": 1.5498
+      },
+      "unspent": 0.12436,
+      "tpnVsInstant": 1.3434,
+      "exposure": {
+       "slices": 2235,
+       "fill": {
+        "p50": 0.0022887,
+        "p90": 0.0098133,
+        "max": 0.031168
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.0006109,
+       "slicesPerDay": 4.5417
+      }
+     },
+     {
+      "key": "budget 20%, spread 1h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.3668,
+       "before": 1.0347,
+       "after": 1.101,
+       "robust": 0.95307,
+       "dca": 1.3328
+      },
+      "unspent": 0.077516,
+      "tpnVsInstant": 1.2717,
+      "exposure": {
+       "slices": 2260,
+       "fill": {
+        "p50": 0.0018643,
+        "p90": 0.01137,
+        "max": 0.031279
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00046756,
+       "slicesPerDay": 4.5417
+      }
+     },
+     {
+      "key": "budget 25%, spread 1h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.2156,
+       "before": 1.0469,
+       "after": 1.0847,
+       "robust": 0.96709,
+       "dca": 1.2207
+      },
+      "unspent": 0.055318,
+      "tpnVsInstant": 1.2292,
+      "exposure": {
+       "slices": 2282,
+       "fill": {
+        "p50": 0.0019262,
+        "p90": 0.013577,
+        "max": 0.031092
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.0007019,
+       "slicesPerDay": 4.5417
+      }
+     },
+     {
+      "key": "budget 30%, spread 1h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 3000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.1928,
+       "before": 1.0388,
+       "after": 1.0606,
+       "robust": 0.9613,
+       "dca": 1.194
+      },
+      "unspent": 0.040425,
+      "tpnVsInstant": 1.2067,
+      "exposure": {
+       "slices": 2297,
+       "fill": {
+        "p50": 0.001555,
+        "p90": 0.014818,
+        "max": 0.031587
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00053886,
+       "slicesPerDay": 4.5833
+      }
+     },
+     {
+      "key": "budget 40%, spread 1h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 4000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.1265,
+       "before": 1.0645,
+       "after": 1.0353,
+       "robust": 0.93406,
+       "dca": 1.1343
+      },
+      "unspent": 0.023342,
+      "tpnVsInstant": 1.1427,
+      "exposure": {
+       "slices": 2316,
+       "fill": {
+        "p50": 0.0012662,
+        "p90": 0.017188,
+        "max": 0.031527
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00054708,
+       "slicesPerDay": 4.6
+      }
+     },
+     {
+      "key": "budget 10%, spread 1h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.6944,
+       "before": 1.0023,
+       "after": 1.1594,
+       "robust": 0.8982,
+       "dca": 1.5749
+      },
+      "unspent": 0.21536,
+      "tpnVsInstant": 1.4534,
+      "exposure": {
+       "slices": 5406,
+       "fill": {
+        "p50": 0.0010383,
+        "p90": 0.0026708,
+        "max": 0.031263
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.0003337,
+       "slicesPerDay": 11.25
+      }
+     },
+     {
+      "key": "budget 15%, spread 1h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.5654,
+       "before": 0.99354,
+       "after": 1.1257,
+       "robust": 0.97821,
+       "dca": 1.5504
+      },
+      "unspent": 0.12431,
+      "tpnVsInstant": 1.3448,
+      "exposure": {
+       "slices": 5428,
+       "fill": {
+        "p50": 0.00095641,
+        "p90": 0.0032172,
+        "max": 0.031581
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.0014933,
+       "slicesPerDay": 11.292
+      }
+     },
+     {
+      "key": "budget 20%, spread 1h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.368,
+       "before": 1.0258,
+       "after": 1.1057,
+       "robust": 0.95407,
+       "dca": 1.334
+      },
+      "unspent": 0.077491,
+      "tpnVsInstant": 1.2732,
+      "exposure": {
+       "slices": 5437,
+       "fill": {
+        "p50": 0.00079526,
+        "p90": 0.0040796,
+        "max": 0.031216
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00026827,
+       "slicesPerDay": 11.292
+      }
+     },
+     {
+      "key": "budget 25%, spread 1h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.2309,
+       "before": 1.0187,
+       "after": 1.0798,
+       "robust": 0.96736,
+       "dca": 1.2248
+      },
+      "unspent": 0.055307,
+      "tpnVsInstant": 1.2308,
+      "exposure": {
+       "slices": 5436,
+       "fill": {
+        "p50": 0.00073286,
+        "p90": 0.0048393,
+        "max": 0.031504
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00032378,
+       "slicesPerDay": 11.292
+      }
+     },
+     {
+      "key": "budget 30%, spread 1h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 3000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.1943,
+       "before": 1.0296,
+       "after": 1.0546,
+       "robust": 0.96567,
+       "dca": 1.1962
+      },
+      "unspent": 0.040425,
+      "tpnVsInstant": 1.2086,
+      "exposure": {
+       "slices": 5424,
+       "fill": {
+        "p50": 0.00062692,
+        "p90": 0.0052153,
+        "max": 0.031755
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00031421,
+       "slicesPerDay": 11.292
+      }
+     },
+     {
+      "key": "budget 40%, spread 1h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 4000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.1419,
+       "before": 1.1064,
+       "after": 1.0406,
+       "robust": 0.93435,
+       "dca": 1.1498
+      },
+      "unspent": 0.023355,
+      "tpnVsInstant": 1.1636,
+      "exposure": {
+       "slices": 5348,
+       "fill": {
+        "p50": 0.00041855,
+        "p90": 0.0061321,
+        "max": 0.031483
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00030374,
+       "slicesPerDay": 10.818
+      }
+     },
+     {
+      "key": "budget 10%, spread 1h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.6955,
+       "before": 1.0023,
+       "after": 1.1614,
+       "robust": 0.89903,
+       "dca": 1.5766
+      },
+      "unspent": 0.21536,
+      "tpnVsInstant": 1.4538,
+      "exposure": {
+       "slices": 24497,
+       "fill": {
+        "p50": 0.00023037,
+        "p90": 0.00053416,
+        "max": 0.026661
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 50.864
+      }
+     },
+     {
+      "key": "budget 15%, spread 1h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.5654,
+       "before": 0.99361,
+       "after": 1.1284,
+       "robust": 0.97964,
+       "dca": 1.5503
+      },
+      "unspent": 0.12429,
+      "tpnVsInstant": 1.3453,
+      "exposure": {
+       "slices": 24432,
+       "fill": {
+        "p50": 0.00024358,
+        "p90": 0.00064344,
+        "max": 0.026393
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 50.909
+      }
+     },
+     {
+      "key": "budget 20%, spread 1h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.3685,
+       "before": 1.0236,
+       "after": 1.108,
+       "robust": 0.95445,
+       "dca": 1.3344
+      },
+      "unspent": 0.077484,
+      "tpnVsInstant": 1.2737,
+      "exposure": {
+       "slices": 24302,
+       "fill": {
+        "p50": 0.00019307,
+        "p90": 0.00081592,
+        "max": 0.026244
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 49.037
+      }
+     },
+     {
+      "key": "budget 25%, spread 1h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.2342,
+       "before": 1.0132,
+       "after": 1.0807,
+       "robust": 0.96747,
+       "dca": 1.2278
+      },
+      "unspent": 0.055304,
+      "tpnVsInstant": 1.2314,
+      "exposure": {
+       "slices": 24056,
+       "fill": {
+        "p50": 0.00015652,
+        "p90": 0.00096785,
+        "max": 0.025362
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 49.037
+      }
+     },
+     {
+      "key": "budget 30%, spread 1h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 3000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.1896,
+       "before": 1.0335,
+       "after": 1.0551,
+       "robust": 0.96684,
+       "dca": 1.2079
+      },
+      "unspent": 0.040425,
+      "tpnVsInstant": 1.2092,
+      "exposure": {
+       "slices": 23806,
+       "fill": {
+        "p50": 0.00015191,
+        "p90": 0.0010155,
+        "max": 0.026333
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 47.75
+      }
+     },
+     {
+      "key": "budget 40%, spread 1h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 4000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 3600000
+      },
+      "medians": {
+       "whole": 1.1459,
+       "before": 1.113,
+       "after": 1.0404,
+       "robust": 0.93431,
+       "dca": 1.1538
+      },
+      "unspent": 0.023342,
+      "tpnVsInstant": 1.1636,
+      "exposure": {
+       "slices": 22595,
+       "fill": {
+        "p50": 0.00012392,
+        "p90": 0.0012114,
+        "max": 0.026244
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 46.158
+      }
+     },
+     {
+      "key": "budget 10%, spread 6h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.6988,
+       "before": 1.0119,
+       "after": 1.1722,
+       "robust": 0.89258,
+       "dca": 1.5272
+      },
+      "unspent": 0.20793,
+      "tpnVsInstant": 1.3205,
+      "exposure": {
+       "slices": 10593,
+       "fill": {
+        "p50": 0.00057524,
+        "p90": 0.0013657,
+        "max": 0.026645
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 20.909
+      }
+     },
+     {
+      "key": "budget 15%, spread 6h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.5343,
+       "before": 1.0069,
+       "after": 1.1083,
+       "robust": 0.96746,
+       "dca": 1.5732
+      },
+      "unspent": 0.10778,
+      "tpnVsInstant": 1.2545,
+      "exposure": {
+       "slices": 10605,
+       "fill": {
+        "p50": 0.00051714,
+        "p90": 0.0016174,
+        "max": 0.026067
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 21
+      }
+     },
+     {
+      "key": "budget 20%, spread 6h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.3552,
+       "before": 1.0318,
+       "after": 1.0917,
+       "robust": 0.94894,
+       "dca": 1.3344
+      },
+      "unspent": 0.06417,
+      "tpnVsInstant": 1.22,
+      "exposure": {
+       "slices": 10597,
+       "fill": {
+        "p50": 0.00042347,
+        "p90": 0.001895,
+        "max": 0.028579
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00012205,
+       "slicesPerDay": 21.045
+      }
+     },
+     {
+      "key": "budget 25%, spread 6h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.2087,
+       "before": 1.0239,
+       "after": 1.0844,
+       "robust": 0.93642,
+       "dca": 1.2415
+      },
+      "unspent": 0.04392,
+      "tpnVsInstant": 1.2031,
+      "exposure": {
+       "slices": 10572,
+       "fill": {
+        "p50": 0.0003401,
+        "p90": 0.002158,
+        "max": 0.026019
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 21.091
+      }
+     },
+     {
+      "key": "budget 30%, spread 6h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 3000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.1591,
+       "before": 1.046,
+       "after": 1.0606,
+       "robust": 0.92912,
+       "dca": 1.2128
+      },
+      "unspent": 0.03339,
+      "tpnVsInstant": 1.1379,
+      "exposure": {
+       "slices": 10508,
+       "fill": {
+        "p50": 0.00027766,
+        "p90": 0.0024466,
+        "max": 0.028219
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00011253,
+       "slicesPerDay": 21
+      }
+     },
+     {
+      "key": "budget 40%, spread 6h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 4000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.1316,
+       "before": 1.1372,
+       "after": 1.0088,
+       "robust": 0.94482,
+       "dca": 1.1394
+      },
+      "unspent": 0.022758,
+      "tpnVsInstant": 1.1198,
+      "exposure": {
+       "slices": 10298,
+       "fill": {
+        "p50": 0.00020931,
+        "p90": 0.0029106,
+        "max": 0.027311
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 20.7
+      }
+     },
+     {
+      "key": "budget 10%, spread 6h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.699,
+       "before": 1.0118,
+       "after": 1.1705,
+       "robust": 0.89423,
+       "dca": 1.527
+      },
+      "unspent": 0.20725,
+      "tpnVsInstant": 1.3208,
+      "exposure": {
+       "slices": 30553,
+       "fill": {
+        "p50": 0.00019175,
+        "p90": 0.00045477,
+        "max": 0.026645
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 60.5
+      }
+     },
+     {
+      "key": "budget 15%, spread 6h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.5339,
+       "before": 1.0064,
+       "after": 1.1093,
+       "robust": 0.96803,
+       "dca": 1.573
+      },
+      "unspent": 0.10735,
+      "tpnVsInstant": 1.2587,
+      "exposure": {
+       "slices": 30469,
+       "fill": {
+        "p50": 0.00017238,
+        "p90": 0.00053846,
+        "max": 0.026067
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 60.636
+      }
+     },
+     {
+      "key": "budget 20%, spread 6h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.3543,
+       "before": 1.0324,
+       "after": 1.0917,
+       "robust": 0.94963,
+       "dca": 1.3345
+      },
+      "unspent": 0.063936,
+      "tpnVsInstant": 1.2228,
+      "exposure": {
+       "slices": 30264,
+       "fill": {
+        "p50": 0.00014116,
+        "p90": 0.00063168,
+        "max": 0.026675
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 60.5
+      }
+     },
+     {
+      "key": "budget 25%, spread 6h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.2075,
+       "before": 1.0209,
+       "after": 1.0845,
+       "robust": 0.93626,
+       "dca": 1.2421
+      },
+      "unspent": 0.043797,
+      "tpnVsInstant": 1.2019,
+      "exposure": {
+       "slices": 29988,
+       "fill": {
+        "p50": 0.00012214,
+        "p90": 0.00071932,
+        "max": 0.02599
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 59.4
+      }
+     },
+     {
+      "key": "budget 30%, spread 6h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 3000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.1539,
+       "before": 1.0373,
+       "after": 1.0605,
+       "robust": 0.92894,
+       "dca": 1.2135
+      },
+      "unspent": 0.033326,
+      "tpnVsInstant": 1.1329,
+      "exposure": {
+       "slices": 29514,
+       "fill": {
+        "p50": 0.00010449,
+        "p90": 0.00081554,
+        "max": 0.028219
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00011253,
+       "slicesPerDay": 59.4
+      }
+     },
+     {
+      "key": "budget 40%, spread 6h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 4000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.1301,
+       "before": 1.1225,
+       "after": 1.009,
+       "robust": 0.94367,
+       "dca": 1.1379
+      },
+      "unspent": 0.02274,
+      "tpnVsInstant": 1.1202,
+      "exposure": {
+       "slices": 28087,
+       "fill": {
+        "p50": 0.000089896,
+        "p90": 0.0010095,
+        "max": 0.027398
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 57.333
+      }
+     },
+     {
+      "key": "budget 10%, spread 6h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.699,
+       "before": 1.0115,
+       "after": 1.1709,
+       "robust": 0.89421,
+       "dca": 1.527
+      },
+      "unspent": 0.20711,
+      "tpnVsInstant": 1.3209,
+      "exposure": {
+       "slices": 140430,
+       "fill": {
+        "p50": 0.000038396,
+        "p90": 0.000090936,
+        "max": 0.026645
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 289.09
+      }
+     },
+     {
+      "key": "budget 15%, spread 6h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.5339,
+       "before": 1.0061,
+       "after": 1.109,
+       "robust": 0.96817,
+       "dca": 1.5731
+      },
+      "unspent": 0.10727,
+      "tpnVsInstant": 1.259,
+      "exposure": {
+       "slices": 138440,
+       "fill": {
+        "p50": 0.000037414,
+        "p90": 0.00010766,
+        "max": 0.026365
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 288.2
+      }
+     },
+     {
+      "key": "budget 20%, spread 6h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.3542,
+       "before": 1.032,
+       "after": 1.0913,
+       "robust": 0.94975,
+       "dca": 1.3345
+      },
+      "unspent": 0.063894,
+      "tpnVsInstant": 1.2238,
+      "exposure": {
+       "slices": 135280,
+       "fill": {
+        "p50": 0.000035127,
+        "p90": 0.00013599,
+        "max": 0.026675
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 281.61
+      }
+     },
+     {
+      "key": "budget 25%, spread 6h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.2081,
+       "before": 1.0206,
+       "after": 1.084,
+       "robust": 0.9363,
+       "dca": 1.2423
+      },
+      "unspent": 0.043777,
+      "tpnVsInstant": 1.2023,
+      "exposure": {
+       "slices": 130860,
+       "fill": {
+        "p50": 0.000036276,
+        "p90": 0.00016131,
+        "max": 0.025813
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 277.35
+      }
+     },
+     {
+      "key": "budget 30%, spread 6h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 3000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.1537,
+       "before": 1.0397,
+       "after": 1.0604,
+       "robust": 0.92893,
+       "dca": 1.2162
+      },
+      "unspent": 0.033317,
+      "tpnVsInstant": 1.1331,
+      "exposure": {
+       "slices": 125530,
+       "fill": {
+        "p50": 0.000028962,
+        "p90": 0.00016925,
+        "max": 0.026121
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 263
+      }
+     },
+     {
+      "key": "budget 40%, spread 6h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 4000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 21600000
+      },
+      "medians": {
+       "whole": 1.1305,
+       "before": 1.1259,
+       "after": 1.009,
+       "robust": 0.94378,
+       "dca": 1.1384
+      },
+      "unspent": 0.022738,
+      "tpnVsInstant": 1.1204,
+      "exposure": {
+       "slices": 115590,
+       "fill": {
+        "p50": 0.000038449,
+        "p90": 0.0002044,
+        "max": 0.025836
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 255.82
+      }
+     },
+     {
+      "key": "budget 10%, spread 24h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.7165,
+       "before": 0.99541,
+       "after": 1.1829,
+       "robust": 0.89428,
+       "dca": 1.5572
+      },
+      "unspent": 0.21538,
+      "tpnVsInstant": 1.4086,
+      "exposure": {
+       "slices": 39051,
+       "fill": {
+        "p50": 0.00015619,
+        "p90": 0.00034603,
+        "max": 0.026485
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 76.222
+      }
+     },
+     {
+      "key": "budget 15%, spread 24h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.5842,
+       "before": 0.9848,
+       "after": 1.1303,
+       "robust": 0.93221,
+       "dca": 1.569
+      },
+      "unspent": 0.11304,
+      "tpnVsInstant": 1.3054,
+      "exposure": {
+       "slices": 38870,
+       "fill": {
+        "p50": 0.00013978,
+        "p90": 0.00041166,
+        "max": 0.027436
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 76.222
+      }
+     },
+     {
+      "key": "budget 20%, spread 24h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.3515,
+       "before": 0.99034,
+       "after": 1.1153,
+       "robust": 0.95413,
+       "dca": 1.3178
+      },
+      "unspent": 0.067887,
+      "tpnVsInstant": 1.2363,
+      "exposure": {
+       "slices": 38624,
+       "fill": {
+        "p50": 0.00012406,
+        "p90": 0.00047458,
+        "max": 0.027519
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 76.222
+      }
+     },
+     {
+      "key": "budget 25%, spread 24h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.1881,
+       "before": 1.0392,
+       "after": 1.0831,
+       "robust": 0.95731,
+       "dca": 1.2605
+      },
+      "unspent": 0.046825,
+      "tpnVsInstant": 1.1945,
+      "exposure": {
+       "slices": 38160,
+       "fill": {
+        "p50": 0.000092952,
+        "p90": 0.0006058,
+        "max": 0.026218
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 73.5
+      }
+     },
+     {
+      "key": "budget 30%, spread 24h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 3000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.1814,
+       "before": 1.0472,
+       "after": 1.0642,
+       "robust": 0.9415,
+       "dca": 1.2109
+      },
+      "unspent": 0.035934,
+      "tpnVsInstant": 1.1759,
+      "exposure": {
+       "slices": 37430,
+       "fill": {
+        "p50": 0.000095909,
+        "p90": 0.00063557,
+        "max": 0.025903
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 73.5
+      }
+     },
+     {
+      "key": "budget 40%, spread 24h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 4000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 900000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.1194,
+       "before": 1.1263,
+       "after": 1.022,
+       "robust": 0.93388,
+       "dca": 1.1131
+      },
+      "unspent": 0.025103,
+      "tpnVsInstant": 1.1544,
+      "exposure": {
+       "slices": 35428,
+       "fill": {
+        "p50": 0.000078554,
+        "p90": 0.00077232,
+        "max": 0.026739
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 70.182
+      }
+     },
+     {
+      "key": "budget 10%, spread 24h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.7157,
+       "before": 0.99535,
+       "after": 1.1827,
+       "robust": 0.89436,
+       "dca": 1.5591
+      },
+      "unspent": 0.21395,
+      "tpnVsInstant": 1.4084,
+      "exposure": {
+       "slices": 111770,
+       "fill": {
+        "p50": 0.000052018,
+        "p90": 0.00011504,
+        "max": 0.02647
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 217.82
+      }
+     },
+     {
+      "key": "budget 15%, spread 24h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.5832,
+       "before": 0.98457,
+       "after": 1.1303,
+       "robust": 0.93409,
+       "dca": 1.568
+      },
+      "unspent": 0.11211,
+      "tpnVsInstant": 1.3055,
+      "exposure": {
+       "slices": 111520,
+       "fill": {
+        "p50": 0.000046883,
+        "p90": 0.00013668,
+        "max": 0.027307
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 216.82
+      }
+     },
+     {
+      "key": "budget 20%, spread 24h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.3513,
+       "before": 0.9926,
+       "after": 1.1147,
+       "robust": 0.95416,
+       "dca": 1.3176
+      },
+      "unspent": 0.067337,
+      "tpnVsInstant": 1.2366,
+      "exposure": {
+       "slices": 109490,
+       "fill": {
+        "p50": 0.000041024,
+        "p90": 0.00017007,
+        "max": 0.027341
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 216.28
+      }
+     },
+     {
+      "key": "budget 25%, spread 24h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.1844,
+       "before": 1.0424,
+       "after": 1.0835,
+       "robust": 0.95719,
+       "dca": 1.2598
+      },
+      "unspent": 0.046496,
+      "tpnVsInstant": 1.1947,
+      "exposure": {
+       "slices": 106370,
+       "fill": {
+        "p50": 0.000035343,
+        "p90": 0.00020175,
+        "max": 0.025563
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 210.6
+      }
+     },
+     {
+      "key": "budget 30%, spread 24h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 3000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.1727,
+       "before": 1.0464,
+       "after": 1.0647,
+       "robust": 0.94116,
+       "dca": 1.2091
+      },
+      "unspent": 0.035722,
+      "tpnVsInstant": 1.1716,
+      "exposure": {
+       "slices": 102560,
+       "fill": {
+        "p50": 0.000036383,
+        "p90": 0.00021186,
+        "max": 0.026616
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 209.11
+      }
+     },
+     {
+      "key": "budget 40%, spread 24h, gap 5 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 4000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 300000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.1178,
+       "before": 1.1098,
+       "after": 1.0251,
+       "robust": 0.93401,
+       "dca": 1.1124
+      },
+      "unspent": 0.024979,
+      "tpnVsInstant": 1.1553,
+      "exposure": {
+       "slices": 94770,
+       "fill": {
+        "p50": 0.000042507,
+        "p90": 0.00025744,
+        "max": 0.02626
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 202.12
+      }
+     },
+     {
+      "key": "budget 10%, spread 24h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.7154,
+       "before": 0.99535,
+       "after": 1.1825,
+       "robust": 0.89429,
+       "dca": 1.5595
+      },
+      "unspent": 0.21359,
+      "tpnVsInstant": 1.408,
+      "exposure": {
+       "slices": 446330,
+       "fill": {
+        "p50": 0.000014852,
+        "p90": 0.000029788,
+        "max": 0.026357
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 1019.1
+      }
+     },
+     {
+      "key": "budget 15%, spread 24h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.5828,
+       "before": 0.98462,
+       "after": 1.1303,
+       "robust": 0.93444,
+       "dca": 1.5676
+      },
+      "unspent": 0.11188,
+      "tpnVsInstant": 1.3047,
+      "exposure": {
+       "slices": 440760,
+       "fill": {
+        "p50": 0.000013375,
+        "p90": 0.000029997,
+        "max": 0.027276
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 995.33
+      }
+     },
+     {
+      "key": "budget 20%, spread 24h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.3512,
+       "before": 0.99297,
+       "after": 1.1147,
+       "robust": 0.95406,
+       "dca": 1.3175
+      },
+      "unspent": 0.067201,
+      "tpnVsInstant": 1.2358,
+      "exposure": {
+       "slices": 425270,
+       "fill": {
+        "p50": 0.000014906,
+        "p90": 0.000034005,
+        "max": 0.027298
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 995.33
+      }
+     },
+     {
+      "key": "budget 25%, spread 24h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.1838,
+       "before": 1.0427,
+       "after": 1.0836,
+       "robust": 0.95715,
+       "dca": 1.2595
+      },
+      "unspent": 0.046417,
+      "tpnVsInstant": 1.1941,
+      "exposure": {
+       "slices": 403720,
+       "fill": {
+        "p50": 0.000014764,
+        "p90": 0.000041873,
+        "max": 0.025397
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 919.76
+      }
+     },
+     {
+      "key": "budget 30%, spread 24h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 3000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.1725,
+       "before": 1.0451,
+       "after": 1.0648,
+       "robust": 0.94101,
+       "dca": 1.2153
+      },
+      "unspent": 0.035672,
+      "tpnVsInstant": 1.1712,
+      "exposure": {
+       "slices": 383640,
+       "fill": {
+        "p50": 0.000016172,
+        "p90": 0.000056776,
+        "max": 0.026605
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 859.3
+      }
+     },
+     {
+      "key": "budget 40%, spread 24h, gap 1 min, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 4000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 86400000
+      },
+      "medians": {
+       "whole": 1.1161,
+       "before": 1.1113,
+       "after": 1.0254,
+       "robust": 0.93415,
+       "dca": 1.1128
+      },
+      "unspent": 0.024953,
+      "tpnVsInstant": 1.1552,
+      "exposure": {
+       "slices": 355810,
+       "fill": {
+        "p50": 0.000015777,
+        "p90": 0.000064363,
+        "max": 0.025907
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 754.14
+      }
+     }
+    ]
+   },
+   "dips": {
+    "objective": "whole",
+    "candidates": 31,
+    "cv": {
+     "inSample": {
+      "key": "budget 10%, one breath, no dips, cap 2.5%, spike 15%",
+      "n": 25,
+      "p25": 0.90644,
+      "p50": 1.755,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 0.90644,
+      "p50": 1.755,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "vsDcaHeldOut": {
+      "n": 25,
+      "p25": 1.1053,
+      "p50": 1.4818,
+      "p75": 2.2025,
+      "beats": 0.8
+     },
+     "chosenCounts": {
+      "budget 10%, one breath, no dips, cap 2.5%, spike 15%": 5
+     },
+     "folds": 5,
+     "byTier": [
+      {
+       "n": 25,
+       "p25": 0.90644,
+       "p50": 1.755,
+       "p75": 2.2465,
+       "beats": 0.72
+      },
+      {
+       "n": 14,
+       "p25": 0.90644,
+       "p50": 1.493,
+       "p75": 2.23,
+       "beats": 0.71429
+      },
+      {
+       "n": 6,
+       "p25": 0.86911,
+       "p50": 1.2342,
+       "p75": 1.493,
+       "beats": 0.66667
+      }
+     ]
+    },
+    "time": {
+     "chosen": "budget 20%, one breath, steps 15/30/45, extras 10/15/20, cap 2.5%, spike 15%",
+     "trainCoins": 23,
+     "testCoins": 25,
+     "inSample": {
+      "n": 23,
+      "p25": 0.70002,
+      "p50": 1.1343,
+      "p75": 1.9434,
+      "beats": 0.52174
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 1.0073,
+      "p50": 1.0736,
+      "p75": 1.2162,
+      "beats": 0.8
+     },
+     "bestAfter": {
+      "key": "budget 10%, one breath, steps 10/20/30, extras 5/10/15, cap 2.5%, spike 15%",
+      "n": 25,
+      "p25": 1.0094,
+      "p50": 1.1611,
+      "p75": 1.2635,
+      "beats": 0.8
+     }
+    },
+    "rows": [
+     {
+      "key": "budget 20%, one breath, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.3114,
+       "before": 0.98241,
+       "after": 1.1082,
+       "robust": 0.94653,
+       "dca": 1.3463
+      },
+      "unspent": 0.076625,
+      "tpnVsInstant": 1.1643,
+      "exposure": {
+       "slices": 907,
+       "fill": {
+        "p50": 0.015233,
+        "p90": 0.023926,
+        "max": 0.031316
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00047196,
+       "slicesPerDay": 1.4375
+      }
+     },
+     {
+      "key": "budget 10%, one breath, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.755,
+       "before": 1.0011,
+       "after": 1.1375,
+       "robust": 0.89385,
+       "dca": 1.4818
+      },
+      "unspent": 0.22919,
+      "tpnVsInstant": 1.2997,
+      "exposure": {
+       "slices": 764,
+       "fill": {
+        "p50": 0.015031,
+        "p90": 0.023417,
+        "max": 0.031118
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00072905,
+       "slicesPerDay": 1.15
+      }
+     },
+     {
+      "key": "budget 15%, one breath, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.4865,
+       "before": 0.98977,
+       "after": 1.1418,
+       "robust": 0.92384,
+       "dca": 1.5135
+      },
+      "unspent": 0.12428,
+      "tpnVsInstant": 1.2186,
+      "exposure": {
+       "slices": 856,
+       "fill": {
+        "p50": 0.016898,
+        "p90": 0.023304,
+        "max": 0.031205
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00051278,
+       "slicesPerDay": 1.3333
+      }
+     },
+     {
+      "key": "budget 10%, one breath, steps 5/10/15, extras 5/10/15, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "extra_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.1759,
+       "before": 1.1071,
+       "after": 1.0578,
+       "robust": 0.93529,
+       "dca": 1.1918
+      },
+      "unspent": 0.049202,
+      "tpnVsInstant": 1.1674,
+      "exposure": {
+       "slices": 1295,
+       "fill": {
+        "p50": 0.0069438,
+        "p90": 0.022007,
+        "max": 0.030892
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00030756,
+       "slicesPerDay": 2.3333
+      }
+     },
+     {
+      "key": "budget 10%, one breath, steps 5/10/15, extras 10/15/20, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "extra_bps": [
+        1000,
+        1500,
+        2000
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.1561,
+       "before": 1.0532,
+       "after": 1.0535,
+       "robust": 0.97075,
+       "dca": 1.1641
+      },
+      "unspent": 0.030446,
+      "tpnVsInstant": 1.0997,
+      "exposure": {
+       "slices": 1298,
+       "fill": {
+        "p50": 0.0081926,
+        "p90": 0.021892,
+        "max": 0.031066
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00033592,
+       "slicesPerDay": 2.3889
+      }
+     },
+     {
+      "key": "budget 10%, one breath, steps 5/10/15, extras 20/25/25, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "extra_bps": [
+        2000,
+        2500,
+        2500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.0992,
+       "before": 1.0519,
+       "after": 1.0477,
+       "robust": 0.97066,
+       "dca": 1.1072
+      },
+      "unspent": 0.017713,
+      "tpnVsInstant": 1.1029,
+      "exposure": {
+       "slices": 1326,
+       "fill": {
+        "p50": 0.0047353,
+        "p90": 0.022246,
+        "max": 0.028538
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00010599,
+       "slicesPerDay": 2.5556
+      }
+     },
+     {
+      "key": "budget 10%, one breath, steps 10/20/30, extras 5/10/15, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        1000,
+        2000,
+        3000
+       ],
+       "extra_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.2691,
+       "before": 1.0229,
+       "after": 1.1611,
+       "robust": 0.9975,
+       "dca": 1.3338
+      },
+      "unspent": 0.10444,
+      "tpnVsInstant": 1.201,
+      "exposure": {
+       "slices": 1143,
+       "fill": {
+        "p50": 0.0098663,
+        "p90": 0.02056,
+        "max": 0.031395
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00034201,
+       "slicesPerDay": 2.0741
+      }
+     },
+     {
+      "key": "budget 10%, one breath, steps 10/20/30, extras 10/15/20, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        1000,
+        2000,
+        3000
+       ],
+       "extra_bps": [
+        1000,
+        1500,
+        2000
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.1878,
+       "before": 1.0586,
+       "after": 1.1437,
+       "robust": 1.001,
+       "dca": 1.2918
+      },
+      "unspent": 0.076729,
+      "tpnVsInstant": 1.1648,
+      "exposure": {
+       "slices": 1135,
+       "fill": {
+        "p50": 0.010402,
+        "p90": 0.022423,
+        "max": 0.031797
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00099394,
+       "slicesPerDay": 2.1111
+      }
+     },
+     {
+      "key": "budget 10%, one breath, steps 10/20/30, extras 20/25/25, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        1000,
+        2000,
+        3000
+       ],
+       "extra_bps": [
+        2000,
+        2500,
+        2500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.1844,
+       "before": 1.0818,
+       "after": 1.0931,
+       "robust": 0.98951,
+       "dca": 1.1926
+      },
+      "unspent": 0.038212,
+      "tpnVsInstant": 1.1794,
+      "exposure": {
+       "slices": 1181,
+       "fill": {
+        "p50": 0.0098918,
+        "p90": 0.022651,
+        "max": 0.030782
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00029383,
+       "slicesPerDay": 2.2593
+      }
+     },
+     {
+      "key": "budget 10%, one breath, steps 15/30/45, extras 5/10/15, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        1500,
+        3000,
+        4500
+       ],
+       "extra_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.5159,
+       "before": 0.99365,
+       "after": 1.1472,
+       "robust": 0.99023,
+       "dca": 1.375
+      },
+      "unspent": 0.13247,
+      "tpnVsInstant": 1.3991,
+      "exposure": {
+       "slices": 973,
+       "fill": {
+        "p50": 0.011515,
+        "p90": 0.021312,
+        "max": 0.029219
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00014554,
+       "slicesPerDay": 1.625
+      }
+     },
+     {
+      "key": "budget 10%, one breath, steps 15/30/45, extras 10/15/20, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        1500,
+        3000,
+        4500
+       ],
+       "extra_bps": [
+        1000,
+        1500,
+        2000
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.3323,
+       "before": 1.0603,
+       "after": 1.156,
+       "robust": 0.98575,
+       "dca": 1.3355
+      },
+      "unspent": 0.096341,
+      "tpnVsInstant": 1.2565,
+      "exposure": {
+       "slices": 978,
+       "fill": {
+        "p50": 0.01368,
+        "p90": 0.021081,
+        "max": 0.030606
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.000071023,
+       "slicesPerDay": 1.7917
+      }
+     },
+     {
+      "key": "budget 10%, one breath, steps 15/30/45, extras 20/25/25, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        1500,
+        3000,
+        4500
+       ],
+       "extra_bps": [
+        2000,
+        2500,
+        2500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.2277,
+       "before": 1.0771,
+       "after": 1.1498,
+       "robust": 1.0095,
+       "dca": 1.268
+      },
+      "unspent": 0.069378,
+      "tpnVsInstant": 1.2116,
+      "exposure": {
+       "slices": 1045,
+       "fill": {
+        "p50": 0.013267,
+        "p90": 0.02317,
+        "max": 0.031423
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.0005934,
+       "slicesPerDay": 1.9524
+      }
+     },
+     {
+      "key": "budget 10%, one breath, steps 20/35/50, extras 5/10/15, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.5772,
+       "before": 1.0064,
+       "after": 1.1602,
+       "robust": 0.96352,
+       "dca": 1.4082
+      },
+      "unspent": 0.15278,
+      "tpnVsInstant": 1.4394,
+      "exposure": {
+       "slices": 912,
+       "fill": {
+        "p50": 0.013205,
+        "p90": 0.021557,
+        "max": 0.030856
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00027466,
+       "slicesPerDay": 1.5185
+      }
+     },
+     {
+      "key": "budget 10%, one breath, steps 20/35/50, extras 10/15/20, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        1000,
+        1500,
+        2000
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.4466,
+       "before": 1.0115,
+       "after": 1.1603,
+       "robust": 0.98845,
+       "dca": 1.3891
+      },
+      "unspent": 0.13194,
+      "tpnVsInstant": 1.3273,
+      "exposure": {
+       "slices": 898,
+       "fill": {
+        "p50": 0.01462,
+        "p90": 0.023375,
+        "max": 0.031461
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.0002597,
+       "slicesPerDay": 1.5
+      }
+     },
+     {
+      "key": "budget 10%, one breath, steps 20/35/50, extras 20/25/25, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        2000,
+        2500,
+        2500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.2263,
+       "before": 1.0661,
+       "after": 1.1472,
+       "robust": 1.0092,
+       "dca": 1.3497
+      },
+      "unspent": 0.089234,
+      "tpnVsInstant": 1.2554,
+      "exposure": {
+       "slices": 978,
+       "fill": {
+        "p50": 0.013267,
+        "p90": 0.023763,
+        "max": 0.03156
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00014069,
+       "slicesPerDay": 1.7083
+      }
+     },
+     {
+      "key": "budget 15%, one breath, steps 5/10/15, extras 5/10/15, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "extra_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.1382,
+       "before": 1.0774,
+       "after": 1.0543,
+       "robust": 0.93255,
+       "dca": 1.1498
+      },
+      "unspent": 0.042183,
+      "tpnVsInstant": 1.1314,
+      "exposure": {
+       "slices": 1323,
+       "fill": {
+        "p50": 0.0081691,
+        "p90": 0.021503,
+        "max": 0.029834
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00050116,
+       "slicesPerDay": 2.4118
+      }
+     },
+     {
+      "key": "budget 15%, one breath, steps 5/10/15, extras 10/15/20, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "extra_bps": [
+        1000,
+        1500,
+        2000
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.0988,
+       "before": 1.0387,
+       "after": 1.0457,
+       "robust": 0.94943,
+       "dca": 1.1178
+      },
+      "unspent": 0.027461,
+      "tpnVsInstant": 1.1054,
+      "exposure": {
+       "slices": 1322,
+       "fill": {
+        "p50": 0.007801,
+        "p90": 0.021492,
+        "max": 0.031404
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00029061,
+       "slicesPerDay": 2.5
+      }
+     },
+     {
+      "key": "budget 15%, one breath, steps 10/20/30, extras 5/10/15, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        1000,
+        2000,
+        3000
+       ],
+       "extra_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.182,
+       "before": 1.0632,
+       "after": 1.1139,
+       "robust": 0.98053,
+       "dca": 1.299
+      },
+      "unspent": 0.063531,
+      "tpnVsInstant": 1.1477,
+      "exposure": {
+       "slices": 1187,
+       "fill": {
+        "p50": 0.0092679,
+        "p90": 0.022404,
+        "max": 0.030287
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00060655,
+       "slicesPerDay": 2.125
+      }
+     },
+     {
+      "key": "budget 15%, one breath, steps 10/20/30, extras 10/15/20, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        1000,
+        2000,
+        3000
+       ],
+       "extra_bps": [
+        1000,
+        1500,
+        2000
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.1616,
+       "before": 1.0438,
+       "after": 1.1248,
+       "robust": 1.0149,
+       "dca": 1.2424
+      },
+      "unspent": 0.050022,
+      "tpnVsInstant": 1.1699,
+      "exposure": {
+       "slices": 1189,
+       "fill": {
+        "p50": 0.011069,
+        "p90": 0.021712,
+        "max": 0.031193
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00012945,
+       "slicesPerDay": 2.2593
+      }
+     },
+     {
+      "key": "budget 15%, one breath, steps 15/30/45, extras 5/10/15, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        1500,
+        3000,
+        4500
+       ],
+       "extra_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.383,
+       "before": 1.0385,
+       "after": 1.1407,
+       "robust": 0.98047,
+       "dca": 1.3697
+      },
+      "unspent": 0.074823,
+      "tpnVsInstant": 1.2998,
+      "exposure": {
+       "slices": 1036,
+       "fill": {
+        "p50": 0.011834,
+        "p90": 0.020971,
+        "max": 0.031458
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.000604,
+       "slicesPerDay": 1.8148
+      }
+     },
+     {
+      "key": "budget 15%, one breath, steps 15/30/45, extras 10/15/20, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        1500,
+        3000,
+        4500
+       ],
+       "extra_bps": [
+        1000,
+        1500,
+        2000
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.2357,
+       "before": 1.1,
+       "after": 1.0975,
+       "robust": 0.97241,
+       "dca": 1.314
+      },
+      "unspent": 0.065113,
+      "tpnVsInstant": 1.1978,
+      "exposure": {
+       "slices": 1042,
+       "fill": {
+        "p50": 0.013709,
+        "p90": 0.022195,
+        "max": 0.02861
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00015851,
+       "slicesPerDay": 1.8333
+      }
+     },
+     {
+      "key": "budget 15%, one breath, steps 20/35/50, extras 5/10/15, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.4097,
+       "before": 0.99346,
+       "after": 1.1492,
+       "robust": 0.97585,
+       "dca": 1.3962
+      },
+      "unspent": 0.09203,
+      "tpnVsInstant": 1.3464,
+      "exposure": {
+       "slices": 972,
+       "fill": {
+        "p50": 0.013671,
+        "p90": 0.021511,
+        "max": 0.031708
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00042045,
+       "slicesPerDay": 1.7037
+      }
+     },
+     {
+      "key": "budget 15%, one breath, steps 20/35/50, extras 10/15/20, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        1000,
+        1500,
+        2000
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.3068,
+       "before": 1.0184,
+       "after": 1.1173,
+       "robust": 0.98122,
+       "dca": 1.3128
+      },
+      "unspent": 0.07395,
+      "tpnVsInstant": 1.253,
+      "exposure": {
+       "slices": 977,
+       "fill": {
+        "p50": 0.014174,
+        "p90": 0.02109,
+        "max": 0.029087
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00029538,
+       "slicesPerDay": 1.7222
+      }
+     },
+     {
+      "key": "budget 20%, one breath, steps 5/10/15, extras 5/10/15, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "extra_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.1045,
+       "before": 1.0446,
+       "after": 1.046,
+       "robust": 0.91882,
+       "dca": 1.1207
+      },
+      "unspent": 0.036642,
+      "tpnVsInstant": 1.1027,
+      "exposure": {
+       "slices": 1388,
+       "fill": {
+        "p50": 0.0078988,
+        "p90": 0.020817,
+        "max": 0.028541
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00011438,
+       "slicesPerDay": 2.5
+      }
+     },
+     {
+      "key": "budget 20%, one breath, steps 5/10/15, extras 10/15/20, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "extra_bps": [
+        1000,
+        1500,
+        2000
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.1078,
+       "before": 1.0354,
+       "after": 1.0335,
+       "robust": 0.93265,
+       "dca": 1.1056
+      },
+      "unspent": 0.025908,
+      "tpnVsInstant": 1.0801,
+      "exposure": {
+       "slices": 1351,
+       "fill": {
+        "p50": 0.007402,
+        "p90": 0.021392,
+        "max": 0.030596
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00020559,
+       "slicesPerDay": 2.5294
+      }
+     },
+     {
+      "key": "budget 20%, one breath, steps 10/20/30, extras 5/10/15, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        1000,
+        2000,
+        3000
+       ],
+       "extra_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.1162,
+       "before": 1.0824,
+       "after": 1.0875,
+       "robust": 0.96654,
+       "dca": 1.2137
+      },
+      "unspent": 0.043781,
+      "tpnVsInstant": 1.1381,
+      "exposure": {
+       "slices": 1226,
+       "fill": {
+        "p50": 0.0096781,
+        "p90": 0.020597,
+        "max": 0.031783
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00052292,
+       "slicesPerDay": 2.2222
+      }
+     },
+     {
+      "key": "budget 20%, one breath, steps 10/20/30, extras 10/15/20, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        1000,
+        2000,
+        3000
+       ],
+       "extra_bps": [
+        1000,
+        1500,
+        2000
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.1428,
+       "before": 1.0476,
+       "after": 1.0915,
+       "robust": 0.98466,
+       "dca": 1.1724
+      },
+      "unspent": 0.041797,
+      "tpnVsInstant": 1.1218,
+      "exposure": {
+       "slices": 1211,
+       "fill": {
+        "p50": 0.010384,
+        "p90": 0.020768,
+        "max": 0.029296
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00071104,
+       "slicesPerDay": 2.2593
+      }
+     },
+     {
+      "key": "budget 20%, one breath, steps 15/30/45, extras 5/10/15, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        1500,
+        3000,
+        4500
+       ],
+       "extra_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.2536,
+       "before": 1.0792,
+       "after": 1.0732,
+       "robust": 0.95147,
+       "dca": 1.2549
+      },
+      "unspent": 0.050592,
+      "tpnVsInstant": 1.1849,
+      "exposure": {
+       "slices": 1095,
+       "fill": {
+        "p50": 0.01039,
+        "p90": 0.021228,
+        "max": 0.031564
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00065268,
+       "slicesPerDay": 1.875
+      }
+     },
+     {
+      "key": "budget 20%, one breath, steps 15/30/45, extras 10/15/20, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        1500,
+        3000,
+        4500
+       ],
+       "extra_bps": [
+        1000,
+        1500,
+        2000
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.1618,
+       "before": 1.1343,
+       "after": 1.0736,
+       "robust": 0.95715,
+       "dca": 1.2215
+      },
+      "unspent": 0.044203,
+      "tpnVsInstant": 1.1664,
+      "exposure": {
+       "slices": 1086,
+       "fill": {
+        "p50": 0.013899,
+        "p90": 0.021355,
+        "max": 0.028517
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.0001216,
+       "slicesPerDay": 1.875
+      }
+     },
+     {
+      "key": "budget 20%, one breath, steps 20/35/50, extras 5/10/15, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        500,
+        1000,
+        1500
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.2598,
+       "before": 1.0277,
+       "after": 1.0769,
+       "robust": 0.94967,
+       "dca": 1.2734
+      },
+      "unspent": 0.06022,
+      "tpnVsInstant": 1.2277,
+      "exposure": {
+       "slices": 1019,
+       "fill": {
+        "p50": 0.012819,
+        "p90": 0.021881,
+        "max": 0.031563
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00049779,
+       "slicesPerDay": 1.7778
+      }
+     },
+     {
+      "key": "budget 20%, one breath, steps 20/35/50, extras 10/15/20, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 2000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        1000,
+        1500,
+        2000
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.203,
+       "before": 1.063,
+       "after": 1.0647,
+       "robust": 0.98,
+       "dca": 1.2232
+      },
+      "unspent": 0.049278,
+      "tpnVsInstant": 1.1797,
+      "exposure": {
+       "slices": 1015,
+       "fill": {
+        "p50": 0.015277,
+        "p90": 0.02186,
+        "max": 0.030638
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.0002307,
+       "slicesPerDay": 1.7778
+      }
+     }
+    ]
+   },
+   "cap": {
+    "objective": "whole",
+    "candidates": 4,
+    "cv": {
+     "inSample": {
+      "key": "budget 10%, one breath, no dips, cap 1%, spike 15%",
+      "n": 25,
+      "p25": 0.91128,
+      "p50": 1.766,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 0.91128,
+      "p50": 1.766,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "vsDcaHeldOut": {
+      "n": 25,
+      "p25": 1.1112,
+      "p50": 1.4926,
+      "p75": 2.2025,
+      "beats": 0.84
+     },
+     "chosenCounts": {
+      "budget 10%, one breath, no dips, cap 1%, spike 15%": 5
+     },
+     "folds": 5,
+     "byTier": [
+      {
+       "n": 25,
+       "p25": 0.91128,
+       "p50": 1.766,
+       "p75": 2.2465,
+       "beats": 0.72
+      },
+      {
+       "n": 14,
+       "p25": 0.91128,
+       "p50": 1.5036,
+       "p75": 2.2462,
+       "beats": 0.71429
+      },
+      {
+       "n": 6,
+       "p25": 0.88135,
+       "p50": 1.2453,
+       "p75": 1.5036,
+       "beats": 0.66667
+      }
+     ]
+    },
+    "time": {
+     "chosen": "budget 10%, one breath, no dips, cap 1%, spike 15%",
+     "trainCoins": 23,
+     "testCoins": 25,
+     "inSample": {
+      "n": 23,
+      "p25": 0.64313,
+      "p50": 1.0011,
+      "p75": 2.6319,
+      "beats": 0.52174
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 1.0094,
+      "p50": 1.1466,
+      "p75": 1.3482,
+      "beats": 0.8
+     },
+     "bestAfter": {
+      "key": "budget 10%, one breath, no dips, cap 0.5%, spike 15%",
+      "n": 25,
+      "p25": 1.0117,
+      "p50": 1.1509,
+      "p75": 1.3521,
+      "beats": 0.8
+     }
+    },
+    "rows": [
+     {
+      "key": "budget 10%, one breath, no dips, cap 1%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 100,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.766,
+       "before": 1.0011,
+       "after": 1.1466,
+       "robust": 0.90504,
+       "dca": 1.4926
+      },
+      "unspent": 0.22919,
+      "tpnVsInstant": 1.2997,
+      "exposure": {
+       "slices": 1592,
+       "fill": {
+        "p50": 0.0078423,
+        "p90": 0.010145,
+        "max": 0.015976
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 2.15
+      }
+     },
+     {
+      "key": "budget 10%, one breath, no dips, cap 0.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 50,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.7694,
+       "before": 1.0011,
+       "after": 1.1509,
+       "robust": 0.90904,
+       "dca": 1.497
+      },
+      "unspent": 0.22919,
+      "tpnVsInstant": 1.3015,
+      "exposure": {
+       "slices": 2980,
+       "fill": {
+        "p50": 0.0043351,
+        "p90": 0.0053565,
+        "max": 0.010776
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 4.05
+      }
+     },
+     {
+      "key": "budget 10%, one breath, no dips, cap 1.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 150,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.7637,
+       "before": 1.0011,
+       "after": 1.1427,
+       "robust": 0.90205,
+       "dca": 1.4884
+      },
+      "unspent": 0.22919,
+      "tpnVsInstant": 1.2997,
+      "exposure": {
+       "slices": 1129,
+       "fill": {
+        "p50": 0.011006,
+        "p90": 0.014319,
+        "max": 0.021075
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 1.5294
+      }
+     },
+     {
+      "key": "budget 10%, one breath, no dips, cap 2%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 200,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.7617,
+       "before": 1.0011,
+       "after": 1.1399,
+       "robust": 0.89815,
+       "dca": 1.4837
+      },
+      "unspent": 0.22919,
+      "tpnVsInstant": 1.2997,
+      "exposure": {
+       "slices": 905,
+       "fill": {
+        "p50": 0.013003,
+        "p90": 0.019014,
+        "max": 0.02632
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 1.35
+      }
+     }
+    ]
+   },
+   "spike": {
+    "objective": "whole",
+    "candidates": 4,
+    "cv": {
+     "inSample": {
+      "key": "budget 10%, one breath, no dips, cap 2%, spike 15%",
+      "n": 25,
+      "p25": 0.90866,
+      "p50": 1.7617,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 0.90866,
+      "p50": 1.7617,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "vsDcaHeldOut": {
+      "n": 25,
+      "p25": 1.108,
+      "p50": 1.4837,
+      "p75": 2.2025,
+      "beats": 0.84
+     },
+     "chosenCounts": {
+      "budget 10%, one breath, no dips, cap 2%, spike 15%": 5
+     },
+     "folds": 5,
+     "byTier": [
+      {
+       "n": 25,
+       "p25": 0.90866,
+       "p50": 1.7617,
+       "p75": 2.2465,
+       "beats": 0.72
+      },
+      {
+       "n": 14,
+       "p25": 0.90866,
+       "p50": 1.4977,
+       "p75": 2.2329,
+       "beats": 0.71429
+      },
+      {
+       "n": 6,
+       "p25": 0.87444,
+       "p50": 1.2372,
+       "p75": 1.4977,
+       "beats": 0.66667
+      }
+     ]
+    },
+    "time": {
+     "chosen": "budget 10%, one breath, no dips, cap 2%, spike 15%",
+     "trainCoins": 23,
+     "testCoins": 25,
+     "inSample": {
+      "n": 23,
+      "p25": 0.64313,
+      "p50": 1.0011,
+      "p75": 2.6217,
+      "beats": 0.52174
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 1.0073,
+      "p50": 1.1399,
+      "p75": 1.3428,
+      "beats": 0.8
+     },
+     "bestAfter": {
+      "key": "budget 10%, one breath, no dips, cap 2%, spike 10%",
+      "n": 25,
+      "p25": 1.0073,
+      "p50": 1.1465,
+      "p75": 1.3451,
+      "beats": 0.8
+     }
+    },
+    "rows": [
+     {
+      "key": "budget 10%, one breath, no dips, cap 2%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 200,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.7617,
+       "before": 1.0011,
+       "after": 1.1399,
+       "robust": 0.89815,
+       "dca": 1.4837
+      },
+      "unspent": 0.22919,
+      "tpnVsInstant": 1.2997,
+      "exposure": {
+       "slices": 905,
+       "fill": {
+        "p50": 0.013003,
+        "p90": 0.019014,
+        "max": 0.02632
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 1.35
+      }
+     },
+     {
+      "key": "budget 10%, one breath, no dips, cap 2%, spike 10%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 200,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1000,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.7649,
+       "before": 0.99885,
+       "after": 1.1465,
+       "robust": 0.89969,
+       "dca": 1.4838
+      },
+      "unspent": 0.22973,
+      "tpnVsInstant": 1.2997,
+      "exposure": {
+       "slices": 905,
+       "fill": {
+        "p50": 0.013003,
+        "p90": 0.019032,
+        "max": 0.02632
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 1.35
+      }
+     },
+     {
+      "key": "budget 10%, one breath, no dips, cap 2%, spike 25%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 200,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 2500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.7619,
+       "before": 0.99719,
+       "after": 1.1382,
+       "robust": 0.89476,
+       "dca": 1.4819
+      },
+      "unspent": 0.21764,
+      "tpnVsInstant": 1.2997,
+      "exposure": {
+       "slices": 914,
+       "fill": {
+        "p50": 0.013437,
+        "p90": 0.018766,
+        "max": 0.02632
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 1.375
+      }
+     },
+     {
+      "key": "budget 10%, one breath, no dips, cap 2%, spike off",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 200,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": null,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.7474,
+       "before": 0.99686,
+       "after": 1.1396,
+       "robust": 0.88885,
+       "dca": 1.4706
+      },
+      "unspent": 0.21539,
+      "tpnVsInstant": 1.2997,
+      "exposure": {
+       "slices": 930,
+       "fill": {
+        "p50": 0.01342,
+        "p90": 0.018766,
+        "max": 0.02632
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0,
+       "slicesPerDay": 1.4375
+      }
+     }
+    ]
+   },
+   "cap outside the Council range": {
+    "rows": [
+     {
+      "key": "budget 10%, one breath, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.755,
+       "before": 1.0011,
+       "after": 1.1375,
+       "robust": 0.89385,
+       "dca": 1.4818
+      },
+      "unspent": 0.22919,
+      "tpnVsInstant": 1.2997,
+      "exposure": {
+       "slices": 764,
+       "fill": {
+        "p50": 0.015031,
+        "p90": 0.023417,
+        "max": 0.031118
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00072905,
+       "slicesPerDay": 1.15
+      }
+     },
+     {
+      "key": "budget 10%, one breath, no dips, cap 100%, spike 15%",
+      "settings": {
+       "budget_bps": 1000,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 10000,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.7148,
+       "before": 1.0008,
+       "after": 1.128,
+       "robust": 0.88613,
+       "dca": 1.4675
+      },
+      "unspent": 0.22919,
+      "tpnVsInstant": 1.2997,
+      "exposure": {
+       "slices": 462,
+       "fill": {
+        "p50": 0.015211,
+        "p90": 0.03298,
+        "max": 0.50949
+       },
+       "overBreakEven": 0.64555,
+       "overIfDepthHalf": 0.83059,
+       "slicesPerDay": 0.90909
+      }
+     }
+    ]
+   },
+   "budget outside the Council range": {
+    "rows": [
+     {
+      "key": "budget 5%, one breath, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 500,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.8027,
+       "before": 1.0068,
+       "after": 1.2347,
+       "robust": 0.9488,
+       "dca": 1.4969
+      },
+      "unspent": 0.46273,
+      "tpnVsInstant": 1.4618,
+      "exposure": {
+       "slices": 615,
+       "fill": {
+        "p50": 0.010401,
+        "p90": 0.016492,
+        "max": 0.031438
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00070504,
+       "slicesPerDay": 1.0526
+      }
+     },
+     {
+      "key": "budget 7%, one breath, no dips, cap 2.5%, spike 15%",
+      "settings": {
+       "budget_bps": 700,
+       "steps_bps": [
+        2000,
+        3500,
+        5000
+       ],
+       "extra_bps": [
+        0,
+        0,
+        0
+       ],
+       "cap_bps": 250,
+       "hunt": false,
+       "sell_multiple_bps": 25000,
+       "max_sell_bps": 1000,
+       "paused_until": 0,
+       "window_ms": 86400000,
+       "spike_bps": 1500,
+       "gap_ms": 60000,
+       "spread_ms": 0
+      },
+      "medians": {
+       "whole": 1.7594,
+       "before": 1.0054,
+       "after": 1.2156,
+       "robust": 0.92656,
+       "dca": 1.5441
+      },
+      "unspent": 0.33956,
+      "tpnVsInstant": 1.3625,
+      "exposure": {
+       "slices": 688,
+       "fill": {
+        "p50": 0.013332,
+        "p90": 0.019578,
+        "max": 0.031464
+       },
+       "overBreakEven": 0,
+       "overIfDepthHalf": 0.00067853,
+       "slicesPerDay": 1.0588
+      }
+     }
+    ]
+   }
+  },
+  "cadence": "budget 10%, one breath, no dips, cap 2.5%, spike 15%",
+  "defaultKey": "budget 10%, one breath, no dips, cap 2%, spike 15%",
+  "wyrmDefault": {
+   "name": "hoarder",
+   "objective": "whole",
+   "suits": "Smallest daily budget in one breath, no dip extras. Buys the most tokens per NEAR on top coins after their peak, and holds the most NEAR back.",
+   "key": "budget 10%, one breath, no dips, cap 2%, spike 15%",
+   "settings": {
+    "budget_bps": 1000,
+    "steps_bps": [
+     2000,
+     3500,
+     5000
+    ],
+    "extra_bps": [
+     0,
+     0,
+     0
+    ],
+    "cap_bps": 200,
+    "hunt": false,
+    "sell_multiple_bps": 25000,
+    "max_sell_bps": 1000,
+    "paused_until": 0,
+    "window_ms": 86400000,
+    "spike_bps": 1500,
+    "gap_ms": 60000,
+    "spread_ms": 0
+   },
+   "medians": {
+    "whole": 1.7617,
+    "before": 1.0011,
+    "after": 1.1399,
+    "robust": 0.89815,
+    "dca": 1.4837
+   },
+   "unspent": 0.22919,
+   "tpnVsInstant": 1.2997,
+   "exposure": {
+    "slices": 905,
+    "fill": {
+     "p50": 0.013003,
+     "p90": 0.019014,
+     "max": 0.02632
+    },
+    "overBreakEven": 0,
+    "overIfDepthHalf": 0,
+    "slicesPerDay": 1.35
+   },
+   "candidates": 95,
+   "cv": {
+    "inSample": {
+     "key": "budget 10%, one breath, no dips, cap 2.5%, spike 15%",
+     "n": 25,
+     "p25": 0.90644,
+     "p50": 1.755,
+     "p75": 2.2465,
+     "beats": 0.72
+    },
+    "heldOut": {
+     "n": 25,
+     "p25": 0.9451,
+     "p50": 1.6934,
+     "p75": 2.2465,
+     "beats": 0.72
+    },
+    "vsDcaHeldOut": {
+     "n": 25,
+     "p25": 1.1525,
+     "p50": 1.4818,
+     "p75": 2.2025,
+     "beats": 0.84
+    },
+    "chosenCounts": {
+     "budget 10%, one breath, no dips, cap 2.5%, spike 15%": 3,
+     "budget 10%, spread 1h, gap 1 min, no dips, cap 2.5%, spike 15%": 1,
+     "budget 10%, spread 1h, gap 15 min, no dips, cap 2.5%, spike 15%": 1
+    },
+    "folds": 5,
+    "byTier": [
+     {
+      "n": 25,
+      "p25": 0.9451,
+      "p50": 1.6934,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     {
+      "n": 14,
+      "p25": 0.9451,
+      "p50": 1.493,
+      "p75": 2.23,
+      "beats": 0.71429
+     },
+     {
+      "n": 6,
+      "p25": 0.86911,
+      "p50": 1.321,
+      "p75": 1.493,
+      "beats": 0.66667
+     }
+    ]
+   },
+   "time": {
+    "chosen": "budget 40%, spread 6h, gap 15 min, no dips, cap 2.5%, spike 15%",
+    "trainCoins": 23,
+    "testCoins": 25,
+    "inSample": {
+     "n": 23,
+     "p25": 0.81584,
+     "p50": 1.1372,
+     "p75": 2.0055,
+     "beats": 0.52174
+    },
+    "heldOut": {
+     "n": 25,
+     "p25": 0.9531,
+     "p50": 1.0088,
+     "p75": 1.1107,
+     "beats": 0.56
+    },
+    "bestAfter": {
+     "key": "budget 10%, spread 24h, gap 15 min, no dips, cap 2.5%, spike 15%",
+     "n": 25,
+     "p25": 1.0091,
+     "p50": 1.1829,
+     "p75": 1.3586,
+     "beats": 0.84
+    }
+   },
+   "preset": "hoarder"
+  },
+  "presets": [
+   {
+    "name": "hoarder",
+    "objective": "whole",
+    "suits": "Smallest daily budget in one breath, no dip extras. Buys the most tokens per NEAR on top coins after their peak, and holds the most NEAR back.",
+    "key": "budget 10%, one breath, no dips, cap 2%, spike 15%",
+    "settings": {
+     "budget_bps": 1000,
+     "steps_bps": [
+      2000,
+      3500,
+      5000
+     ],
+     "extra_bps": [
+      0,
+      0,
+      0
+     ],
+     "cap_bps": 200,
+     "hunt": false,
+     "sell_multiple_bps": 25000,
+     "max_sell_bps": 1000,
+     "paused_until": 0,
+     "window_ms": 86400000,
+     "spike_bps": 1500,
+     "gap_ms": 60000,
+     "spread_ms": 0
+    },
+    "medians": {
+     "whole": 1.7617,
+     "before": 1.0011,
+     "after": 1.1399,
+     "robust": 0.89815,
+     "dca": 1.4837
+    },
+    "unspent": 0.22919,
+    "tpnVsInstant": 1.2997,
+    "exposure": {
+     "slices": 905,
+     "fill": {
+      "p50": 0.013003,
+      "p90": 0.019014,
+      "max": 0.02632
+     },
+     "overBreakEven": 0,
+     "overIfDepthHalf": 0,
+     "slicesPerDay": 1.35
+    },
+    "candidates": 95,
+    "cv": {
+     "inSample": {
+      "key": "budget 10%, one breath, no dips, cap 2.5%, spike 15%",
+      "n": 25,
+      "p25": 0.90644,
+      "p50": 1.755,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 0.9451,
+      "p50": 1.6934,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "vsDcaHeldOut": {
+      "n": 25,
+      "p25": 1.1525,
+      "p50": 1.4818,
+      "p75": 2.2025,
+      "beats": 0.84
+     },
+     "chosenCounts": {
+      "budget 10%, one breath, no dips, cap 2.5%, spike 15%": 3,
+      "budget 10%, spread 1h, gap 1 min, no dips, cap 2.5%, spike 15%": 1,
+      "budget 10%, spread 1h, gap 15 min, no dips, cap 2.5%, spike 15%": 1
+     },
+     "folds": 5,
+     "byTier": [
+      {
+       "n": 25,
+       "p25": 0.9451,
+       "p50": 1.6934,
+       "p75": 2.2465,
+       "beats": 0.72
+      },
+      {
+       "n": 14,
+       "p25": 0.9451,
+       "p50": 1.493,
+       "p75": 2.23,
+       "beats": 0.71429
+      },
+      {
+       "n": 6,
+       "p25": 0.86911,
+       "p50": 1.321,
+       "p75": 1.493,
+       "beats": 0.66667
+      }
+     ]
+    },
+    "time": {
+     "chosen": "budget 40%, spread 6h, gap 15 min, no dips, cap 2.5%, spike 15%",
+     "trainCoins": 23,
+     "testCoins": 25,
+     "inSample": {
+      "n": 23,
+      "p25": 0.81584,
+      "p50": 1.1372,
+      "p75": 2.0055,
+      "beats": 0.52174
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 0.9531,
+      "p50": 1.0088,
+      "p75": 1.1107,
+      "beats": 0.56
+     },
+     "bestAfter": {
+      "key": "budget 10%, spread 24h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "n": 25,
+      "p25": 1.0091,
+      "p50": 1.1829,
+      "p75": 1.3586,
+      "beats": 0.84
+     }
+    }
+   },
+   {
+    "name": "steady",
+    "objective": "whole",
+    "suits": "Spreads each day's budget over hours in small slices, no dip extras. For a creator who wants buys visible through the day. Needs a spread setting the contract does not have yet.",
+    "key": "budget 10%, spread 6h, gap 15 min, no dips, cap 2%, spike 15%",
+    "settings": {
+     "budget_bps": 1000,
+     "steps_bps": [
+      2000,
+      3500,
+      5000
+     ],
+     "extra_bps": [
+      0,
+      0,
+      0
+     ],
+     "cap_bps": 200,
+     "hunt": false,
+     "sell_multiple_bps": 25000,
+     "max_sell_bps": 1000,
+     "paused_until": 0,
+     "window_ms": 86400000,
+     "spike_bps": 1500,
+     "gap_ms": 900000,
+     "spread_ms": 21600000
+    },
+    "medians": {
+     "whole": 1.6988,
+     "before": 1.0119,
+     "after": 1.1727,
+     "robust": 0.89258,
+     "dca": 1.5279
+    },
+    "unspent": 0.20793,
+    "tpnVsInstant": 1.3205,
+    "exposure": {
+     "slices": 10600,
+     "fill": {
+      "p50": 0.00057524,
+      "p90": 0.0013657,
+      "max": 0.021229
+     },
+     "overBreakEven": 0,
+     "overIfDepthHalf": 0,
+     "slicesPerDay": 20.909
+    },
+    "candidates": 36,
+    "cv": {
+     "inSample": {
+      "key": "budget 10%, spread 6h, gap 15 min, no dips, cap 2%, spike 15%",
+      "n": 25,
+      "p25": 0.91005,
+      "p50": 1.6988,
+      "p75": 2.2994,
+      "beats": 0.72
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 0.9194,
+      "p50": 1.7165,
+      "p75": 2.2994,
+      "beats": 0.72
+     },
+     "vsDcaHeldOut": {
+      "n": 25,
+      "p25": 1.1211,
+      "p50": 1.5279,
+      "p75": 2.217,
+      "beats": 0.84
+     },
+     "chosenCounts": {
+      "budget 10%, spread 6h, gap 15 min, no dips, cap 2%, spike 15%": 4,
+      "budget 10%, spread 24h, gap 15 min, no dips, cap 2%, spike 15%": 1
+     },
+     "folds": 5,
+     "byTier": [
+      {
+       "n": 25,
+       "p25": 0.9194,
+       "p50": 1.7165,
+       "p75": 2.2994,
+       "beats": 0.72
+      },
+      {
+       "n": 14,
+       "p25": 0.9194,
+       "p50": 1.5275,
+       "p75": 2.2994,
+       "beats": 0.71429
+      },
+      {
+       "n": 6,
+       "p25": 0.86233,
+       "p50": 1.3083,
+       "p75": 1.5275,
+       "beats": 0.66667
+      }
+     ]
+    },
+    "time": {
+     "chosen": "budget 40%, spread 6h, gap 15 min, no dips, cap 2%, spike 15%",
+     "trainCoins": 23,
+     "testCoins": 25,
+     "inSample": {
+      "n": 23,
+      "p25": 0.81584,
+      "p50": 1.1405,
+      "p75": 2.0055,
+      "beats": 0.52174
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 0.9531,
+      "p50": 1.0088,
+      "p75": 1.1107,
+      "beats": 0.56
+     },
+     "bestAfter": {
+      "key": "budget 10%, spread 24h, gap 15 min, no dips, cap 2%, spike 15%",
+      "n": 25,
+      "p25": 1.0091,
+      "p50": 1.1836,
+      "p75": 1.3586,
+      "beats": 0.84
+     }
+    }
+   },
+   {
+    "name": "dip-hunter",
+    "objective": "whole",
+    "suits": "Shallow dip steps with large extras, so most income reaches the market. For a creator who wants more buy pressure on dips and accepts fewer tokens per NEAR.",
+    "key": "budget 10%, one breath, steps 10/20/30, extras 10/15/20, cap 2%, spike 15%",
+    "settings": {
+     "budget_bps": 1000,
+     "steps_bps": [
+      1000,
+      2000,
+      3000
+     ],
+     "extra_bps": [
+      1000,
+      1500,
+      2000
+     ],
+     "cap_bps": 200,
+     "hunt": false,
+     "sell_multiple_bps": 25000,
+     "max_sell_bps": 1000,
+     "paused_until": 0,
+     "window_ms": 86400000,
+     "spike_bps": 1500,
+     "gap_ms": 60000,
+     "spread_ms": 0
+    },
+    "medians": {
+     "whole": 1.1969,
+     "before": 1.0586,
+     "after": 1.1437,
+     "robust": 1.001,
+     "dca": 1.294
+    },
+    "unspent": 0.076729,
+    "tpnVsInstant": 1.1735,
+    "exposure": {
+     "slices": 1282,
+     "fill": {
+      "p50": 0.01079,
+      "p90": 0.018447,
+      "max": 0.026084
+     },
+     "overBreakEven": 0,
+     "overIfDepthHalf": 0,
+     "slicesPerDay": 2.3333
+    },
+    "candidates": 12,
+    "cv": {
+     "inSample": {
+      "key": "budget 10%, one breath, steps 10/20/30, extras 10/15/20, cap 2%, spike 15%",
+      "n": 25,
+      "p25": 1.0209,
+      "p50": 1.1969,
+      "p75": 1.733,
+      "beats": 0.76
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 0.86742,
+      "p50": 1.1273,
+      "p75": 1.6667,
+      "beats": 0.72
+     },
+     "vsDcaHeldOut": {
+      "n": 25,
+      "p25": 1.0527,
+      "p50": 1.1881,
+      "p75": 1.3031,
+      "beats": 0.76
+     },
+     "chosenCounts": {
+      "budget 10%, one breath, steps 5/10/15, extras 10/15/20, cap 2%, spike 15%": 2,
+      "budget 10%, one breath, steps 10/20/30, extras 10/15/20, cap 2%, spike 15%": 3
+     },
+     "folds": 5,
+     "byTier": [
+      {
+       "n": 25,
+       "p25": 0.86742,
+       "p50": 1.1273,
+       "p75": 1.6667,
+       "beats": 0.72
+      },
+      {
+       "n": 14,
+       "p25": 0.81795,
+       "p50": 1.1127,
+       "p75": 1.3174,
+       "beats": 0.64286
+      },
+      {
+       "n": 6,
+       "p25": 0.81795,
+       "p50": 1.1127,
+       "p75": 1.1969,
+       "beats": 0.66667
+      }
+     ]
+    },
+    "time": {
+     "chosen": "budget 15%, one breath, steps 10/20/30, extras 20/25/25, cap 2%, spike 15%",
+     "trainCoins": 23,
+     "testCoins": 25,
+     "inSample": {
+      "n": 23,
+      "p25": 0.71293,
+      "p50": 1.097,
+      "p75": 1.5758,
+      "beats": 0.56522
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 1.0081,
+      "p50": 1.0772,
+      "p75": 1.1786,
+      "beats": 0.84
+     },
+     "bestAfter": {
+      "key": "budget 10%, one breath, steps 10/20/30, extras 10/15/20, cap 2%, spike 15%",
+      "n": 25,
+      "p25": 1.0094,
+      "p50": 1.1437,
+      "p75": 1.2344,
+      "beats": 0.8
+     }
+    }
+   },
+   {
+    "name": "swift",
+    "objective": "before",
+    "suits": "Large budget in one breath. For a coin still in its launch run, where each day of waiting costs tokens.",
+    "key": "budget 40%, one breath, no dips, cap 2%, spike 15%",
+    "settings": {
+     "budget_bps": 4000,
+     "steps_bps": [
+      2000,
+      3500,
+      5000
+     ],
+     "extra_bps": [
+      0,
+      0,
+      0
+     ],
+     "cap_bps": 200,
+     "hunt": false,
+     "sell_multiple_bps": 25000,
+     "max_sell_bps": 1000,
+     "paused_until": 0,
+     "window_ms": 86400000,
+     "spike_bps": 1500,
+     "gap_ms": 60000,
+     "spread_ms": 0
+    },
+    "medians": {
+     "whole": 1.1003,
+     "before": 1.064,
+     "after": 1.0297,
+     "robust": 0.90868,
+     "dca": 1.0897
+    },
+    "unspent": 0.023644,
+    "tpnVsInstant": 1.0968,
+    "exposure": {
+     "slices": 1157,
+     "fill": {
+      "p50": 0.013209,
+      "p90": 0.019543,
+      "max": 0.026306
+     },
+     "overBreakEven": 0,
+     "overIfDepthHalf": 0,
+     "slicesPerDay": 1.9167
+    },
+    "candidates": 3,
+    "cv": {
+     "inSample": {
+      "key": "budget 40%, one breath, no dips, cap 2%, spike 15%",
+      "n": 23,
+      "p25": 0.79015,
+      "p50": 1.064,
+      "p75": 1.9914,
+      "beats": 0.52174
+     },
+     "heldOut": {
+      "n": 23,
+      "p25": 0.72784,
+      "p50": 0.97831,
+      "p75": 2.0161,
+      "beats": 0.47826
+     },
+     "vsDcaHeldOut": {
+      "n": 25,
+      "p25": 0.99842,
+      "p50": 1.2198,
+      "p75": 1.3994,
+      "beats": 0.72
+     },
+     "chosenCounts": {
+      "budget 25%, one breath, no dips, cap 2%, spike 15%": 3,
+      "budget 40%, one breath, no dips, cap 2%, spike 15%": 2
+     },
+     "folds": 5,
+     "byTier": [
+      {
+       "n": 23,
+       "p25": 0.72784,
+       "p50": 0.97831,
+       "p75": 2.0161,
+       "beats": 0.47826
+      },
+      {
+       "n": 13,
+       "p25": 0.69751,
+       "p50": 0.95169,
+       "p75": 2.0161,
+       "beats": 0.38462
+      },
+      {
+       "n": 6,
+       "p25": 0.56684,
+       "p50": 0.72784,
+       "p75": 0.95169,
+       "beats": 0.16667
+      }
+     ]
+    },
+    "time": {
+     "chosen": "budget 40%, one breath, no dips, cap 2%, spike 15%",
+     "trainCoins": 23,
+     "testCoins": 25,
+     "inSample": {
+      "n": 23,
+      "p25": 0.79015,
+      "p50": 1.064,
+      "p75": 1.9914,
+      "beats": 0.52174
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 0.95846,
+      "p50": 1.0297,
+      "p75": 1.1223,
+      "beats": 0.56
+     },
+     "bestAfter": {
+      "key": "budget 30%, one breath, no dips, cap 2%, spike 15%",
+      "n": 25,
+      "p25": 0.97685,
+      "p50": 1.0575,
+      "p75": 1.1509,
+      "beats": 0.68
+     }
+    }
+   },
+   {
+    "name": "harvester",
+    "objective": "whole",
+    "suits": "The hoarder with Hunt on: sells a small slice of the hoard while the price is far above its cost. For a creator who wants profit taken back into NEAR.",
+    "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2x 5%/day",
+    "settings": {
+     "budget_bps": 1000,
+     "steps_bps": [
+      2000,
+      3500,
+      5000
+     ],
+     "extra_bps": [
+      0,
+      0,
+      0
+     ],
+     "cap_bps": 200,
+     "hunt": true,
+     "sell_multiple_bps": 20000,
+     "max_sell_bps": 500,
+     "paused_until": 0,
+     "window_ms": 86400000,
+     "spike_bps": 1500,
+     "gap_ms": 60000,
+     "spread_ms": 0
+    },
+    "medians": {
+     "whole": 1.7617,
+     "before": 1.0011,
+     "after": 1.1399,
+     "robust": 0.89815,
+     "dca": 1.4837
+    },
+    "unspent": 0.22919,
+    "tpnVsInstant": 1.2997,
+    "exposure": {
+     "slices": 905,
+     "fill": {
+      "p50": 0.013003,
+      "p90": 0.019014,
+      "max": 0.02632
+     },
+     "overBreakEven": 0,
+     "overIfDepthHalf": 0,
+     "slicesPerDay": 1.35
+    },
+    "candidates": 95,
+    "cv": {
+     "inSample": {
+      "key": "budget 10%, one breath, no dips, cap 2.5%, spike 15%",
+      "n": 25,
+      "p25": 0.90644,
+      "p50": 1.755,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 0.9451,
+      "p50": 1.6934,
+      "p75": 2.2465,
+      "beats": 0.72
+     },
+     "vsDcaHeldOut": {
+      "n": 25,
+      "p25": 1.1525,
+      "p50": 1.4818,
+      "p75": 2.2025,
+      "beats": 0.84
+     },
+     "chosenCounts": {
+      "budget 10%, one breath, no dips, cap 2.5%, spike 15%": 3,
+      "budget 10%, spread 1h, gap 1 min, no dips, cap 2.5%, spike 15%": 1,
+      "budget 10%, spread 1h, gap 15 min, no dips, cap 2.5%, spike 15%": 1
+     },
+     "folds": 5,
+     "byTier": [
+      {
+       "n": 25,
+       "p25": 0.9451,
+       "p50": 1.6934,
+       "p75": 2.2465,
+       "beats": 0.72
+      },
+      {
+       "n": 14,
+       "p25": 0.9451,
+       "p50": 1.493,
+       "p75": 2.23,
+       "beats": 0.71429
+      },
+      {
+       "n": 6,
+       "p25": 0.86911,
+       "p50": 1.321,
+       "p75": 1.493,
+       "beats": 0.66667
+      }
+     ]
+    },
+    "time": {
+     "chosen": "budget 40%, spread 6h, gap 15 min, no dips, cap 2.5%, spike 15%",
+     "trainCoins": 23,
+     "testCoins": 25,
+     "inSample": {
+      "n": 23,
+      "p25": 0.81584,
+      "p50": 1.1372,
+      "p75": 2.0055,
+      "beats": 0.52174
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 0.9531,
+      "p50": 1.0088,
+      "p75": 1.1107,
+      "beats": 0.56
+     },
+     "bestAfter": {
+      "key": "budget 10%, spread 24h, gap 15 min, no dips, cap 2.5%, spike 15%",
+      "n": 25,
+      "p25": 1.0091,
+      "p50": 1.1829,
+      "p75": 1.3586,
+      "beats": 0.84
+     }
+    },
+    "hunt": {
+     "inSample": {
+      "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2x 5%/day",
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0017,
+      "beats": 0.48
+     },
+     "heldOut": {
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0017,
+      "beats": 0.48
+     },
+     "hoardKeptHeldOut": {
+      "n": 25,
+      "p25": 0.99915,
+      "p50": 1,
+      "p75": 1.0003,
+      "beats": 0.36
+     },
+     "chosenCounts": {
+      "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2x 5%/day": 5
+     }
+    }
+   }
+  ],
+  "hunt": {
+   "rows": [
+    {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2x 5%/day",
+     "sell": 20000,
+     "max": 500,
+     "endValue": {
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0017,
+      "beats": 0.48
+     },
+     "hoardKept": 1,
+     "coinsSold": 16
+    },
+    {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2x 10%/day",
+     "sell": 20000,
+     "max": 1000,
+     "endValue": {
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0035,
+      "beats": 0.48
+     },
+     "hoardKept": 1,
+     "coinsSold": 16
+    },
+    {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2x 15%/day",
+     "sell": 20000,
+     "max": 1500,
+     "endValue": {
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0052,
+      "beats": 0.44
+     },
+     "hoardKept": 1,
+     "coinsSold": 16
+    },
+    {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2.5x 5%/day",
+     "sell": 25000,
+     "max": 500,
+     "endValue": {
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0008,
+      "beats": 0.36
+     },
+     "hoardKept": 1,
+     "coinsSold": 14
+    },
+    {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2.5x 10%/day",
+     "sell": 25000,
+     "max": 1000,
+     "endValue": {
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0015,
+      "beats": 0.36
+     },
+     "hoardKept": 1,
+     "coinsSold": 14
+    },
+    {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2.5x 15%/day",
+     "sell": 25000,
+     "max": 1500,
+     "endValue": {
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0021,
+      "beats": 0.36
+     },
+     "hoardKept": 1,
+     "coinsSold": 14
+    },
+    {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 3x 5%/day",
+     "sell": 30000,
+     "max": 500,
+     "endValue": {
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0012,
+      "beats": 0.4
+     },
+     "hoardKept": 1,
+     "coinsSold": 14
+    },
+    {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 3x 10%/day",
+     "sell": 30000,
+     "max": 1000,
+     "endValue": {
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0022,
+      "beats": 0.4
+     },
+     "hoardKept": 1,
+     "coinsSold": 14
+    },
+    {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 3x 15%/day",
+     "sell": 30000,
+     "max": 1500,
+     "endValue": {
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0029,
+      "beats": 0.4
+     },
+     "hoardKept": 1,
+     "coinsSold": 14
+    },
+    {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 5x 5%/day",
+     "sell": 50000,
+     "max": 500,
+     "endValue": {
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0002,
+      "beats": 0.32
+     },
+     "hoardKept": 1,
+     "coinsSold": 10
+    },
+    {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 5x 10%/day",
+     "sell": 50000,
+     "max": 1000,
+     "endValue": {
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0003,
+      "beats": 0.32
+     },
+     "hoardKept": 1,
+     "coinsSold": 10
+    },
+    {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 5x 15%/day",
+     "sell": 50000,
+     "max": 1500,
+     "endValue": {
+      "n": 25,
+      "p25": 1,
+      "p50": 1,
+      "p75": 1.0003,
+      "beats": 0.32
+     },
+     "hoardKept": 1,
+     "coinsSold": 10
+    }
+   ],
+   "cv": {
+    "inSample": {
+     "key": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2x 5%/day",
+     "n": 25,
+     "p25": 1,
+     "p50": 1,
+     "p75": 1.0017,
+     "beats": 0.48
+    },
+    "heldOut": {
+     "n": 25,
+     "p25": 1,
+     "p50": 1,
+     "p75": 1.0017,
+     "beats": 0.48
+    },
+    "hoardKeptHeldOut": {
+     "n": 25,
+     "p25": 0.99915,
+     "p50": 1,
+     "p75": 1.0003,
+     "beats": 0.36
+    },
+    "chosenCounts": {
+     "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2x 5%/day": 5
+    }
+   },
+   "chosen": "budget 10%, one breath, no dips, cap 2%, spike 15%, hunt 2x 5%/day",
+   "settings": {
+    "budget_bps": 1000,
+    "steps_bps": [
+     2000,
+     3500,
+     5000
+    ],
+    "extra_bps": [
+     0,
+     0,
+     0
+    ],
+    "cap_bps": 200,
+    "hunt": true,
+    "sell_multiple_bps": 20000,
+    "max_sell_bps": 500,
+    "paused_until": 0,
+    "window_ms": 86400000,
+    "spike_bps": 1500,
+    "gap_ms": 60000,
+    "spread_ms": 0
+   }
+  },
+  "seedSpread": {
+   "contract default": [
+    {
+     "whole": 1.2598,
+     "before": 1.0277
+    },
+    {
+     "whole": 1.3281,
+     "before": 1.0944
+    },
+    {
+     "whole": 1.2411,
+     "before": 1.0584
+    }
+   ],
+   "hoarder": [
+    {
+     "whole": 1.7617,
+     "before": 1.0011
+    },
+    {
+     "whole": 1.7005,
+     "before": 1.0154
+    },
+    {
+     "whole": 1.7474,
+     "before": 0.98596
+    }
+   ],
+   "steady": [
+    {
+     "whole": 1.6988,
+     "before": 1.0119
+    },
+    {
+     "whole": 1.7156,
+     "before": 0.98841
+    },
+    {
+     "whole": 1.7144,
+     "before": 0.99268
+    }
+   ],
+   "dip-hunter": [
+    {
+     "whole": 1.1969,
+     "before": 1.0586
+    },
+    {
+     "whole": 1.2018,
+     "before": 1.0655
+    },
+    {
+     "whole": 1.2079,
+     "before": 1.0995
+    }
+   ],
+   "swift": [
+    {
+     "whole": 1.1003,
+     "before": 1.064
+    },
+    {
+     "whole": 1.1184,
+     "before": 1.1279
+    },
+    {
+     "whole": 1.1144,
+     "before": 1.0419
+    }
+   ],
+   "harvester": [
+    {
+     "whole": 1.7617,
+     "before": 1.0014
+    },
+    {
+     "whole": 1.7005,
+     "before": 1.0156
+    },
+    {
+     "whole": 1.7474,
+     "before": 0.98624
+    }
+   ]
+  },
+  "estimator": {
+   "formula": "per_scale_near_per_day = daily_volume_near * tithe_rate * 0.5 / 100",
+   "tithe_rate_formula": "tithe_rate = 0.0048 * buy_share (+ 0.0048 * (1 - buy_share) with sell side) + tax_per_side * 0.6, tax_per_side = 0.04 for WYRM",
+   "buy_share": {
+    "pooled": 0.50722,
+    "perCoinDay": {
+     "n": 486,
+     "p10": 0,
+     "p25": 0.10006,
+     "p50": 0.46258,
+     "p75": 0.55147,
+     "p90": 0.69871,
+     "p99": 1,
+     "max": 1
+    }
+   },
+   "scenarios": {
+    "tax_400": {
+     "label": "WYRM: 400 bps token tax on buys and on sells, 60% of it to the tithe, plus the measured pool-fee share",
+     "rate": 0.026435
+    },
+    "tax_400_with_sell_side": {
+     "label": "WYRM, plus the coin side of the pool fee on sells, sold for NEAR (from Nearly's source, not measured)",
+     "rate": 0.0288
+    },
+    "no_tax": {
+     "label": "comparison: no token tax, NEAR side of the pool fee only",
+     "rate": 0.0024346
+    }
+   },
+   "assumptions": [
+    "DCL takes a 1% pool fee on every swap and keeps 20% of it; the locker earns 0.8% (docs/research/NEARLY.md).",
+    "The creator side gets 60% of that 0.8% (creator_share_bps 6000 on launches 3643 to 3647), paid in NEAR from the NEAR side: 0.48% of buy volume. fees_near_total / volume_y_in measured 0.008 on three launches.",
+    "buy_share is the NEAR value of buys over all volume, pooled over the top coins in the Gym data.",
+    "The coin side of sells is sold for NEAR by Nearly's seller. Its schedule and slippage were not measured, so it is a separate, upper scenario.",
+    "WYRM's tax is 400 bps on buys and 400 bps on sells (operator decision). Nearly's platform keeps 40% (platform_bps 4000 on observed launches) and the tithe gets 60%: 2.4% of all volume. The tax also charges every Dragon buy, and Nearly sells the coin-side tax for NEAR, which is sell pressure.",
+    "Nearly pays fee_to about once an hour. The tithe sends half of each round to the 100 Scales in equal parts; the rest goes to the Dragon.",
+    "The tithe rate is the main uncertainty. The Nov 8 rehearsal measures it on WYRM's own pool."
+   ],
+   "near_usd": 4.7306,
+   "topCoinDailyVolume": {
+    "tier": "rising",
+    "coins": 25,
+    "n": 486,
+    "p10": 6.5195,
+    "p25": 49.204,
+    "p50": 734.86,
+    "p75": 5408,
+    "p90": 31400,
+    "p99": 212620,
+    "max": 928930
+   },
+   "topCoinMedianDay": {
+    "n": 25,
+    "p10": 34.534,
+    "p25": 55.224,
+    "p50": 492.79,
+    "p75": 3093.6,
+    "p90": 8474.4,
+    "p99": 61596,
+    "max": 61596
+   },
+   "brackets": [
+    {
+     "daily_volume_near": 100,
+     "share_of_top_coin_days_at_or_above": 0.69547,
+     "per_scale_near_per_day": {
+      "tax_400": 0.013217,
+      "tax_400_with_sell_side": 0.0144,
+      "no_tax": 0.0012173
+     },
+     "dragon_near_per_day": {
+      "tax_400": 1.3217,
+      "tax_400_with_sell_side": 1.44,
+      "no_tax": 0.12173
+     }
+    },
+    {
+     "daily_volume_near": 300,
+     "share_of_top_coin_days_at_or_above": 0.59053,
+     "per_scale_near_per_day": {
+      "tax_400": 0.039652,
+      "tax_400_with_sell_side": 0.0432,
+      "no_tax": 0.003652
+     },
+     "dragon_near_per_day": {
+      "tax_400": 3.9652,
+      "tax_400_with_sell_side": 4.32,
+      "no_tax": 0.3652
+     }
+    },
+    {
+     "daily_volume_near": 1000,
+     "share_of_top_coin_days_at_or_above": 0.46296,
+     "per_scale_near_per_day": {
+      "tax_400": 0.13217,
+      "tax_400_with_sell_side": 0.144,
+      "no_tax": 0.012173
+     },
+     "dragon_near_per_day": {
+      "tax_400": 13.217,
+      "tax_400_with_sell_side": 14.4,
+      "no_tax": 1.2173
+     }
+    },
+    {
+     "daily_volume_near": 3000,
+     "share_of_top_coin_days_at_or_above": 0.30453,
+     "per_scale_near_per_day": {
+      "tax_400": 0.39652,
+      "tax_400_with_sell_side": 0.432,
+      "no_tax": 0.03652
+     },
+     "dragon_near_per_day": {
+      "tax_400": 39.652,
+      "tax_400_with_sell_side": 43.2,
+      "no_tax": 3.652
+     }
+    },
+    {
+     "daily_volume_near": 10000,
+     "share_of_top_coin_days_at_or_above": 0.17078,
+     "per_scale_near_per_day": {
+      "tax_400": 1.3217,
+      "tax_400_with_sell_side": 1.44,
+      "no_tax": 0.12173
+     },
+     "dragon_near_per_day": {
+      "tax_400": 132.17,
+      "tax_400_with_sell_side": 144,
+      "no_tax": 12.173
+     }
+    },
+    {
+     "daily_volume_near": 30000,
+     "share_of_top_coin_days_at_or_above": 0.10082,
+     "per_scale_near_per_day": {
+      "tax_400": 3.9652,
+      "tax_400_with_sell_side": 4.32,
+      "no_tax": 0.3652
+     },
+     "dragon_near_per_day": {
+      "tax_400": 396.52,
+      "tax_400_with_sell_side": 432,
+      "no_tax": 36.52
+     }
+    },
+    {
+     "daily_volume_near": 100000,
+     "share_of_top_coin_days_at_or_above": 0.022634,
+     "per_scale_near_per_day": {
+      "tax_400": 13.217,
+      "tax_400_with_sell_side": 14.4,
+      "no_tax": 1.2173
+     },
+     "dragon_near_per_day": {
+      "tax_400": 1321.7,
+      "tax_400_with_sell_side": 1440,
+      "no_tax": 121.73
+     }
+    },
+    {
+     "daily_volume_near": 300000,
+     "share_of_top_coin_days_at_or_above": 0.0082305,
+     "per_scale_near_per_day": {
+      "tax_400": 39.652,
+      "tax_400_with_sell_side": 43.2,
+      "no_tax": 3.652
+     },
+     "dragon_near_per_day": {
+      "tax_400": 3965.2,
+      "tax_400_with_sell_side": 4320,
+      "no_tax": 365.2
+     }
+    }
+   ]
+  }
+ },
+ "sandwich": {
+  "breakEven": {
+   "wyrm": 0.055482,
+   "noTax": 0.010218,
+   "selfTrigger10": 0.090263,
+   "selfTrigger20": 0.10833,
+   "selfTrigger30": 0.1242
+  },
+  "curve": [
+   {
+    "fillOverDepth": 0.005,
+    "wyrm": 0,
+    "noTax": 0
+   },
+   {
+    "fillOverDepth": 0.01,
+    "wyrm": 0,
+    "noTax": 0
+   },
+   {
+    "fillOverDepth": 0.02,
+    "wyrm": 0,
+    "noTax": 2.0706
+   },
+   {
+    "fillOverDepth": 0.03,
+    "wyrm": 0,
+    "noTax": 6.4682
+   },
+   {
+    "fillOverDepth": 0.05,
+    "wyrm": 0,
+    "noTax": 18.179
+   },
+   {
+    "fillOverDepth": 0.06,
+    "wyrm": 0.11359,
+    "noTax": 24.838
+   },
+   {
+    "fillOverDepth": 0.08,
+    "wyrm": 2.7491,
+    "noTax": 39.098
+   },
+   {
+    "fillOverDepth": 0.1,
+    "wyrm": 7.8838,
+    "noTax": 54.215
+   },
+   {
+    "fillOverDepth": 0.15,
+    "wyrm": 27.253,
+    "noTax": 94.24
+   }
+  ]
+ },
+ "scenarios": [
+  {
+   "name": "slow bleed",
+   "priceEndOverStart": 0.34898,
+   "medianDayVolume": 5.4494,
+   "dragon": {
+    "tpn": 729190,
+    "spent": 91.578,
+    "reserve": 1.2927,
+    "hoard": 66778000,
+    "inflow": 92.871,
+    "slices": 60
+   },
+   "dragonVsInstant": 1.1027,
+   "contractVsInstant": 0.9966,
+   "end": {
+    "reserve": 1.2927,
+    "hoard": 66778000,
+    "price": 5.6708e-7,
+    "volume": 2.21,
+    "heldPct": 6.6778,
+    "heldPctFeedback": 6.104,
+    "scaleIncome": 0.0002652
+   },
+   "scaleIncomeMedian": 0.00068085
+  },
+  {
+   "name": "pump and dump",
+   "priceEndOverStart": 0.3101,
+   "medianDayVolume": 5.2052,
+   "dragon": {
+    "tpn": 702700,
+    "spent": 546.84,
+    "reserve": 4.3443,
+    "hoard": 384270000,
+    "inflow": 551.19,
+    "slices": 64
+   },
+   "dragonVsInstant": 3.0237,
+   "contractVsInstant": 1.9878,
+   "end": {
+    "reserve": 4.3443,
+    "hoard": 384270000,
+    "price": 5.0389e-7,
+    "volume": 0.89929,
+    "heldPct": 38.427,
+    "heldPctFeedback": 24.402,
+    "scaleIncome": 0.00010792
+   },
+   "scaleIncomeMedian": 0.00062462
+  },
+  {
+   "name": "sideways chop",
+   "priceEndOverStart": 1.5199,
+   "medianDayVolume": 345.33,
+   "dragon": {
+    "tpn": 441450,
+    "spent": 571.32,
+    "reserve": 126.81,
+    "hoard": 252210000,
+    "inflow": 698.13,
+    "slices": 62
+   },
+   "dragonVsInstant": 1.0485,
+   "contractVsInstant": 1.0861,
+   "end": {
+    "reserve": 126.63,
+    "hoard": 252210000,
+    "price": 0.0000024698,
+    "volume": 167.66,
+    "heldPct": 25.221,
+    "heldPctFeedback": 15.602,
+    "scaleIncome": 0.022238
+   },
+   "scaleIncomeMedian": 0.045661
+  },
+  {
+   "name": "bot swarm",
+   "priceEndOverStart": 1.2357,
+   "medianDayVolume": 416.11,
+   "dragon": {
+    "tpn": 527530,
+    "spent": 966.58,
+    "reserve": 206.89,
+    "hoard": 509900000,
+    "inflow": 1173.5,
+    "slices": 65
+   },
+   "dragonVsInstant": 1.2182,
+   "contractVsInstant": 1.2761,
+   "end": {
+    "reserve": 206.87,
+    "hoard": 509900000,
+    "price": 0.0000020079,
+    "volume": 432.34,
+    "heldPct": 50.99,
+    "heldPctFeedback": 31.534,
+    "scaleIncome": 0.057686
+   },
+   "scaleIncomeMedian": 0.055038
+  },
+  {
+   "name": "dip-step attack",
+   "priceEndOverStart": 0.95311,
+   "medianDayVolume": 209.42,
+   "dragon": {
+    "tpn": 556760,
+    "spent": 561.03,
+    "reserve": 107.26,
+    "hoard": 312360000,
+    "inflow": 668.29,
+    "slices": 60
+   },
+   "dragonVsInstant": 1.1917,
+   "contractVsInstant": 1.2438,
+   "end": {
+    "reserve": 107.05,
+    "hoard": 312360000,
+    "price": 0.0000015487,
+    "volume": 1038.6,
+    "heldPct": 31.236,
+    "heldPctFeedback": 21.68,
+    "scaleIncome": 0.13681
+   },
+   "scaleIncomeMedian": 0.02747
+  }
+ ],
+ "scenarioDayPools": {
+  "bleed": 155,
+  "flat": 537,
+  "chop": 44,
+  "pump": 61,
+  "dump": 76,
+  "swarm": 32
+ },
+ "attack": [
+  {
+   "who": "contract default",
+   "depth": 1584,
+   "reserve": 200,
+   "dumpNear": 110.05,
+   "attackerPnL": -10.974,
+   "dragonNear": 0,
+   "dragonAvgPriceVsBefore": null
+  },
+  {
+   "who": "contract default",
+   "depth": 1584,
+   "reserve": 2000,
+   "dumpNear": 110.05,
+   "attackerPnL": -10.974,
+   "dragonNear": 0,
+   "dragonAvgPriceVsBefore": null
+  },
+  {
+   "who": "contract default",
+   "depth": 396,
+   "reserve": 2000,
+   "dumpNear": 27.513,
+   "attackerPnL": -2.7436,
+   "dragonNear": 0,
+   "dragonAvgPriceVsBefore": null
+  },
+  {
+   "who": "dip-hunter preset",
+   "depth": 1584,
+   "reserve": 200,
+   "dumpNear": 110.05,
+   "attackerPnL": -13.881,
+   "dragonNear": 20,
+   "dragonAvgPriceVsBefore": 0.93816
+  },
+  {
+   "who": "dip-hunter preset",
+   "depth": 1584,
+   "reserve": 2000,
+   "dumpNear": 110.05,
+   "attackerPnL": -14.614,
+   "dragonNear": 25,
+   "dragonAvgPriceVsBefore": 0.94112
+  },
+  {
+   "who": "dip-hunter preset",
+   "depth": 396,
+   "reserve": 2000,
+   "dumpNear": 27.513,
+   "attackerPnL": -3.6534,
+   "dragonNear": 6.25,
+   "dragonAvgPriceVsBefore": 0.94112
+  }
+ ]
+}

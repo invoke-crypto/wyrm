@@ -1,0 +1,178 @@
+{
+ "generated_by": "node gym/gym.mjs",
+ "formula": "per_scale_near_per_day = daily_volume_near * tithe_rate * 0.5 / 100",
+ "tithe_rate_formula": "tithe_rate = 0.0048 * buy_share (+ 0.0048 * (1 - buy_share) with sell side) + tax_per_side * 0.6, tax_per_side = 0.04 for WYRM",
+ "buy_share": {
+  "pooled": 0.50722,
+  "perCoinDay": {
+   "n": 486,
+   "p10": 0,
+   "p25": 0.10006,
+   "p50": 0.46258,
+   "p75": 0.55147,
+   "p90": 0.69871,
+   "p99": 1,
+   "max": 1
+  }
+ },
+ "scenarios": {
+  "tax_400": {
+   "label": "WYRM: 400 bps token tax on buys and on sells, 60% of it to the tithe, plus the measured pool-fee share",
+   "rate": 0.026435
+  },
+  "tax_400_with_sell_side": {
+   "label": "WYRM, plus the coin side of the pool fee on sells, sold for NEAR (from Nearly's source, not measured)",
+   "rate": 0.0288
+  },
+  "no_tax": {
+   "label": "comparison: no token tax, NEAR side of the pool fee only",
+   "rate": 0.0024346
+  }
+ },
+ "assumptions": [
+  "DCL takes a 1% pool fee on every swap and keeps 20% of it; the locker earns 0.8% (docs/research/NEARLY.md).",
+  "The creator side gets 60% of that 0.8% (creator_share_bps 6000 on launches 3643 to 3647), paid in NEAR from the NEAR side: 0.48% of buy volume. fees_near_total / volume_y_in measured 0.008 on three launches.",
+  "buy_share is the NEAR value of buys over all volume, pooled over the top coins in the Gym data.",
+  "The coin side of sells is sold for NEAR by Nearly's seller. Its schedule and slippage were not measured, so it is a separate, upper scenario.",
+  "WYRM's tax is 400 bps on buys and 400 bps on sells (operator decision). Nearly's platform keeps 40% (platform_bps 4000 on observed launches) and the tithe gets 60%: 2.4% of all volume. The tax also charges every Dragon buy, and Nearly sells the coin-side tax for NEAR, which is sell pressure.",
+  "Nearly pays fee_to about once an hour. The tithe sends half of each round to the 100 Scales in equal parts; the rest goes to the Dragon.",
+  "The tithe rate is the main uncertainty. The Nov 8 rehearsal measures it on WYRM's own pool."
+ ],
+ "near_usd": 4.7306,
+ "topCoinDailyVolume": {
+  "tier": "rising",
+  "coins": 25,
+  "n": 486,
+  "p10": 6.5195,
+  "p25": 49.204,
+  "p50": 734.86,
+  "p75": 5408,
+  "p90": 31400,
+  "p99": 212620,
+  "max": 928930
+ },
+ "topCoinMedianDay": {
+  "n": 25,
+  "p10": 34.534,
+  "p25": 55.224,
+  "p50": 492.79,
+  "p75": 3093.6,
+  "p90": 8474.4,
+  "p99": 61596,
+  "max": 61596
+ },
+ "brackets": [
+  {
+   "daily_volume_near": 100,
+   "share_of_top_coin_days_at_or_above": 0.69547,
+   "per_scale_near_per_day": {
+    "tax_400": 0.013217,
+    "tax_400_with_sell_side": 0.0144,
+    "no_tax": 0.0012173
+   },
+   "dragon_near_per_day": {
+    "tax_400": 1.3217,
+    "tax_400_with_sell_side": 1.44,
+    "no_tax": 0.12173
+   }
+  },
+  {
+   "daily_volume_near": 300,
+   "share_of_top_coin_days_at_or_above": 0.59053,
+   "per_scale_near_per_day": {
+    "tax_400": 0.039652,
+    "tax_400_with_sell_side": 0.0432,
+    "no_tax": 0.003652
+   },
+   "dragon_near_per_day": {
+    "tax_400": 3.9652,
+    "tax_400_with_sell_side": 4.32,
+    "no_tax": 0.3652
+   }
+  },
+  {
+   "daily_volume_near": 1000,
+   "share_of_top_coin_days_at_or_above": 0.46296,
+   "per_scale_near_per_day": {
+    "tax_400": 0.13217,
+    "tax_400_with_sell_side": 0.144,
+    "no_tax": 0.012173
+   },
+   "dragon_near_per_day": {
+    "tax_400": 13.217,
+    "tax_400_with_sell_side": 14.4,
+    "no_tax": 1.2173
+   }
+  },
+  {
+   "daily_volume_near": 3000,
+   "share_of_top_coin_days_at_or_above": 0.30453,
+   "per_scale_near_per_day": {
+    "tax_400": 0.39652,
+    "tax_400_with_sell_side": 0.432,
+    "no_tax": 0.03652
+   },
+   "dragon_near_per_day": {
+    "tax_400": 39.652,
+    "tax_400_with_sell_side": 43.2,
+    "no_tax": 3.652
+   }
+  },
+  {
+   "daily_volume_near": 10000,
+   "share_of_top_coin_days_at_or_above": 0.17078,
+   "per_scale_near_per_day": {
+    "tax_400": 1.3217,
+    "tax_400_with_sell_side": 1.44,
+    "no_tax": 0.12173
+   },
+   "dragon_near_per_day": {
+    "tax_400": 132.17,
+    "tax_400_with_sell_side": 144,
+    "no_tax": 12.173
+   }
+  },
+  {
+   "daily_volume_near": 30000,
+   "share_of_top_coin_days_at_or_above": 0.10082,
+   "per_scale_near_per_day": {
+    "tax_400": 3.9652,
+    "tax_400_with_sell_side": 4.32,
+    "no_tax": 0.3652
+   },
+   "dragon_near_per_day": {
+    "tax_400": 396.52,
+    "tax_400_with_sell_side": 432,
+    "no_tax": 36.52
+   }
+  },
+  {
+   "daily_volume_near": 100000,
+   "share_of_top_coin_days_at_or_above": 0.022634,
+   "per_scale_near_per_day": {
+    "tax_400": 13.217,
+    "tax_400_with_sell_side": 14.4,
+    "no_tax": 1.2173
+   },
+   "dragon_near_per_day": {
+    "tax_400": 1321.7,
+    "tax_400_with_sell_side": 1440,
+    "no_tax": 121.73
+   }
+  },
+  {
+   "daily_volume_near": 300000,
+   "share_of_top_coin_days_at_or_above": 0.0082305,
+   "per_scale_near_per_day": {
+    "tax_400": 39.652,
+    "tax_400_with_sell_side": 43.2,
+    "no_tax": 3.652
+   },
+   "dragon_near_per_day": {
+    "tax_400": 3965.2,
+    "tax_400_with_sell_side": 4320,
+    "no_tax": 365.2
+   }
+  }
+ ]
+}
