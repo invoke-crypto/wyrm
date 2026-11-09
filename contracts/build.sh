@@ -37,6 +37,8 @@ if [ "${1:-}" = "--reproducible" ]; then
   for c in $deployed; do
     (cd "$c" && cargo near build reproducible-wasm)
     crate=${c//-/_}
+    # cargo-near can report success after a failed build, so the wasm itself is the proof.
+    [ -f "target/near/$crate/$crate.wasm" ] || { echo "cargo near built no $crate.wasm" >&2; exit 1; }
     (cd "target/near/$crate" && sha256sum "$crate.wasm") >>"$hashes"
   done
   cat "$hashes"

@@ -3,6 +3,7 @@ name = "dragon"
 version = "0.1.0"
 edition = "2021"
 publish = false
+repository = "https://github.com/invoke-crypto/wyrm"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
