@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="air" cx=".5" cy=".48" r=".6"><stop offset="0" stop-color="#3a2f7a"/><stop offset=".6" stop-color="#1a1a42"/><stop offset="1" stop-color="#10132a"/></radialGradient>
+    <linearGradient id="sheen" x1="4" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#8a74d0"/><stop offset=".45" stop-color="#3f3168"/><stop offset="1" stop-color="#1c1530"/></linearGradient>
+    <linearGradient id="sheen-r" x1="56" y1="14" x2="30" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4a3c78"/><stop offset="1" stop-color="#18122a"/></linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#air)"/>
+  <g transform="translate(256 256) scale(6.1) translate(-30 -34)" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M30 2 L 4 14 L 30 30 Z" fill="url(#sheen)"/>
+    <path d="M30 2 L 56 14 L 30 30 Z" fill="url(#sheen-r)"/>
+    <path d="M8 44 L 4 14 L 30 30 Z" fill="#221a36"/>
+    <path d="M56 14 L 52 44 L 30 30 Z" fill="#130f20"/>
+    <path d="M30 66 L 8 44 L 30 30 Z" fill="#181225"/>
+    <path d="M52 44 L 30 66 L 30 30 Z" fill="#0a0812"/>
+    <path d="M11 13.6 L 17.5 10.6 L 25.5 25.6 Z" fill="#ffffff" fill-opacity=".28"/>
+    <path d="M30 2 L 30 30 L 56 14 M 30 30 L 4 14 M 30 30 L 52 44 M 30 30 L 8 44" fill="none" stroke="#b49cff" stroke-opacity=".45" stroke-width=".5"/>
+    <path d="M30 2 L 56 14 L 52 44 L 30 66 L 8 44 L 4 14 Z" fill="none" stroke="#6f5fa8" stroke-width=".9"/>
+    <path d="M8 44 L 4 14 L 30 2 L 56 14" fill="none" stroke="#e6dcff" stroke-width=".9"/>
+  </g>
+</svg>

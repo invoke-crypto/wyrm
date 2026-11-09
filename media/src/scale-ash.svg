@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="air" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#211b2c"/><stop offset="1" stop-color="#14101d"/></radialGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#air)"/>
+  <g transform="translate(256 256) scale(6.1) translate(-30 -34)" stroke-linejoin="round">
+    <path d="M30 2 L 4 14 L 30 30 Z" fill="#9a94a2"/>
+    <path d="M30 2 L 56 14 L 30 30 Z" fill="#878190"/>
+    <path d="M8 44 L 4 14 L 30 30 Z" fill="#7b7584"/>
+    <path d="M56 14 L 52 44 L 30 30 Z" fill="#6a6473"/>
+    <path d="M30 66 L 8 44 L 30 30 Z" fill="#625c6b"/>
+    <path d="M52 44 L 30 66 L 30 30 Z" fill="#544f5c"/>
+    <path d="M30 2 L 30 30 L 56 14 M 30 30 L 4 14 M 30 30 L 52 44 M 30 30 L 8 44" fill="none" stroke="#b7b1bf" stroke-opacity=".35" stroke-width=".5"/>
+    <path d="M30 2 L 56 14 L 52 44 L 30 66 L 8 44 L 4 14 Z" fill="none" stroke="#b1abb9" stroke-width=".8"/>
+    <g fill="#c9c4cf" fill-opacity=".55">
+      <circle cx="14" cy="18" r=".7"/><circle cx="21" cy="12" r=".5"/><circle cx="38" cy="10" r=".6"/><circle cx="46" cy="19" r=".45"/>
+      <circle cx="17" cy="33" r=".5"/><circle cx="43" cy="36" r=".6"/><circle cx="25" cy="48" r=".45"/><circle cx="35" cy="54" r=".55"/>
+    </g>
+  </g>
+</svg>
