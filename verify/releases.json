@@ -10,5 +10,24 @@
       "drill": "CghU3ajVYwMPihjgrvNYZy9V4qBtoKrTvrcGWx4vJdiP"
     }
   },
-  "releases": []
+  "releases": [
+    {
+      "name": "v2.0",
+      "engine_version": 200,
+      "presets": {
+        "hoarder": "6kx9i6kbBhmUsJBvxJdJVG1gRtdd2sg51c5JsxxHqpPE",
+        "steady": "BgQFfoJiURM1fyMYKDWpnZQ7gUa8C4KbMwZQXW9tpqKT",
+        "dip-hunter": "B7ADAcHnxZaWMAdFqBf3v3XwXNybv5nJVu25gLvCd8hE",
+        "swift": "8eJauSttdbg5Yp4HMqBmgGkwKvvzPy6YbrgdQJdfAAtg",
+        "harvester": "6TYKKAyTA6MjSu9qFsBXBZ9foaGHyTKeu6okRLDyoaZb",
+        "drill": "CghU3ajVYwMPihjgrvNYZy9V4qBtoKrTvrcGWx4vJdiP"
+      },
+      "code": {
+        "tithe": "CnDz34PWKiiXECKsT3f2KJvyKwgaVdUB233dC7d5HSYU",
+        "dragon": "FoaJWAPrkgnPmgSVyuBT9bxMeFTvJf2JhJJxWkxjYExc",
+        "scales": "DUhg2PuvGCoETpELJLNy9b3oZWXCkW6Fentn8AzMBTSb",
+        "scale_vault": "A8oxJyQcpZqXP94eZsTMU5ENG9nMuefKETsBggmx23XT"
+      }
+    }
+  ]
 }
