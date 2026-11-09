@@ -1,0 +1,2995 @@
+{
+  "001.get_claimable": "10895026227400000000",
+  "_multi": [
+    "dragon.get_coin",
+    "dragon.get_config",
+    "dragon.get_log",
+    "dragon.get_samples",
+    "dragon.get_state",
+    "scales.get_due",
+    "scales.get_proposal",
+    "scales.get_sale",
+    "scales.get_sweepable",
+    "scales.get_votes"
+  ],
+  "_source": "Recorded from the real v2 contracts in near-sandbox by contracts/tests/tests/lair_dump.rs: an unbound Dragon, a launch and bind, trades, a sold-out and closed sale, a listing, an offer, and proposals Executed, Rejected, Carried, LeashHeld and Open. Each key is <account's first label>.<method>.",
+  "dragon.get_coin": [
+    null,
+    {
+      "launch_id": "1",
+      "pool_id": "wrap.test.near|wyrm-2.nearly.test.near|10000",
+      "token": "wyrm-2.nearly.test.near",
+      "wrap_is_x": true
+    },
+    {
+      "launch_id": "1",
+      "pool_id": "wrap.test.near|wyrm-2.nearly.test.near|10000",
+      "token": "wyrm-2.nearly.test.near",
+      "wrap_is_x": true
+    },
+    {
+      "launch_id": "1",
+      "pool_id": "wrap.test.near|wyrm-2.nearly.test.near|10000",
+      "token": "wyrm-2.nearly.test.near",
+      "wrap_is_x": true
+    }
+  ],
+  "dragon.get_config": [
+    {
+      "coin": null,
+      "engine": {
+        "dip_samples": 3,
+        "dip_span_ns": "600000000000",
+        "launch_margin": "86000000000000000000000",
+        "outflow_bps": 50,
+        "outflow_window_bps": 100,
+        "outflow_window_ns": "2592000000000000",
+        "slippage_bps": 150,
+        "spike_bps": 1500,
+        "stale_ns": "300000000000",
+        "tax": {
+          "burn_bps": 0,
+          "buy_bps": 400,
+          "creator_bps": 10000,
+          "holders_bps": 0,
+          "sell_bps": 400
+        }
+      },
+      "engine_version": 200,
+      "peers": {
+        "ash": "ash.thewyrm.test.near",
+        "creator": "creator.thewyrm.test.near",
+        "dcl": "dcl.test.near",
+        "nearly": "nearly.test.near",
+        "scales": "scales.thewyrm.test.near",
+        "tithe": "tithe.thewyrm.test.near",
+        "wrap": "wrap.test.near"
+      },
+      "preset": "hoarder",
+      "preset_hash": "6kx9i6kbBhmUsJBvxJdJVG1gRtdd2sg51c5JsxxHqpPE",
+      "preset_value": {
+        "bounds": {
+          "auto_burn_bps": {
+            "hi": 5000,
+            "lo": 0
+          },
+          "budget_bps": {
+            "hi": 4000,
+            "lo": 1000
+          },
+          "cap_bps": {
+            "hi": 200,
+            "lo": 50
+          },
+          "max_sell_bps": {
+            "hi": 1500,
+            "lo": 1
+          },
+          "sell_multiple_min_bps": 20000
+        },
+        "cadence": {
+          "gap_seconds": 60,
+          "spread_minutes": 0
+        },
+        "features": {
+          "auto_burn": true,
+          "burn": true,
+          "grant": true,
+          "hunt": true
+        },
+        "ladder": {
+          "extra_bps": [
+            0,
+            0,
+            0
+          ],
+          "steps_bps": [
+            2000,
+            3500,
+            5000
+          ]
+        },
+        "name": "hoarder",
+        "network": "Any",
+        "royalty_to": "Creator",
+        "sale": {
+          "creator_bps": 1000,
+          "length": 1209600000000000,
+          "price": "2000000000000000000000000"
+        },
+        "strategy": {
+          "auto_burn_bps": 0,
+          "budget_bps": 1000,
+          "cap_bps": 200,
+          "hunt": null
+        },
+        "times": {
+          "season": 604800000000000,
+          "voting": 172800000000000
+        }
+      },
+      "strategy": {
+        "auto_burn_bps": 0,
+        "budget_bps": 1000,
+        "cap_bps": 200,
+        "hunt": null
+      }
+    },
+    {
+      "coin": {
+        "launch_id": "1",
+        "pool_id": "wrap.test.near|wyrm-2.nearly.test.near|10000",
+        "token": "wyrm-2.nearly.test.near",
+        "wrap_is_x": true
+      },
+      "engine": {
+        "dip_samples": 3,
+        "dip_span_ns": "600000000000",
+        "launch_margin": "86000000000000000000000",
+        "outflow_bps": 50,
+        "outflow_window_bps": 100,
+        "outflow_window_ns": "2592000000000000",
+        "slippage_bps": 150,
+        "spike_bps": 1500,
+        "stale_ns": "300000000000",
+        "tax": {
+          "burn_bps": 0,
+          "buy_bps": 400,
+          "creator_bps": 10000,
+          "holders_bps": 0,
+          "sell_bps": 400
+        }
+      },
+      "engine_version": 200,
+      "peers": {
+        "ash": "ash.thewyrm.test.near",
+        "creator": "creator.thewyrm.test.near",
+        "dcl": "dcl.test.near",
+        "nearly": "nearly.test.near",
+        "scales": "scales.thewyrm.test.near",
+        "tithe": "tithe.thewyrm.test.near",
+        "wrap": "wrap.test.near"
+      },
+      "preset": "hoarder",
+      "preset_hash": "6kx9i6kbBhmUsJBvxJdJVG1gRtdd2sg51c5JsxxHqpPE",
+      "preset_value": {
+        "bounds": {
+          "auto_burn_bps": {
+            "hi": 5000,
+            "lo": 0
+          },
+          "budget_bps": {
+            "hi": 4000,
+            "lo": 1000
+          },
+          "cap_bps": {
+            "hi": 200,
+            "lo": 50
+          },
+          "max_sell_bps": {
+            "hi": 1500,
+            "lo": 1
+          },
+          "sell_multiple_min_bps": 20000
+        },
+        "cadence": {
+          "gap_seconds": 60,
+          "spread_minutes": 0
+        },
+        "features": {
+          "auto_burn": true,
+          "burn": true,
+          "grant": true,
+          "hunt": true
+        },
+        "ladder": {
+          "extra_bps": [
+            0,
+            0,
+            0
+          ],
+          "steps_bps": [
+            2000,
+            3500,
+            5000
+          ]
+        },
+        "name": "hoarder",
+        "network": "Any",
+        "royalty_to": "Creator",
+        "sale": {
+          "creator_bps": 1000,
+          "length": 1209600000000000,
+          "price": "2000000000000000000000000"
+        },
+        "strategy": {
+          "auto_burn_bps": 0,
+          "budget_bps": 1000,
+          "cap_bps": 200,
+          "hunt": null
+        },
+        "times": {
+          "season": 604800000000000,
+          "voting": 172800000000000
+        }
+      },
+      "strategy": {
+        "auto_burn_bps": 0,
+        "budget_bps": 1000,
+        "cap_bps": 200,
+        "hunt": null
+      }
+    },
+    {
+      "coin": {
+        "launch_id": "1",
+        "pool_id": "wrap.test.near|wyrm-2.nearly.test.near|10000",
+        "token": "wyrm-2.nearly.test.near",
+        "wrap_is_x": true
+      },
+      "engine": {
+        "dip_samples": 3,
+        "dip_span_ns": "600000000000",
+        "launch_margin": "86000000000000000000000",
+        "outflow_bps": 50,
+        "outflow_window_bps": 100,
+        "outflow_window_ns": "2592000000000000",
+        "slippage_bps": 150,
+        "spike_bps": 1500,
+        "stale_ns": "300000000000",
+        "tax": {
+          "burn_bps": 0,
+          "buy_bps": 400,
+          "creator_bps": 10000,
+          "holders_bps": 0,
+          "sell_bps": 400
+        }
+      },
+      "engine_version": 200,
+      "peers": {
+        "ash": "ash.thewyrm.test.near",
+        "creator": "creator.thewyrm.test.near",
+        "dcl": "dcl.test.near",
+        "nearly": "nearly.test.near",
+        "scales": "scales.thewyrm.test.near",
+        "tithe": "tithe.thewyrm.test.near",
+        "wrap": "wrap.test.near"
+      },
+      "preset": "hoarder",
+      "preset_hash": "6kx9i6kbBhmUsJBvxJdJVG1gRtdd2sg51c5JsxxHqpPE",
+      "preset_value": {
+        "bounds": {
+          "auto_burn_bps": {
+            "hi": 5000,
+            "lo": 0
+          },
+          "budget_bps": {
+            "hi": 4000,
+            "lo": 1000
+          },
+          "cap_bps": {
+            "hi": 200,
+            "lo": 50
+          },
+          "max_sell_bps": {
+            "hi": 1500,
+            "lo": 1
+          },
+          "sell_multiple_min_bps": 20000
+        },
+        "cadence": {
+          "gap_seconds": 60,
+          "spread_minutes": 0
+        },
+        "features": {
+          "auto_burn": true,
+          "burn": true,
+          "grant": true,
+          "hunt": true
+        },
+        "ladder": {
+          "extra_bps": [
+            0,
+            0,
+            0
+          ],
+          "steps_bps": [
+            2000,
+            3500,
+            5000
+          ]
+        },
+        "name": "hoarder",
+        "network": "Any",
+        "royalty_to": "Creator",
+        "sale": {
+          "creator_bps": 1000,
+          "length": 1209600000000000,
+          "price": "2000000000000000000000000"
+        },
+        "strategy": {
+          "auto_burn_bps": 0,
+          "budget_bps": 1000,
+          "cap_bps": 200,
+          "hunt": null
+        },
+        "times": {
+          "season": 604800000000000,
+          "voting": 172800000000000
+        }
+      },
+      "strategy": {
+        "auto_burn_bps": 0,
+        "budget_bps": 1000,
+        "cap_bps": 200,
+        "hunt": null
+      }
+    },
+    {
+      "coin": {
+        "launch_id": "1",
+        "pool_id": "wrap.test.near|wyrm-2.nearly.test.near|10000",
+        "token": "wyrm-2.nearly.test.near",
+        "wrap_is_x": true
+      },
+      "engine": {
+        "dip_samples": 3,
+        "dip_span_ns": "600000000000",
+        "launch_margin": "86000000000000000000000",
+        "outflow_bps": 50,
+        "outflow_window_bps": 100,
+        "outflow_window_ns": "2592000000000000",
+        "slippage_bps": 150,
+        "spike_bps": 1500,
+        "stale_ns": "300000000000",
+        "tax": {
+          "burn_bps": 0,
+          "buy_bps": 400,
+          "creator_bps": 10000,
+          "holders_bps": 0,
+          "sell_bps": 400
+        }
+      },
+      "engine_version": 200,
+      "peers": {
+        "ash": "ash.thewyrm.test.near",
+        "creator": "creator.thewyrm.test.near",
+        "dcl": "dcl.test.near",
+        "nearly": "nearly.test.near",
+        "scales": "scales.thewyrm.test.near",
+        "tithe": "tithe.thewyrm.test.near",
+        "wrap": "wrap.test.near"
+      },
+      "preset": "hoarder",
+      "preset_hash": "6kx9i6kbBhmUsJBvxJdJVG1gRtdd2sg51c5JsxxHqpPE",
+      "preset_value": {
+        "bounds": {
+          "auto_burn_bps": {
+            "hi": 5000,
+            "lo": 0
+          },
+          "budget_bps": {
+            "hi": 4000,
+            "lo": 1000
+          },
+          "cap_bps": {
+            "hi": 200,
+            "lo": 50
+          },
+          "max_sell_bps": {
+            "hi": 1500,
+            "lo": 1
+          },
+          "sell_multiple_min_bps": 20000
+        },
+        "cadence": {
+          "gap_seconds": 60,
+          "spread_minutes": 0
+        },
+        "features": {
+          "auto_burn": true,
+          "burn": true,
+          "grant": true,
+          "hunt": true
+        },
+        "ladder": {
+          "extra_bps": [
+            0,
+            0,
+            0
+          ],
+          "steps_bps": [
+            2000,
+            3500,
+            5000
+          ]
+        },
+        "name": "hoarder",
+        "network": "Any",
+        "royalty_to": "Creator",
+        "sale": {
+          "creator_bps": 1000,
+          "length": 1209600000000000,
+          "price": "2000000000000000000000000"
+        },
+        "strategy": {
+          "auto_burn_bps": 0,
+          "budget_bps": 1000,
+          "cap_bps": 200,
+          "hunt": null
+        },
+        "times": {
+          "season": 604800000000000,
+          "voting": 172800000000000
+        }
+      },
+      "strategy": {
+        "auto_burn_bps": 0,
+        "budget_bps": 1000,
+        "cap_bps": 100,
+        "hunt": null
+      }
+    }
+  ],
+  "dragon.get_log": [
+    [],
+    [
+      {
+        "at": "1794177607061430898",
+        "data": {
+          "ok": true
+        },
+        "event": "launch_sent",
+        "seq": "0"
+      },
+      {
+        "at": "1794178208915970908",
+        "data": {
+          "ok": true
+        },
+        "event": "launch_sent",
+        "seq": "1"
+      },
+      {
+        "at": "1794178209791791203",
+        "data": {
+          "launch_id": "1",
+          "pool_id": "wrap.test.near|wyrm-2.nearly.test.near|10000",
+          "token": "wyrm-2.nearly.test.near"
+        },
+        "event": "bound",
+        "seq": "2"
+      }
+    ],
+    [
+      {
+        "at": "1794177607061430898",
+        "data": {
+          "ok": true
+        },
+        "event": "launch_sent",
+        "seq": "0"
+      },
+      {
+        "at": "1794178208915970908",
+        "data": {
+          "ok": true
+        },
+        "event": "launch_sent",
+        "seq": "1"
+      },
+      {
+        "at": "1794178209791791203",
+        "data": {
+          "launch_id": "1",
+          "pool_id": "wrap.test.near|wyrm-2.nearly.test.near|10000",
+          "token": "wyrm-2.nearly.test.near"
+        },
+        "event": "bound",
+        "seq": "2"
+      },
+      {
+        "at": "1794314161393872745",
+        "data": {
+          "amount_in": "14708510245429083035000000",
+          "at": "1794314160892676373",
+          "breath_at": "1794314160000000000",
+          "budget": "29417020490858166070000000",
+          "cap_bps": 200,
+          "min_out": "14137146761526947174227",
+          "quoted_out": "14352433260433448907845",
+          "reference": "989020869339354039500",
+          "tokens_per_near": "989020869339354039500"
+        },
+        "event": "breath_slice",
+        "seq": "3"
+      },
+      {
+        "at": "1794314224410563766",
+        "data": {
+          "amount_in": "14708510245429083035000000",
+          "at": "1794314223912054564",
+          "reason": "refunded",
+          "slice": "Breath"
+        },
+        "event": "swap_failed",
+        "seq": "4"
+      },
+      {
+        "at": "1794314527799155179",
+        "data": {
+          "amount_in": "14708510245429083035000000",
+          "at": "1794314527297869578",
+          "breath_at": "1794314160000000000",
+          "budget": "29417020490858166070000000",
+          "cap_bps": 200,
+          "min_out": "18378290789985031326496",
+          "quoted_out": "18658163238563483580199",
+          "reference": "989020869339354039500",
+          "tokens_per_near": "1285727130141160251351"
+        },
+        "event": "breath_slice",
+        "seq": "5"
+      }
+    ],
+    [
+      {
+        "at": "1794177607061430898",
+        "data": {
+          "ok": true
+        },
+        "event": "launch_sent",
+        "seq": "0"
+      },
+      {
+        "at": "1794178208915970908",
+        "data": {
+          "ok": true
+        },
+        "event": "launch_sent",
+        "seq": "1"
+      },
+      {
+        "at": "1794178209791791203",
+        "data": {
+          "launch_id": "1",
+          "pool_id": "wrap.test.near|wyrm-2.nearly.test.near|10000",
+          "token": "wyrm-2.nearly.test.near"
+        },
+        "event": "bound",
+        "seq": "2"
+      },
+      {
+        "at": "1794314161393872745",
+        "data": {
+          "amount_in": "14708510245429083035000000",
+          "at": "1794314160892676373",
+          "breath_at": "1794314160000000000",
+          "budget": "29417020490858166070000000",
+          "cap_bps": 200,
+          "min_out": "14137146761526947174227",
+          "quoted_out": "14352433260433448907845",
+          "reference": "989020869339354039500",
+          "tokens_per_near": "989020869339354039500"
+        },
+        "event": "breath_slice",
+        "seq": "3"
+      },
+      {
+        "at": "1794314224410563766",
+        "data": {
+          "amount_in": "14708510245429083035000000",
+          "at": "1794314223912054564",
+          "reason": "refunded",
+          "slice": "Breath"
+        },
+        "event": "swap_failed",
+        "seq": "4"
+      },
+      {
+        "at": "1794314527799155179",
+        "data": {
+          "amount_in": "14708510245429083035000000",
+          "at": "1794314527297869578",
+          "breath_at": "1794314160000000000",
+          "budget": "29417020490858166070000000",
+          "cap_bps": 200,
+          "min_out": "18378290789985031326496",
+          "quoted_out": "18658163238563483580199",
+          "reference": "989020869339354039500",
+          "tokens_per_near": "1285727130141160251351"
+        },
+        "event": "breath_slice",
+        "seq": "5"
+      },
+      {
+        "at": "1795524886367173697",
+        "data": {
+          "amount_in": "17288336545532276486499999",
+          "at": "1795524885868671593",
+          "breath_at": "1795517940000000000",
+          "budget": "34576673091064552972999999",
+          "cap_bps": 200,
+          "min_out": "21547541853351748794453",
+          "quoted_out": "21875677008478932786247",
+          "reference": "1285727130141160251351",
+          "tokens_per_near": "1285727130141160251351"
+        },
+        "event": "breath_slice",
+        "seq": "6"
+      },
+      {
+        "at": "1795697756680453710",
+        "data": {
+          "auto_burn_bps": 0,
+          "budget_bps": 1000,
+          "cap_bps": 100,
+          "hunt": null
+        },
+        "event": "settings_changed",
+        "seq": "7"
+      },
+      {
+        "at": "1795697758551188029",
+        "data": {
+          "amount": "1000000000000000000",
+          "at": "1795697758302193427",
+          "kind": "grant"
+        },
+        "event": "outflow_failed",
+        "seq": "8"
+      }
+    ]
+  ],
+  "dragon.get_samples": [
+    [],
+    [],
+    [
+      {
+        "at": "1794182460965626990",
+        "tokens_per_near": "989020869339354039500"
+      },
+      {
+        "at": "1794268860770122685",
+        "tokens_per_near": "989020869339354039500"
+      },
+      {
+        "at": "1794314160641775087",
+        "tokens_per_near": "989020869339354039500"
+      },
+      {
+        "at": "1794314223665350964",
+        "tokens_per_near": "989020869339354039500"
+      },
+      {
+        "at": "1794314527046384077",
+        "tokens_per_near": "1285727130141160251351"
+      },
+      {
+        "at": "1794314828814785585",
+        "tokens_per_near": "1285727130141160251351"
+      },
+      {
+        "at": "1794315129839826670",
+        "tokens_per_near": "1285727130141160251351"
+      }
+    ],
+    [
+      {
+        "at": "1794182460965626990",
+        "tokens_per_near": "989020869339354039500"
+      },
+      {
+        "at": "1794268860770122685",
+        "tokens_per_near": "989020869339354039500"
+      },
+      {
+        "at": "1794314160641775087",
+        "tokens_per_near": "989020869339354039500"
+      },
+      {
+        "at": "1794314223665350964",
+        "tokens_per_near": "989020869339354039500"
+      },
+      {
+        "at": "1794314527046384077",
+        "tokens_per_near": "1285727130141160251351"
+      },
+      {
+        "at": "1794314828814785585",
+        "tokens_per_near": "1285727130141160251351"
+      },
+      {
+        "at": "1794315129839826670",
+        "tokens_per_near": "1285727130141160251351"
+      },
+      {
+        "at": "1795524885615927391",
+        "tokens_per_near": "1285727130141160251351"
+      }
+    ]
+  ],
+  "dragon.get_state": [
+    {
+      "coin": null,
+      "day": {
+        "breath_at": "18446744073709551615",
+        "budget": "0",
+        "index": "20765",
+        "opening_reserve": "0",
+        "sold_wyrm": "0",
+        "spent": "0"
+      },
+      "dip": null,
+      "hoard": {
+        "ash_due": "0",
+        "auto_burned": "0",
+        "burned": "0",
+        "donated": "0",
+        "granted": "0",
+        "near_spent": "0",
+        "realized_near": "0",
+        "wyrm": "0",
+        "wyrm_bought": "0"
+      },
+      "last_launch_at": "0",
+      "last_slice_at": "0",
+      "log_next": "0",
+      "mood": "Sleeping",
+      "pending": [],
+      "phase": "Idle",
+      "reference": null,
+      "reserve": "293978507964746349300000000",
+      "reserve_near": "293978507964746349300000000",
+      "reserve_wnear": "0",
+      "samples": 0,
+      "spot": null,
+      "strategy": {
+        "auto_burn_bps": 0,
+        "budget_bps": 1000,
+        "cap_bps": 200,
+        "hunt": null
+      }
+    },
+    {
+      "coin": {
+        "launch_id": "1",
+        "pool_id": "wrap.test.near|wyrm-2.nearly.test.near|10000",
+        "token": "wyrm-2.nearly.test.near",
+        "wrap_is_x": true
+      },
+      "day": {
+        "breath_at": "18446744073709551615",
+        "budget": "0",
+        "index": "20765",
+        "opening_reserve": "0",
+        "sold_wyrm": "0",
+        "spent": "0"
+      },
+      "dip": null,
+      "hoard": {
+        "ash_due": "0",
+        "auto_burned": "0",
+        "burned": "0",
+        "donated": "0",
+        "granted": "0",
+        "near_spent": "0",
+        "realized_near": "0",
+        "wyrm": "0",
+        "wyrm_bought": "0"
+      },
+      "last_launch_at": "1794178207663113003",
+      "last_slice_at": "0",
+      "log_next": "3",
+      "mood": "Sleeping",
+      "pending": [],
+      "phase": "Idle",
+      "reference": null,
+      "reserve": "294170032081795266200000000",
+      "reserve_near": "294170032081795266200000000",
+      "reserve_wnear": "0",
+      "samples": 0,
+      "spot": null,
+      "strategy": {
+        "auto_burn_bps": 0,
+        "budget_bps": 1000,
+        "cap_bps": 200,
+        "hunt": null
+      }
+    },
+    {
+      "coin": {
+        "launch_id": "1",
+        "pool_id": "wrap.test.near|wyrm-2.nearly.test.near|10000",
+        "token": "wyrm-2.nearly.test.near",
+        "wrap_is_x": true
+      },
+      "day": {
+        "breath_at": "1794314160000000000",
+        "budget": "29417020490858166070000000",
+        "index": "20767",
+        "opening_reserve": "294170204908581660700000000",
+        "sold_wyrm": "0",
+        "spent": "29417020490858166070000000"
+      },
+      "dip": {
+        "confirmed": true,
+        "first_at": "1794314527046384077",
+        "samples": 3,
+        "step": 1,
+        "step_bps": 2000
+      },
+      "hoard": {
+        "ash_due": "0",
+        "auto_burned": "0",
+        "burned": "0",
+        "donated": "10000000000000000000002",
+        "granted": "0",
+        "near_spent": "29417020490858166070000000",
+        "realized_near": "0",
+        "wyrm": "41690172639037055188524",
+        "wyrm_bought": "31690172639037055188522"
+      },
+      "last_launch_at": "1794178207663113003",
+      "last_slice_at": "1794314527297869578",
+      "log_next": "6",
+      "mood": "Gorged",
+      "pending": [],
+      "phase": "Idle",
+      "reference": "991088197684292550374",
+      "reserve": "264766566904696912929999997",
+      "reserve_near": "264766566904696912929999997",
+      "reserve_wnear": "0",
+      "samples": 7,
+      "spot": "1285727130141160251351",
+      "strategy": {
+        "auto_burn_bps": 0,
+        "budget_bps": 1000,
+        "cap_bps": 200,
+        "hunt": null
+      }
+    },
+    {
+      "coin": {
+        "launch_id": "1",
+        "pool_id": "wrap.test.near|wyrm-2.nearly.test.near|10000",
+        "token": "wyrm-2.nearly.test.near",
+        "wrap_is_x": true
+      },
+      "day": {
+        "breath_at": "18446744073709551615",
+        "budget": "0",
+        "index": "20783",
+        "opening_reserve": "0",
+        "sold_wyrm": "0",
+        "spent": "0"
+      },
+      "dip": null,
+      "hoard": {
+        "ash_due": "0",
+        "auto_burned": "0",
+        "burned": "0",
+        "donated": "1010000000000000000000002",
+        "granted": "0",
+        "near_spent": "46705357036390442556499999",
+        "realized_near": "0",
+        "wyrm": "1041690172639037055188524",
+        "wyrm_bought": "31690172639037055188522"
+      },
+      "last_launch_at": "1794178207663113003",
+      "last_slice_at": "1795524885868671593",
+      "log_next": "9",
+      "mood": "Sleeping",
+      "pending": [],
+      "phase": "Idle",
+      "reference": "1285727130141160251351",
+      "reserve": "328493094553036634443499997",
+      "reserve_near": "328493094553036634443499997",
+      "reserve_wnear": "0",
+      "samples": 8,
+      "spot": "1285727130141160251351",
+      "strategy": {
+        "auto_burn_bps": 0,
+        "budget_bps": 1000,
+        "cap_bps": 100,
+        "hunt": null
+      }
+    }
+  ],
+  "scales.eligible_now": 45,
+  "scales.get_config": {
+    "claim_timeout_ns": "600000000000",
+    "creator": "creator.thewyrm.test.near",
+    "dragon": "dragon.thewyrm.test.near",
+    "engine_version": 200,
+    "escrow": "6990000000000000000000000",
+    "preset": "hoarder",
+    "preset_hash": "6kx9i6kbBhmUsJBvxJdJVG1gRtdd2sg51c5JsxxHqpPE",
+    "royalty_bps": 500,
+    "royalty_receiver": "creator.thewyrm.test.near",
+    "sale": {
+      "creator_bps": 1000,
+      "ends_at": null,
+      "opened_at": null,
+      "price": "2000000000000000000000000",
+      "retired_from": 46,
+      "sold": 45,
+      "state": "Closed",
+      "tithe_told": true
+    },
+    "season_ns": "604800000000000",
+    "storage_fee": "10000000000000000000000",
+    "tithe": "tithe.thewyrm.test.near",
+    "vault_code_hash": "CfrWztMxwXp1nqykVyaDZk9oYvZJ27JHqH6BCQ3dSxus",
+    "vaults_created": 100
+  },
+  "scales.get_council": {
+    "bond": "1000000000000000000000000",
+    "bounds": {
+      "auto_burn_bps": {
+        "hi": 5000,
+        "lo": 0
+      },
+      "budget_bps": {
+        "hi": 4000,
+        "lo": 1000
+      },
+      "cap_bps": {
+        "hi": 200,
+        "lo": 50
+      },
+      "max_sell_bps": {
+        "hi": 1500,
+        "lo": 1
+      },
+      "sell_multiple_min_bps": 20000
+    },
+    "classes": [
+      {
+        "class": "Light",
+        "min_electorate": 10,
+        "needs_closed_sale": false,
+        "rule": "(yes + no) * 10 >= electorate * 3 and yes > no"
+      },
+      {
+        "class": "Strict",
+        "min_electorate": 45,
+        "needs_closed_sale": true,
+        "rule": "(yes + no) * 3 >= electorate * 2 and yes * 5 >= (yes + no) * 4"
+      }
+    ],
+    "finalize_tgas": 150,
+    "kinds": [
+      {
+        "class": "Light",
+        "kind": "SetBreath"
+      },
+      {
+        "class": "Light",
+        "kind": "SetSlices"
+      },
+      {
+        "class": "Strict",
+        "kind": "SetPosture on"
+      },
+      {
+        "class": "Light",
+        "kind": "SetPosture off"
+      },
+      {
+        "class": "Strict",
+        "kind": "Grant"
+      },
+      {
+        "class": "Light",
+        "kind": "Burn"
+      },
+      {
+        "class": "Light",
+        "kind": "SetAutoBurn"
+      },
+      {
+        "class": "Light",
+        "kind": "Signal"
+      }
+    ],
+    "preset": "hoarder",
+    "season_ns": "604800000000000",
+    "storage_fee": "10000000000000000000000",
+    "voting_ns": "172800000000000"
+  },
+  "scales.get_due": [
+    [],
+    [
+      4
+    ]
+  ],
+  "scales.get_history": [
+    {
+      "Minted": {
+        "at": "1794315132462530039",
+        "price": "2000000000000000000000000",
+        "to": "holder0.test.near"
+      }
+    },
+    {
+      "Swept": {
+        "amount": "4952117494900000000",
+        "at": "1794315132713621936"
+      }
+    }
+  ],
+  "scales.get_listings": [
+    {
+      "price": "8000000000000000000000000",
+      "token_id": "7"
+    }
+  ],
+  "scales.get_offers": [
+    {
+      "amount": "5990000000000000000000000",
+      "at": "1794315160901413128",
+      "buyer": "holder1.test.near",
+      "id": 0,
+      "token_id": "9"
+    }
+  ],
+  "scales.get_offers_for": [
+    {
+      "amount": "5990000000000000000000000",
+      "at": "1794315160901413128",
+      "buyer": "holder1.test.near",
+      "id": 0,
+      "token_id": "9"
+    }
+  ],
+  "scales.get_proposal": [
+    {
+      "bond": "0",
+      "class": "Light",
+      "created_at": "1795524886743057901",
+      "description": "v6",
+      "electorate": 45,
+      "ends_at": "1795697686743057901",
+      "id": 0,
+      "kind": {
+        "Order": {
+          "SetSlices": {
+            "cap_bps": 100
+          }
+        }
+      },
+      "no": 0,
+      "proposer": "holder0.test.near",
+      "status": "Executed",
+      "yes": 30
+    },
+    {
+      "bond": "0",
+      "class": "Strict",
+      "created_at": "1795524888618570917",
+      "description": "v6",
+      "electorate": 45,
+      "ends_at": "1795697688618570917",
+      "id": 1,
+      "kind": {
+        "Order": {
+          "SetPosture": {
+            "hunt": {
+              "max_sell_bps": 1000,
+              "sell_multiple_bps": 25000
+            }
+          }
+        }
+      },
+      "no": 20,
+      "proposer": "holder1.test.near",
+      "status": "Rejected",
+      "yes": 20
+    },
+    {
+      "bond": "0",
+      "class": "Light",
+      "created_at": "1795524891617482944",
+      "description": "v6",
+      "electorate": 45,
+      "ends_at": "1795697691617482944",
+      "id": 2,
+      "kind": "Signal",
+      "no": 2,
+      "proposer": "holder2.test.near",
+      "status": "Carried",
+      "yes": 20
+    },
+    {
+      "bond": "0",
+      "class": "Strict",
+      "created_at": "1795524893484973261",
+      "description": "v6",
+      "electorate": 45,
+      "ends_at": "1795697693484973261",
+      "id": 3,
+      "kind": {
+        "Order": {
+          "Grant": {
+            "amount": "1000000000000000000",
+            "to": "nobody.test.near"
+          }
+        }
+      },
+      "no": 0,
+      "proposer": "holder3.test.near",
+      "status": {
+        "LeashHeld": {
+          "error": "transfer failed"
+        }
+      },
+      "yes": 40
+    },
+    {
+      "bond": "1000000000000000000000000",
+      "class": "Light",
+      "created_at": "1795697759047211034",
+      "description": "v6",
+      "electorate": 45,
+      "ends_at": "1795870559047211034",
+      "id": 4,
+      "kind": {
+        "Order": {
+          "Burn": {
+            "amount": "100000000000000000000"
+          }
+        }
+      },
+      "no": 3,
+      "proposer": "holder4.test.near",
+      "status": "Open",
+      "yes": 12
+    }
+  ],
+  "scales.get_proposals": [
+    {
+      "bond": "0",
+      "class": "Light",
+      "created_at": "1795524886743057901",
+      "description": "v6",
+      "electorate": 45,
+      "ends_at": "1795697686743057901",
+      "id": 0,
+      "kind": {
+        "Order": {
+          "SetSlices": {
+            "cap_bps": 100
+          }
+        }
+      },
+      "no": 0,
+      "proposer": "holder0.test.near",
+      "status": "Executed",
+      "yes": 30
+    },
+    {
+      "bond": "0",
+      "class": "Strict",
+      "created_at": "1795524888618570917",
+      "description": "v6",
+      "electorate": 45,
+      "ends_at": "1795697688618570917",
+      "id": 1,
+      "kind": {
+        "Order": {
+          "SetPosture": {
+            "hunt": {
+              "max_sell_bps": 1000,
+              "sell_multiple_bps": 25000
+            }
+          }
+        }
+      },
+      "no": 20,
+      "proposer": "holder1.test.near",
+      "status": "Rejected",
+      "yes": 20
+    },
+    {
+      "bond": "0",
+      "class": "Light",
+      "created_at": "1795524891617482944",
+      "description": "v6",
+      "electorate": 45,
+      "ends_at": "1795697691617482944",
+      "id": 2,
+      "kind": "Signal",
+      "no": 2,
+      "proposer": "holder2.test.near",
+      "status": "Carried",
+      "yes": 20
+    },
+    {
+      "bond": "0",
+      "class": "Strict",
+      "created_at": "1795524893484973261",
+      "description": "v6",
+      "electorate": 45,
+      "ends_at": "1795697693484973261",
+      "id": 3,
+      "kind": {
+        "Order": {
+          "Grant": {
+            "amount": "1000000000000000000",
+            "to": "nobody.test.near"
+          }
+        }
+      },
+      "no": 0,
+      "proposer": "holder3.test.near",
+      "status": {
+        "LeashHeld": {
+          "error": "transfer failed"
+        }
+      },
+      "yes": 40
+    },
+    {
+      "bond": "1000000000000000000000000",
+      "class": "Light",
+      "created_at": "1795697759047211034",
+      "description": "v6",
+      "electorate": 45,
+      "ends_at": "1795870559047211034",
+      "id": 4,
+      "kind": {
+        "Order": {
+          "Burn": {
+            "amount": "100000000000000000000"
+          }
+        }
+      },
+      "no": 3,
+      "proposer": "holder4.test.near",
+      "status": "Open",
+      "yes": 12
+    }
+  ],
+  "scales.get_sale": [
+    {
+      "creator_bps": 1000,
+      "ends_at": null,
+      "opened_at": null,
+      "price": "2000000000000000000000000",
+      "retired_from": null,
+      "sold": 0,
+      "state": "Waiting",
+      "tithe_told": false
+    },
+    {
+      "creator_bps": 1000,
+      "ends_at": "1795387809917283996",
+      "opened_at": "1794178209917283996",
+      "price": "2000000000000000000000000",
+      "retired_from": null,
+      "sold": 0,
+      "state": "Open",
+      "tithe_told": false
+    },
+    {
+      "creator_bps": 1000,
+      "ends_at": null,
+      "opened_at": null,
+      "price": "2000000000000000000000000",
+      "retired_from": 46,
+      "sold": 45,
+      "state": "Closed",
+      "tithe_told": true
+    }
+  ],
+  "scales.get_scale": {
+    "claimed_total": "0",
+    "claiming_since": null,
+    "hold_start": "1794315136196080994",
+    "listed_price": "8000000000000000000000000",
+    "owner": "holder0.test.near",
+    "tier": "Obsidian",
+    "token_id": "7",
+    "vault": "007.scales.thewyrm.test.near",
+    "voting": true
+  },
+  "scales.get_scales": [
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315132462530039",
+      "listed_price": null,
+      "owner": "holder0.test.near",
+      "tier": "Obsidian",
+      "token_id": "1",
+      "vault": "001.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315133088558231",
+      "listed_price": null,
+      "owner": "holder1.test.near",
+      "tier": "Obsidian",
+      "token_id": "2",
+      "vault": "002.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315133714571124",
+      "listed_price": null,
+      "owner": "holder2.test.near",
+      "tier": "Obsidian",
+      "token_id": "3",
+      "vault": "003.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315134336622416",
+      "listed_price": null,
+      "owner": "holder3.test.near",
+      "tier": "Obsidian",
+      "token_id": "4",
+      "vault": "004.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315134955157009",
+      "listed_price": null,
+      "owner": "holder4.test.near",
+      "tier": "Obsidian",
+      "token_id": "5",
+      "vault": "005.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315135572670001",
+      "listed_price": null,
+      "owner": "holder5.test.near",
+      "tier": "Obsidian",
+      "token_id": "6",
+      "vault": "006.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315136196080994",
+      "listed_price": "8000000000000000000000000",
+      "owner": "holder0.test.near",
+      "tier": "Obsidian",
+      "token_id": "7",
+      "vault": "007.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315136819972983",
+      "listed_price": null,
+      "owner": "holder1.test.near",
+      "tier": "Obsidian",
+      "token_id": "8",
+      "vault": "008.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315137439279971",
+      "listed_price": null,
+      "owner": "holder2.test.near",
+      "tier": "Obsidian",
+      "token_id": "9",
+      "vault": "009.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315138056174958",
+      "listed_price": null,
+      "owner": "holder3.test.near",
+      "tier": "Obsidian",
+      "token_id": "10",
+      "vault": "010.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315138672998645",
+      "listed_price": null,
+      "owner": "holder4.test.near",
+      "tier": "Obsidian",
+      "token_id": "11",
+      "vault": "011.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315139296573732",
+      "listed_price": null,
+      "owner": "holder5.test.near",
+      "tier": "Obsidian",
+      "token_id": "12",
+      "vault": "012.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315139920624220",
+      "listed_price": null,
+      "owner": "holder0.test.near",
+      "tier": "Obsidian",
+      "token_id": "13",
+      "vault": "013.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315140550208407",
+      "listed_price": null,
+      "owner": "holder1.test.near",
+      "tier": "Obsidian",
+      "token_id": "14",
+      "vault": "014.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315141178996294",
+      "listed_price": null,
+      "owner": "holder2.test.near",
+      "tier": "Obsidian",
+      "token_id": "15",
+      "vault": "015.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315141800822481",
+      "listed_price": null,
+      "owner": "holder3.test.near",
+      "tier": "Obsidian",
+      "token_id": "16",
+      "vault": "016.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315142426700168",
+      "listed_price": null,
+      "owner": "holder4.test.near",
+      "tier": "Obsidian",
+      "token_id": "17",
+      "vault": "017.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315143050646055",
+      "listed_price": null,
+      "owner": "holder5.test.near",
+      "tier": "Obsidian",
+      "token_id": "18",
+      "vault": "018.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315143675879042",
+      "listed_price": null,
+      "owner": "holder0.test.near",
+      "tier": "Obsidian",
+      "token_id": "19",
+      "vault": "019.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315144300850129",
+      "listed_price": null,
+      "owner": "holder1.test.near",
+      "tier": "Obsidian",
+      "token_id": "20",
+      "vault": "020.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315144927302124",
+      "listed_price": null,
+      "owner": "holder2.test.near",
+      "tier": "Obsidian",
+      "token_id": "21",
+      "vault": "021.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315145547060822",
+      "listed_price": null,
+      "owner": "holder3.test.near",
+      "tier": "Obsidian",
+      "token_id": "22",
+      "vault": "022.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315146169401420",
+      "listed_price": null,
+      "owner": "holder4.test.near",
+      "tier": "Obsidian",
+      "token_id": "23",
+      "vault": "023.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315146794162217",
+      "listed_price": null,
+      "owner": "holder5.test.near",
+      "tier": "Obsidian",
+      "token_id": "24",
+      "vault": "024.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315147417576115",
+      "listed_price": null,
+      "owner": "holder0.test.near",
+      "tier": "Obsidian",
+      "token_id": "25",
+      "vault": "025.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315148041823513",
+      "listed_price": null,
+      "owner": "holder1.test.near",
+      "tier": "Obsidian",
+      "token_id": "26",
+      "vault": "026.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315148666558611",
+      "listed_price": null,
+      "owner": "holder2.test.near",
+      "tier": "Obsidian",
+      "token_id": "27",
+      "vault": "027.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315149286910809",
+      "listed_price": null,
+      "owner": "holder3.test.near",
+      "tier": "Obsidian",
+      "token_id": "28",
+      "vault": "028.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315149913029907",
+      "listed_price": null,
+      "owner": "holder4.test.near",
+      "tier": "Obsidian",
+      "token_id": "29",
+      "vault": "029.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315150530494105",
+      "listed_price": null,
+      "owner": "holder5.test.near",
+      "tier": "Obsidian",
+      "token_id": "30",
+      "vault": "030.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315151156271302",
+      "listed_price": null,
+      "owner": "holder0.test.near",
+      "tier": "Obsidian",
+      "token_id": "31",
+      "vault": "031.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315151780297800",
+      "listed_price": null,
+      "owner": "holder1.test.near",
+      "tier": "Obsidian",
+      "token_id": "32",
+      "vault": "032.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315152405298998",
+      "listed_price": null,
+      "owner": "holder2.test.near",
+      "tier": "Obsidian",
+      "token_id": "33",
+      "vault": "033.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315153031353800",
+      "listed_price": null,
+      "owner": "holder3.test.near",
+      "tier": "Obsidian",
+      "token_id": "34",
+      "vault": "034.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315153656926502",
+      "listed_price": null,
+      "owner": "holder4.test.near",
+      "tier": "Obsidian",
+      "token_id": "35",
+      "vault": "035.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315154282065004",
+      "listed_price": null,
+      "owner": "holder5.test.near",
+      "tier": "Obsidian",
+      "token_id": "36",
+      "vault": "036.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315154906309106",
+      "listed_price": null,
+      "owner": "holder0.test.near",
+      "tier": "Obsidian",
+      "token_id": "37",
+      "vault": "037.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315155529623408",
+      "listed_price": null,
+      "owner": "holder1.test.near",
+      "tier": "Obsidian",
+      "token_id": "38",
+      "vault": "038.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315156153438910",
+      "listed_price": null,
+      "owner": "holder2.test.near",
+      "tier": "Obsidian",
+      "token_id": "39",
+      "vault": "039.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315156777481012",
+      "listed_price": null,
+      "owner": "holder3.test.near",
+      "tier": "Obsidian",
+      "token_id": "40",
+      "vault": "040.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315157400553814",
+      "listed_price": null,
+      "owner": "holder4.test.near",
+      "tier": "Obsidian",
+      "token_id": "41",
+      "vault": "041.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315158022778316",
+      "listed_price": null,
+      "owner": "holder5.test.near",
+      "tier": "Obsidian",
+      "token_id": "42",
+      "vault": "042.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315158647068418",
+      "listed_price": null,
+      "owner": "holder0.test.near",
+      "tier": "Obsidian",
+      "token_id": "43",
+      "vault": "043.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315159268891820",
+      "listed_price": null,
+      "owner": "holder1.test.near",
+      "tier": "Obsidian",
+      "token_id": "44",
+      "vault": "044.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794315159895878723",
+      "listed_price": null,
+      "owner": "holder2.test.near",
+      "tier": "Obsidian",
+      "token_id": "45",
+      "vault": "045.scales.thewyrm.test.near",
+      "voting": true
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794177601958770585",
+      "listed_price": null,
+      "owner": "creator.thewyrm.test.near",
+      "tier": "Obsidian",
+      "token_id": "91",
+      "vault": "091.scales.thewyrm.test.near",
+      "voting": false
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794177601958770585",
+      "listed_price": null,
+      "owner": "creator.thewyrm.test.near",
+      "tier": "Obsidian",
+      "token_id": "92",
+      "vault": "092.scales.thewyrm.test.near",
+      "voting": false
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794177601958770585",
+      "listed_price": null,
+      "owner": "creator.thewyrm.test.near",
+      "tier": "Obsidian",
+      "token_id": "93",
+      "vault": "093.scales.thewyrm.test.near",
+      "voting": false
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794177601958770585",
+      "listed_price": null,
+      "owner": "creator.thewyrm.test.near",
+      "tier": "Obsidian",
+      "token_id": "94",
+      "vault": "094.scales.thewyrm.test.near",
+      "voting": false
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794177601958770585",
+      "listed_price": null,
+      "owner": "creator.thewyrm.test.near",
+      "tier": "Obsidian",
+      "token_id": "95",
+      "vault": "095.scales.thewyrm.test.near",
+      "voting": false
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794177601958770585",
+      "listed_price": null,
+      "owner": "creator.thewyrm.test.near",
+      "tier": "Obsidian",
+      "token_id": "96",
+      "vault": "096.scales.thewyrm.test.near",
+      "voting": false
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794177601958770585",
+      "listed_price": null,
+      "owner": "creator.thewyrm.test.near",
+      "tier": "Obsidian",
+      "token_id": "97",
+      "vault": "097.scales.thewyrm.test.near",
+      "voting": false
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794177601958770585",
+      "listed_price": null,
+      "owner": "creator.thewyrm.test.near",
+      "tier": "Obsidian",
+      "token_id": "98",
+      "vault": "098.scales.thewyrm.test.near",
+      "voting": false
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794177601958770585",
+      "listed_price": null,
+      "owner": "creator.thewyrm.test.near",
+      "tier": "Obsidian",
+      "token_id": "99",
+      "vault": "099.scales.thewyrm.test.near",
+      "voting": false
+    },
+    {
+      "claimed_total": "0",
+      "claiming_since": null,
+      "hold_start": "1794177601958770585",
+      "listed_price": null,
+      "owner": "creator.thewyrm.test.near",
+      "tier": "Obsidian",
+      "token_id": "100",
+      "vault": "100.scales.thewyrm.test.near",
+      "voting": false
+    }
+  ],
+  "scales.get_sweepable": [
+    [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45",
+      "46",
+      "47",
+      "48",
+      "49",
+      "50",
+      "51",
+      "52",
+      "53",
+      "54",
+      "55",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60",
+      "61",
+      "62",
+      "63",
+      "64",
+      "65",
+      "66",
+      "67",
+      "68",
+      "69",
+      "70",
+      "71",
+      "72",
+      "73",
+      "74",
+      "75",
+      "76",
+      "77",
+      "78",
+      "79",
+      "80",
+      "81",
+      "82",
+      "83",
+      "84",
+      "85",
+      "86",
+      "87",
+      "88",
+      "89",
+      "90"
+    ],
+    [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45",
+      "46",
+      "47",
+      "48",
+      "49",
+      "50",
+      "51",
+      "52",
+      "53",
+      "54",
+      "55",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60",
+      "61",
+      "62",
+      "63",
+      "64",
+      "65",
+      "66",
+      "67",
+      "68",
+      "69",
+      "70",
+      "71",
+      "72",
+      "73",
+      "74",
+      "75",
+      "76",
+      "77",
+      "78",
+      "79",
+      "80",
+      "81",
+      "82",
+      "83",
+      "84",
+      "85",
+      "86",
+      "87",
+      "88",
+      "89",
+      "90"
+    ],
+    [
+      "46",
+      "47",
+      "48",
+      "49",
+      "50",
+      "51",
+      "52",
+      "53",
+      "54",
+      "55",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60",
+      "61",
+      "62",
+      "63",
+      "64",
+      "65",
+      "66",
+      "67",
+      "68",
+      "69",
+      "70",
+      "71",
+      "72",
+      "73",
+      "74",
+      "75",
+      "76",
+      "77",
+      "78",
+      "79",
+      "80",
+      "81",
+      "82",
+      "83",
+      "84",
+      "85",
+      "86",
+      "87",
+      "88",
+      "89",
+      "90"
+    ]
+  ],
+  "scales.get_vault": "001.scales.thewyrm.test.near",
+  "scales.get_votes": [
+    [
+      {
+        "approve": true,
+        "token_id": "1"
+      },
+      {
+        "approve": true,
+        "token_id": "2"
+      },
+      {
+        "approve": true,
+        "token_id": "3"
+      },
+      {
+        "approve": true,
+        "token_id": "4"
+      },
+      {
+        "approve": true,
+        "token_id": "7"
+      },
+      {
+        "approve": true,
+        "token_id": "8"
+      },
+      {
+        "approve": true,
+        "token_id": "9"
+      },
+      {
+        "approve": true,
+        "token_id": "10"
+      },
+      {
+        "approve": true,
+        "token_id": "13"
+      },
+      {
+        "approve": true,
+        "token_id": "14"
+      },
+      {
+        "approve": true,
+        "token_id": "15"
+      },
+      {
+        "approve": true,
+        "token_id": "16"
+      },
+      {
+        "approve": true,
+        "token_id": "19"
+      },
+      {
+        "approve": true,
+        "token_id": "20"
+      },
+      {
+        "approve": true,
+        "token_id": "21"
+      },
+      {
+        "approve": true,
+        "token_id": "22"
+      },
+      {
+        "approve": true,
+        "token_id": "25"
+      },
+      {
+        "approve": true,
+        "token_id": "26"
+      },
+      {
+        "approve": true,
+        "token_id": "27"
+      },
+      {
+        "approve": true,
+        "token_id": "28"
+      },
+      {
+        "approve": true,
+        "token_id": "31"
+      },
+      {
+        "approve": true,
+        "token_id": "32"
+      },
+      {
+        "approve": true,
+        "token_id": "33"
+      },
+      {
+        "approve": true,
+        "token_id": "34"
+      },
+      {
+        "approve": true,
+        "token_id": "37"
+      },
+      {
+        "approve": true,
+        "token_id": "38"
+      },
+      {
+        "approve": true,
+        "token_id": "39"
+      },
+      {
+        "approve": true,
+        "token_id": "43"
+      },
+      {
+        "approve": true,
+        "token_id": "44"
+      },
+      {
+        "approve": true,
+        "token_id": "45"
+      }
+    ],
+    [
+      {
+        "approve": true,
+        "token_id": "1"
+      },
+      {
+        "approve": true,
+        "token_id": "2"
+      },
+      {
+        "approve": true,
+        "token_id": "3"
+      },
+      {
+        "approve": false,
+        "token_id": "4"
+      },
+      {
+        "approve": false,
+        "token_id": "5"
+      },
+      {
+        "approve": false,
+        "token_id": "6"
+      },
+      {
+        "approve": true,
+        "token_id": "7"
+      },
+      {
+        "approve": true,
+        "token_id": "8"
+      },
+      {
+        "approve": true,
+        "token_id": "9"
+      },
+      {
+        "approve": false,
+        "token_id": "10"
+      },
+      {
+        "approve": false,
+        "token_id": "11"
+      },
+      {
+        "approve": false,
+        "token_id": "12"
+      },
+      {
+        "approve": true,
+        "token_id": "13"
+      },
+      {
+        "approve": true,
+        "token_id": "14"
+      },
+      {
+        "approve": true,
+        "token_id": "15"
+      },
+      {
+        "approve": false,
+        "token_id": "16"
+      },
+      {
+        "approve": false,
+        "token_id": "17"
+      },
+      {
+        "approve": true,
+        "token_id": "19"
+      },
+      {
+        "approve": true,
+        "token_id": "20"
+      },
+      {
+        "approve": true,
+        "token_id": "21"
+      },
+      {
+        "approve": false,
+        "token_id": "22"
+      },
+      {
+        "approve": false,
+        "token_id": "23"
+      },
+      {
+        "approve": true,
+        "token_id": "25"
+      },
+      {
+        "approve": true,
+        "token_id": "26"
+      },
+      {
+        "approve": false,
+        "token_id": "27"
+      },
+      {
+        "approve": false,
+        "token_id": "28"
+      },
+      {
+        "approve": false,
+        "token_id": "29"
+      },
+      {
+        "approve": true,
+        "token_id": "31"
+      },
+      {
+        "approve": true,
+        "token_id": "32"
+      },
+      {
+        "approve": false,
+        "token_id": "33"
+      },
+      {
+        "approve": false,
+        "token_id": "34"
+      },
+      {
+        "approve": false,
+        "token_id": "35"
+      },
+      {
+        "approve": true,
+        "token_id": "37"
+      },
+      {
+        "approve": true,
+        "token_id": "38"
+      },
+      {
+        "approve": false,
+        "token_id": "39"
+      },
+      {
+        "approve": false,
+        "token_id": "40"
+      },
+      {
+        "approve": false,
+        "token_id": "41"
+      },
+      {
+        "approve": true,
+        "token_id": "43"
+      },
+      {
+        "approve": true,
+        "token_id": "44"
+      },
+      {
+        "approve": false,
+        "token_id": "45"
+      }
+    ],
+    [
+      {
+        "approve": true,
+        "token_id": "1"
+      },
+      {
+        "approve": true,
+        "token_id": "2"
+      },
+      {
+        "approve": true,
+        "token_id": "3"
+      },
+      {
+        "approve": true,
+        "token_id": "7"
+      },
+      {
+        "approve": true,
+        "token_id": "8"
+      },
+      {
+        "approve": true,
+        "token_id": "9"
+      },
+      {
+        "approve": true,
+        "token_id": "13"
+      },
+      {
+        "approve": true,
+        "token_id": "14"
+      },
+      {
+        "approve": true,
+        "token_id": "15"
+      },
+      {
+        "approve": true,
+        "token_id": "19"
+      },
+      {
+        "approve": true,
+        "token_id": "20"
+      },
+      {
+        "approve": true,
+        "token_id": "21"
+      },
+      {
+        "approve": true,
+        "token_id": "25"
+      },
+      {
+        "approve": true,
+        "token_id": "26"
+      },
+      {
+        "approve": false,
+        "token_id": "27"
+      },
+      {
+        "approve": true,
+        "token_id": "31"
+      },
+      {
+        "approve": true,
+        "token_id": "32"
+      },
+      {
+        "approve": false,
+        "token_id": "33"
+      },
+      {
+        "approve": true,
+        "token_id": "37"
+      },
+      {
+        "approve": true,
+        "token_id": "38"
+      },
+      {
+        "approve": true,
+        "token_id": "43"
+      },
+      {
+        "approve": true,
+        "token_id": "44"
+      }
+    ],
+    [
+      {
+        "approve": true,
+        "token_id": "1"
+      },
+      {
+        "approve": true,
+        "token_id": "2"
+      },
+      {
+        "approve": true,
+        "token_id": "3"
+      },
+      {
+        "approve": true,
+        "token_id": "4"
+      },
+      {
+        "approve": true,
+        "token_id": "5"
+      },
+      {
+        "approve": true,
+        "token_id": "6"
+      },
+      {
+        "approve": true,
+        "token_id": "7"
+      },
+      {
+        "approve": true,
+        "token_id": "8"
+      },
+      {
+        "approve": true,
+        "token_id": "9"
+      },
+      {
+        "approve": true,
+        "token_id": "10"
+      },
+      {
+        "approve": true,
+        "token_id": "11"
+      },
+      {
+        "approve": true,
+        "token_id": "12"
+      },
+      {
+        "approve": true,
+        "token_id": "13"
+      },
+      {
+        "approve": true,
+        "token_id": "14"
+      },
+      {
+        "approve": true,
+        "token_id": "15"
+      },
+      {
+        "approve": true,
+        "token_id": "16"
+      },
+      {
+        "approve": true,
+        "token_id": "17"
+      },
+      {
+        "approve": true,
+        "token_id": "19"
+      },
+      {
+        "approve": true,
+        "token_id": "20"
+      },
+      {
+        "approve": true,
+        "token_id": "21"
+      },
+      {
+        "approve": true,
+        "token_id": "22"
+      },
+      {
+        "approve": true,
+        "token_id": "23"
+      },
+      {
+        "approve": true,
+        "token_id": "25"
+      },
+      {
+        "approve": true,
+        "token_id": "26"
+      },
+      {
+        "approve": true,
+        "token_id": "27"
+      },
+      {
+        "approve": true,
+        "token_id": "28"
+      },
+      {
+        "approve": true,
+        "token_id": "29"
+      },
+      {
+        "approve": true,
+        "token_id": "31"
+      },
+      {
+        "approve": true,
+        "token_id": "32"
+      },
+      {
+        "approve": true,
+        "token_id": "33"
+      },
+      {
+        "approve": true,
+        "token_id": "34"
+      },
+      {
+        "approve": true,
+        "token_id": "35"
+      },
+      {
+        "approve": true,
+        "token_id": "37"
+      },
+      {
+        "approve": true,
+        "token_id": "38"
+      },
+      {
+        "approve": true,
+        "token_id": "39"
+      },
+      {
+        "approve": true,
+        "token_id": "40"
+      },
+      {
+        "approve": true,
+        "token_id": "41"
+      },
+      {
+        "approve": true,
+        "token_id": "43"
+      },
+      {
+        "approve": true,
+        "token_id": "44"
+      },
+      {
+        "approve": true,
+        "token_id": "45"
+      }
+    ],
+    [
+      {
+        "approve": true,
+        "token_id": "1"
+      },
+      {
+        "approve": true,
+        "token_id": "2"
+      },
+      {
+        "approve": true,
+        "token_id": "7"
+      },
+      {
+        "approve": true,
+        "token_id": "8"
+      },
+      {
+        "approve": true,
+        "token_id": "13"
+      },
+      {
+        "approve": true,
+        "token_id": "14"
+      },
+      {
+        "approve": true,
+        "token_id": "19"
+      },
+      {
+        "approve": true,
+        "token_id": "20"
+      },
+      {
+        "approve": true,
+        "token_id": "25"
+      },
+      {
+        "approve": false,
+        "token_id": "26"
+      },
+      {
+        "approve": true,
+        "token_id": "31"
+      },
+      {
+        "approve": false,
+        "token_id": "32"
+      },
+      {
+        "approve": true,
+        "token_id": "37"
+      },
+      {
+        "approve": false,
+        "token_id": "38"
+      },
+      {
+        "approve": true,
+        "token_id": "43"
+      }
+    ]
+  ],
+  "scales.nft_metadata": {
+    "base_uri": null,
+    "icon": null,
+    "name": "WYRM Scales",
+    "reference": null,
+    "reference_hash": null,
+    "spec": "nft-1.0.0",
+    "symbol": "SCALE"
+  },
+  "scales.nft_supply_for_owner": "8",
+  "scales.nft_token": {
+    "approved_account_ids": {},
+    "metadata": {
+      "copies": 1,
+      "description": null,
+      "expires_at": null,
+      "extra": "{\"tier\":\"Obsidian\",\"hold_start\":\"1794315136196080994\",\"voting\":true}",
+      "issued_at": null,
+      "media": "https://wyrm.example/obsidian.svg",
+      "media_hash": null,
+      "reference": null,
+      "reference_hash": null,
+      "starts_at": null,
+      "title": "Scale #7",
+      "updated_at": null
+    },
+    "owner_id": "holder0.test.near",
+    "token_id": "7"
+  },
+  "scales.nft_tokens": [
+    {
+      "approved_account_ids": {},
+      "metadata": {
+        "copies": 1,
+        "description": null,
+        "expires_at": null,
+        "extra": "{\"tier\":\"Obsidian\",\"hold_start\":\"1794315132462530039\",\"voting\":true}",
+        "issued_at": null,
+        "media": "https://wyrm.example/obsidian.svg",
+        "media_hash": null,
+        "reference": null,
+        "reference_hash": null,
+        "starts_at": null,
+        "title": "Scale #1",
+        "updated_at": null
+      },
+      "owner_id": "holder0.test.near",
+      "token_id": "1"
+    },
+    {
+      "approved_account_ids": {},
+      "metadata": {
+        "copies": 1,
+        "description": null,
+        "expires_at": null,
+        "extra": "{\"tier\":\"Obsidian\",\"hold_start\":\"1794315133088558231\",\"voting\":true}",
+        "issued_at": null,
+        "media": "https://wyrm.example/obsidian.svg",
+        "media_hash": null,
+        "reference": null,
+        "reference_hash": null,
+        "starts_at": null,
+        "title": "Scale #2",
+        "updated_at": null
+      },
+      "owner_id": "holder1.test.near",
+      "token_id": "2"
+    },
+    {
+      "approved_account_ids": {},
+      "metadata": {
+        "copies": 1,
+        "description": null,
+        "expires_at": null,
+        "extra": "{\"tier\":\"Obsidian\",\"hold_start\":\"1794315133714571124\",\"voting\":true}",
+        "issued_at": null,
+        "media": "https://wyrm.example/obsidian.svg",
+        "media_hash": null,
+        "reference": null,
+        "reference_hash": null,
+        "starts_at": null,
+        "title": "Scale #3",
+        "updated_at": null
+      },
+      "owner_id": "holder2.test.near",
+      "token_id": "3"
+    },
+    {
+      "approved_account_ids": {},
+      "metadata": {
+        "copies": 1,
+        "description": null,
+        "expires_at": null,
+        "extra": "{\"tier\":\"Obsidian\",\"hold_start\":\"1794315134336622416\",\"voting\":true}",
+        "issued_at": null,
+        "media": "https://wyrm.example/obsidian.svg",
+        "media_hash": null,
+        "reference": null,
+        "reference_hash": null,
+        "starts_at": null,
+        "title": "Scale #4",
+        "updated_at": null
+      },
+      "owner_id": "holder3.test.near",
+      "token_id": "4"
+    },
+    {
+      "approved_account_ids": {},
+      "metadata": {
+        "copies": 1,
+        "description": null,
+        "expires_at": null,
+        "extra": "{\"tier\":\"Obsidian\",\"hold_start\":\"1794315134955157009\",\"voting\":true}",
+        "issued_at": null,
+        "media": "https://wyrm.example/obsidian.svg",
+        "media_hash": null,
+        "reference": null,
+        "reference_hash": null,
+        "starts_at": null,
+        "title": "Scale #5",
+        "updated_at": null
+      },
+      "owner_id": "holder4.test.near",
+      "token_id": "5"
+    },
+    {
+      "approved_account_ids": {},
+      "metadata": {
+        "copies": 1,
+        "description": null,
+        "expires_at": null,
+        "extra": "{\"tier\":\"Obsidian\",\"hold_start\":\"1794315135572670001\",\"voting\":true}",
+        "issued_at": null,
+        "media": "https://wyrm.example/obsidian.svg",
+        "media_hash": null,
+        "reference": null,
+        "reference_hash": null,
+        "starts_at": null,
+        "title": "Scale #6",
+        "updated_at": null
+      },
+      "owner_id": "holder5.test.near",
+      "token_id": "6"
+    },
+    {
+      "approved_account_ids": {},
+      "metadata": {
+        "copies": 1,
+        "description": null,
+        "expires_at": null,
+        "extra": "{\"tier\":\"Obsidian\",\"hold_start\":\"1794315136196080994\",\"voting\":true}",
+        "issued_at": null,
+        "media": "https://wyrm.example/obsidian.svg",
+        "media_hash": null,
+        "reference": null,
+        "reference_hash": null,
+        "starts_at": null,
+        "title": "Scale #7",
+        "updated_at": null
+      },
+      "owner_id": "holder0.test.near",
+      "token_id": "7"
+    },
+    {
+      "approved_account_ids": {},
+      "metadata": {
+        "copies": 1,
+        "description": null,
+        "expires_at": null,
+        "extra": "{\"tier\":\"Obsidian\",\"hold_start\":\"1794315136819972983\",\"voting\":true}",
+        "issued_at": null,
+        "media": "https://wyrm.example/obsidian.svg",
+        "media_hash": null,
+        "reference": null,
+        "reference_hash": null,
+        "starts_at": null,
+        "title": "Scale #8",
+        "updated_at": null
+      },
+      "owner_id": "holder1.test.near",
+      "token_id": "8"
+    },
+    {
+      "approved_account_ids": {},
+      "metadata": {
+        "copies": 1,
+        "description": null,
+        "expires_at": null,
+        "extra": "{\"tier\":\"Obsidian\",\"hold_start\":\"1794315137439279971\",\"voting\":true}",
+        "issued_at": null,
+        "media": "https://wyrm.example/obsidian.svg",
+        "media_hash": null,
+        "reference": null,
+        "reference_hash": null,
+        "starts_at": null,
+        "title": "Scale #9",
+        "updated_at": null
+      },
+      "owner_id": "holder2.test.near",
+      "token_id": "9"
+    },
+    {
+      "approved_account_ids": {},
+      "metadata": {
+        "copies": 1,
+        "description": null,
+        "expires_at": null,
+        "extra": "{\"tier\":\"Obsidian\",\"hold_start\":\"1794315138056174958\",\"voting\":true}",
+        "issued_at": null,
+        "media": "https://wyrm.example/obsidian.svg",
+        "media_hash": null,
+        "reference": null,
+        "reference_hash": null,
+        "starts_at": null,
+        "title": "Scale #10",
+        "updated_at": null
+      },
+      "owner_id": "holder3.test.near",
+      "token_id": "10"
+    }
+  ],
+  "scales.nft_total_supply": "55",
+  "tithe.get_config": {
+    "dragon": "dragon.thewyrm.test.near",
+    "min_round": "1000000000000000000000000",
+    "reserve": "3000000000000000000000000",
+    "scales": "scales.thewyrm.test.near",
+    "wrap": "wrap.test.near"
+  },
+  "tithe.get_stats": {
+    "distributable": "0",
+    "min_round": "1000000000000000000000000",
+    "paid_dragon": "0",
+    "paid_scales": "0",
+    "retired_from": 46,
+    "rounds": 0
+  }
+}

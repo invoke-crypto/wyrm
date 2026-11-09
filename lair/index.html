@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WYRM</title>
+  <meta name="description" content="WYRM is a coin on NEAR whose fees feed a Dragon and 100 Scales. Its hoard, the Scales and the Council, read live from the chain.">
+  <meta name="theme-color" content="#14101d">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 68'%3E%3Cpath d='M30 2 L56 14 L52 44 L30 66 L8 44 L4 14Z' fill='%23f4b942'/%3E%3C/svg%3E">
+  <link rel="preload" href="fonts/bricolage-grotesque-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div id="mockbar" class="mockbar" hidden></div>
+  <div id="drill" class="drill" role="note" hidden></div>
+  <header class="top">
+    <a class="wordmark" href="#/" aria-label="WYRM, the Dragon">WYRM</a>
+    <nav class="nav" aria-label="Lair">
+      <a href="#/" data-nav="">Dragon</a>
+      <a href="#/scales" data-nav="scales">Scales</a>
+      <a href="#/council" data-nav="council">Council</a>
+      <a href="#/verify" data-nav="verify">Verify</a>
+    </nav>
+    <div id="wallet" class="wallet"></div>
+  </header>
+  <main id="main" tabindex="-1" aria-busy="true">
+    <p class="loading">Reading the chain…</p>
+  </main>
+  <div id="toasts" class="toasts"></div>
+</body>
+</html>

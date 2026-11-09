@@ -1,0 +1,552 @@
+{
+  "generated_by": "docs/research/dcl-impact.mjs",
+  "rpc": "https://rpc.mainnet.fastnear.com",
+  "block_height": 222923780,
+  "dcl": "dclv2.ref-labs.near",
+  "method": "quote({pool_ids:[pool_id], input_token:\"wrap.near\", output_token:<coin>, input_amount, tag:null}) at one block. impact_bps_vs_0_01_near compares tokens per NEAR with a 0.01 NEAR quote (the 1% pool fee cancels out). cost_bps_vs_spot_incl_fee compares with 1.0001^current_point, so it includes the 1% fee. A token buy tax (get_tax.buy_bps) is taken on delivery and is not in the quote.",
+  "coins": [
+    {
+      "symbol": "NEARLY",
+      "token": "nearly-993927.nearlytrade.near",
+      "launch_id": 3,
+      "pool_id": "nearly-993927.nearlytrade.near|wrap.near|10000",
+      "fee": 10000,
+      "current_point": 58399,
+      "pool_total_wnear": 19819.2085114694,
+      "liquidity": "60139237969485472572378",
+      "tax_on_token": null,
+      "ref_tokens_per_near_at_0_01": 2880.883214006428,
+      "spot_tokens_per_near": 2909.983044452808,
+      "rows": [
+        {
+          "in_near": 0.1,
+          "out_raw": "288088321400642751644",
+          "out_tokens": 288.08832140064277,
+          "impact_bps_vs_0_01_near": 0,
+          "cost_bps_vs_spot_incl_fee": 100
+        },
+        {
+          "in_near": 0.5,
+          "out_raw": "1440441607003213758220",
+          "out_tokens": 1440.4416070032137,
+          "impact_bps_vs_0_01_near": 0,
+          "cost_bps_vs_spot_incl_fee": 100
+        },
+        {
+          "in_near": 1,
+          "out_raw": "2880883214006427516440",
+          "out_tokens": 2880.8832140064274,
+          "impact_bps_vs_0_01_near": 0,
+          "cost_bps_vs_spot_incl_fee": 100
+        },
+        {
+          "in_near": 2,
+          "out_raw": "5761489607044266352482",
+          "out_tokens": 5761.489607044266,
+          "impact_bps_vs_0_01_near": 0,
+          "cost_bps_vs_spot_incl_fee": 100
+        },
+        {
+          "in_near": 5,
+          "out_raw": "14401857338858124019560",
+          "out_tokens": 14401.857338858124,
+          "impact_bps_vs_0_01_near": 2,
+          "cost_bps_vs_spot_incl_fee": 102
+        },
+        {
+          "in_near": 10,
+          "out_raw": "28797541836080843496410",
+          "out_tokens": 28797.541836080843,
+          "impact_bps_vs_0_01_near": 4,
+          "cost_bps_vs_spot_incl_fee": 104
+        },
+        {
+          "in_near": 25,
+          "out_raw": "71947379985564637890673",
+          "out_tokens": 71947.37998556464,
+          "impact_bps_vs_0_01_near": 10,
+          "cost_bps_vs_spot_incl_fee": 110
+        },
+        {
+          "in_near": 50,
+          "out_raw": "143740076326582436636718",
+          "out_tokens": 143740.07632658244,
+          "impact_bps_vs_0_01_near": 21,
+          "cost_bps_vs_spot_incl_fee": 121
+        },
+        {
+          "in_near": 100,
+          "out_raw": "286863268748522784136104",
+          "out_tokens": 286863.2687485228,
+          "impact_bps_vs_0_01_near": 43,
+          "cost_bps_vs_spot_incl_fee": 142
+        }
+      ]
+    },
+    {
+      "symbol": "BATMAN",
+      "token": "batman-4.nearlytrade.near",
+      "launch_id": 217,
+      "pool_id": "batman-4.nearlytrade.near|wrap.near|10000",
+      "fee": 10000,
+      "current_point": 58588,
+      "pool_total_wnear": 29577.167026248146,
+      "liquidity": "184323114533998687106732",
+      "tax_on_token": {
+        "buy_bps": 100,
+        "sell_bps": 100,
+        "creator_bps": 0,
+        "burn_bps": 0,
+        "holders_bps": 10000,
+        "platform_bps": 2000,
+        "pending": "0",
+        "holders_bucket": "13875998554925230280681776",
+        "burned": "0",
+        "paid_creator": "0",
+        "paid_holders": "13481614002275549907384681940",
+        "paid_platform": "3373872500207618784416340366",
+        "selling": "0",
+        "floor": "0"
+      },
+      "ref_tokens_per_near_at_0_01": 2826.948506351072,
+      "spot_tokens_per_near": 2855.5035417706017,
+      "rows": [
+        {
+          "in_near": 0.1,
+          "out_raw": "282694850635107214361",
+          "out_tokens": 282.69485063510723,
+          "impact_bps_vs_0_01_near": 0,
+          "cost_bps_vs_spot_incl_fee": 100
+        },
+        {
+          "in_near": 0.5,
+          "out_raw": "1413474253175536071806",
+          "out_tokens": 1413.474253175536,
+          "impact_bps_vs_0_01_near": 0,
+          "cost_bps_vs_spot_incl_fee": 100
+        },
+        {
+          "in_near": 1,
+          "out_raw": "2826948506351072143613",
+          "out_tokens": 2826.948506351072,
+          "impact_bps_vs_0_01_near": 0,
+          "cost_bps_vs_spot_incl_fee": 100
+        },
+        {
+          "in_near": 2,
+          "out_raw": "5653897012702144287226",
+          "out_tokens": 5653.897012702144,
+          "impact_bps_vs_0_01_near": 0,
+          "cost_bps_vs_spot_incl_fee": 100
+        },
+        {
+          "in_near": 5,
+          "out_raw": "14134286083612202747939",
+          "out_tokens": 14134.286083612204,
+          "impact_bps_vs_0_01_near": 0,
+          "cost_bps_vs_spot_incl_fee": 100
+        },
+        {
+          "in_near": 10,
+          "out_raw": "28266730506418885763008",
+          "out_tokens": 28266.730506418888,
+          "impact_bps_vs_0_01_near": 1,
+          "cost_bps_vs_spot_incl_fee": 101
+        },
+        {
+          "in_near": 25,
+          "out_raw": "70651633037488511950324",
+          "out_tokens": 70651.63303748851,
+          "impact_bps_vs_0_01_near": 3,
+          "cost_bps_vs_spot_incl_fee": 103
+        },
+        {
+          "in_near": 50,
+          "out_raw": "141252638657360650261572",
+          "out_tokens": 141252.63865736066,
+          "impact_bps_vs_0_01_near": 7,
+          "cost_bps_vs_spot_incl_fee": 107
+        },
+        {
+          "in_near": 100,
+          "out_raw": "282302941583936228312281",
+          "out_tokens": 282302.9415839362,
+          "impact_bps_vs_0_01_near": 14,
+          "cost_bps_vs_spot_incl_fee": 114
+        }
+      ]
+    },
+    {
+      "symbol": "SINGULARTY",
+      "token": "singularty.nearlytrade.near",
+      "launch_id": 1230,
+      "pool_id": "singularty.nearlytrade.near|wrap.near|10000",
+      "fee": 10000,
+      "current_point": 30393,
+      "pool_total_wnear": 3598.0629755481436,
+      "liquidity": "50498695734733140569374",
+      "tax_on_token": {
+        "buy_bps": 100,
+        "sell_bps": 100,
+        "creator_bps": 0,
+        "burn_bps": 0,
+        "holders_bps": 10000,
+        "platform_bps": 2000,
+        "pending": "0",
+        "holders_bucket": "8179470162496678241656675",
+        "burned": "0",
+        "paid_creator": "0",
+        "paid_holders": "2651350408487436449331266752",
+        "paid_platform": "664882469662483281893230527",
+        "selling": "0",
+        "floor": "0"
+      },
+      "ref_tokens_per_near_at_0_01": 47396.90342584686,
+      "spot_tokens_per_near": 47875.66002612397,
+      "rows": [
+        {
+          "in_near": 0.1,
+          "out_raw": "4739690342584686430712",
+          "out_tokens": 4739.690342584687,
+          "impact_bps_vs_0_01_near": 0,
+          "cost_bps_vs_spot_incl_fee": 100
+        },
+        {
+          "in_near": 0.5,
+          "out_raw": "23696840921123073046214",
+          "out_tokens": 23696.840921123076,
+          "impact_bps_vs_0_01_near": 1,
+          "cost_bps_vs_spot_incl_fee": 101
+        },
+        {
+          "in_near": 1,
+          "out_raw": "47388623796626542112575",
+          "out_tokens": 47388.62379662654,
+          "impact_bps_vs_0_01_near": 2,
+          "cost_bps_vs_spot_incl_fee": 102
+        },
+        {
+          "in_near": 2,
+          "out_raw": "94757021478731888227445",
+          "out_tokens": 94757.02147873188,
+          "impact_bps_vs_0_01_near": 4,
+          "cost_bps_vs_spot_incl_fee": 104
+        },
+        {
+          "in_near": 5,
+          "out_raw": "236740404080178191457538",
+          "out_tokens": 236740.40408017818,
+          "impact_bps_vs_0_01_near": 10,
+          "cost_bps_vs_spot_incl_fee": 110
+        },
+        {
+          "in_near": 10,
+          "out_raw": "472974352926449985826064",
+          "out_tokens": 472974.35292644997,
+          "impact_bps_vs_0_01_near": 21,
+          "cost_bps_vs_spot_incl_fee": 121
+        },
+        {
+          "in_near": 25,
+          "out_raw": "1178652186069396914699326",
+          "out_tokens": 1178652.1860693968,
+          "impact_bps_vs_0_01_near": 53,
+          "cost_bps_vs_spot_incl_fee": 152
+        },
+        {
+          "in_near": 50,
+          "out_raw": "2344798969071983715778489",
+          "out_tokens": 2344798.969071984,
+          "impact_bps_vs_0_01_near": 106,
+          "cost_bps_vs_spot_incl_fee": 205
+        },
+        {
+          "in_near": 100,
+          "out_raw": "4640364668649976615273462",
+          "out_tokens": 4640364.668649976,
+          "impact_bps_vs_0_01_near": 210,
+          "cost_bps_vs_spot_incl_fee": 307
+        }
+      ]
+    },
+    {
+      "symbol": "NINU",
+      "token": "ninu-4.nearlytrade.near",
+      "launch_id": 255,
+      "pool_id": "ninu-4.nearlytrade.near|wrap.near|10000",
+      "fee": 10000,
+      "current_point": 26882,
+      "pool_total_wnear": 2861.379053143132,
+      "liquidity": "50498695734733140569374",
+      "tax_on_token": {
+        "buy_bps": 200,
+        "sell_bps": 300,
+        "creator_bps": 2000,
+        "burn_bps": 2000,
+        "holders_bps": 6000,
+        "platform_bps": 2000,
+        "pending": "0",
+        "holders_bucket": "15659482262283884165461274",
+        "burned": "34346494886190201846621869",
+        "paid_creator": "1871690177593314517489529551",
+        "paid_holders": "5599411050517659668303129954",
+        "paid_platform": "2339612721991643146861912078",
+        "selling": "0",
+        "floor": "0"
+      },
+      "ref_tokens_per_near_at_0_01": 67332.25166134842,
+      "spot_tokens_per_near": 68012.37541552358,
+      "rows": [
+        {
+          "in_near": 0.1,
+          "out_raw": "6732812585799372956756",
+          "out_tokens": 6732.812585799373,
+          "impact_bps_vs_0_01_near": 1,
+          "cost_bps_vs_spot_incl_fee": 101
+        },
+        {
+          "in_near": 0.5,
+          "out_raw": "33660760062963413450557",
+          "out_tokens": 33660.76006296342,
+          "impact_bps_vs_0_01_near": 2,
+          "cost_bps_vs_spot_incl_fee": 102
+        },
+        {
+          "in_near": 1,
+          "out_raw": "67313064443565517547279",
+          "out_tokens": 67313.06444356553,
+          "impact_bps_vs_0_01_near": 3,
+          "cost_bps_vs_spot_incl_fee": 103
+        },
+        {
+          "in_near": 2,
+          "out_raw": "134591716814697520763344",
+          "out_tokens": 134591.71681469752,
+          "impact_bps_vs_0_01_near": 5,
+          "cost_bps_vs_spot_incl_fee": 105
+        },
+        {
+          "in_near": 5,
+          "out_raw": "336221324880507926537947",
+          "out_tokens": 336221.3248805079,
+          "impact_bps_vs_0_01_near": 13,
+          "cost_bps_vs_spot_incl_fee": 113
+        },
+        {
+          "in_near": 10,
+          "out_raw": "671585516549780956868231",
+          "out_tokens": 671585.5165497808,
+          "impact_bps_vs_0_01_near": 26,
+          "cost_bps_vs_spot_incl_fee": 126
+        },
+        {
+          "in_near": 25,
+          "out_raw": "1672567007944336124414726",
+          "out_tokens": 1672567.0079443362,
+          "impact_bps_vs_0_01_near": 64,
+          "cost_bps_vs_spot_incl_fee": 163
+        },
+        {
+          "in_near": 50,
+          "out_raw": "3324026919808873878256892",
+          "out_tokens": 3324026.919808874,
+          "impact_bps_vs_0_01_near": 126,
+          "cost_bps_vs_spot_incl_fee": 225
+        },
+        {
+          "in_near": 100,
+          "out_raw": "6565203605973627427963050",
+          "out_tokens": 6565203.605973627,
+          "impact_bps_vs_0_01_near": 250,
+          "cost_bps_vs_spot_incl_fee": 347
+        }
+      ]
+    },
+    {
+      "symbol": "DRAGON",
+      "token": "dragon-3.nearlytrade.near",
+      "launch_id": 1502,
+      "pool_id": "dragon-3.nearlytrade.near|wrap.near|10000",
+      "fee": 10000,
+      "current_point": 17253,
+      "pool_total_wnear": 1467.7755384404907,
+      "liquidity": "50498695734733140569374",
+      "tax_on_token": {
+        "buy_bps": 100,
+        "sell_bps": 100,
+        "creator_bps": 10000,
+        "burn_bps": 0,
+        "holders_bps": 0,
+        "platform_bps": 2000,
+        "pending": "0",
+        "holders_bucket": "242",
+        "burned": "0",
+        "paid_creator": "827736853697356549023085709",
+        "paid_holders": "0",
+        "paid_platform": "206934213424339137255771338",
+        "selling": "0",
+        "floor": "0"
+      },
+      "ref_tokens_per_near_at_0_01": 176353.62327071183,
+      "spot_tokens_per_near": 178134.97300075286,
+      "rows": [
+        {
+          "in_near": 0.1,
+          "out_raw": "17633855745942850629740",
+          "out_tokens": 17633.855745942852,
+          "impact_bps_vs_0_01_near": 1,
+          "cost_bps_vs_spot_incl_fee": 101
+        },
+        {
+          "in_near": 0.5,
+          "out_raw": "88155327196625521696273",
+          "out_tokens": 88155.32719662551,
+          "impact_bps_vs_0_01_near": 2,
+          "cost_bps_vs_spot_incl_fee": 102
+        },
+        {
+          "in_near": 1,
+          "out_raw": "176273984670175656117672",
+          "out_tokens": 176273.98467017565,
+          "impact_bps_vs_0_01_near": 5,
+          "cost_bps_vs_spot_incl_fee": 104
+        },
+        {
+          "in_near": 2,
+          "out_raw": "352402148130701571468803",
+          "out_tokens": 352402.1481307016,
+          "impact_bps_vs_0_01_near": 9,
+          "cost_bps_vs_spot_incl_fee": 109
+        },
+        {
+          "in_near": 5,
+          "out_raw": "879914555523591208023644",
+          "out_tokens": 879914.5555235912,
+          "impact_bps_vs_0_01_near": 21,
+          "cost_bps_vs_spot_incl_fee": 121
+        },
+        {
+          "in_near": 10,
+          "out_raw": "1756204007429039201432115",
+          "out_tokens": 1756204.007429039,
+          "impact_bps_vs_0_01_near": 42,
+          "cost_bps_vs_spot_incl_fee": 141
+        },
+        {
+          "in_near": 25,
+          "out_raw": "4363544834032304628119495",
+          "out_tokens": 4363544.834032305,
+          "impact_bps_vs_0_01_near": 103,
+          "cost_bps_vs_spot_incl_fee": 202
+        },
+        {
+          "in_near": 50,
+          "out_raw": "8638662202347098009491107",
+          "out_tokens": 8638662.202347098,
+          "impact_bps_vs_0_01_near": 203,
+          "cost_bps_vs_spot_incl_fee": 301
+        },
+        {
+          "in_near": 100,
+          "out_raw": "16934152617810906230233806",
+          "out_tokens": 16934152.617810905,
+          "impact_bps_vs_0_01_near": 398,
+          "cost_bps_vs_spot_incl_fee": 494
+        }
+      ]
+    },
+    {
+      "symbol": "XELA",
+      "token": "xela.nearlytrade.near",
+      "launch_id": 3635,
+      "pool_id": "wrap.near|xela.nearlytrade.near|10000",
+      "fee": 10000,
+      "current_point": -201,
+      "pool_total_wnear": 0.007840547812856572,
+      "liquidity": "50501220606399663529222",
+      "tax_on_token": {
+        "buy_bps": 100,
+        "sell_bps": 100,
+        "creator_bps": 3300,
+        "burn_bps": 3300,
+        "holders_bps": 3400,
+        "platform_bps": 4000,
+        "pending": "0",
+        "holders_bucket": "0",
+        "burned": "0",
+        "paid_creator": "0",
+        "paid_holders": "0",
+        "paid_platform": "0",
+        "selling": "0",
+        "floor": "0"
+      },
+      "ref_tokens_per_near_at_0_01": 970300.6268434869,
+      "spot_tokens_per_near": 980101.6432762515,
+      "rows": [
+        {
+          "in_near": 0.1,
+          "out_raw": "97024509553577926879932",
+          "out_tokens": 97024.50955357793,
+          "impact_bps_vs_0_01_near": 1,
+          "cost_bps_vs_spot_incl_fee": 101
+        },
+        {
+          "in_near": 0.5,
+          "out_raw": "484933608911027432573688",
+          "out_tokens": 484933.60891102743,
+          "impact_bps_vs_0_01_near": 4,
+          "cost_bps_vs_spot_incl_fee": 104
+        },
+        {
+          "in_near": 1,
+          "out_raw": "969396993395385111285316",
+          "out_tokens": 969396.9933953851,
+          "impact_bps_vs_0_01_near": 9,
+          "cost_bps_vs_spot_incl_fee": 109
+        },
+        {
+          "in_near": 2,
+          "out_raw": "1936917088837748447460869",
+          "out_tokens": 1936917.0888377486,
+          "impact_bps_vs_0_01_near": 19,
+          "cost_bps_vs_spot_incl_fee": 119
+        },
+        {
+          "in_near": 5,
+          "out_raw": "4828264750988838759169085",
+          "out_tokens": 4828264.750988838,
+          "impact_bps_vs_0_01_near": 48,
+          "cost_bps_vs_spot_incl_fee": 147
+        },
+        {
+          "in_near": 10,
+          "out_raw": "9610128632260189723450867",
+          "out_tokens": 9610128.63226019,
+          "impact_bps_vs_0_01_near": 96,
+          "cost_bps_vs_spot_incl_fee": 195
+        },
+        {
+          "in_near": 25,
+          "out_raw": "23683911647296492187689938",
+          "out_tokens": 23683911.647296492,
+          "impact_bps_vs_0_01_near": 236,
+          "cost_bps_vs_spot_incl_fee": 334
+        },
+        {
+          "in_near": 50,
+          "out_raw": "46271917448523834706824127",
+          "out_tokens": 46271917.448523834,
+          "impact_bps_vs_0_01_near": 462,
+          "cost_bps_vs_spot_incl_fee": 558
+        },
+        {
+          "in_near": 100,
+          "out_raw": "88451013584036765690552356",
+          "out_tokens": 88451013.58403677,
+          "impact_bps_vs_0_01_near": 884,
+          "cost_bps_vs_spot_incl_fee": 975
+        }
+      ]
+    }
+  ]
+}
