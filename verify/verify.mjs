@@ -1,6 +1,6 @@
 // Checks WYRM's promises against the chain. One PASS or FAIL line per check, with its evidence; exits 1 on any FAIL.
 //
-//   npm run verify -- --network mainnet --root thewyrm.near [--only 1,3,4] [--verbose] [--rpc URL] [--indexer URL]
+//   npm run verify -- --network mainnet --root thewyrm.near [--only 1,3,4] [--verbose] [--rpc URL[,URL]] [--indexer URL]
 //                     [--build DIR] [--releases PATH] [--record PATH | --replay PATH]
 //
 // Reads go to the RPC and, on mainnet and testnet, the FastNEAR transactions API (no API key). A sandbox has no

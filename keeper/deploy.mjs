@@ -13,7 +13,7 @@ const HELP = `Deploys, launches, binds and tears down a WYRM system.
   npm run deploy -- --network testnet --root rehearsal.thewyrm.testnet [--preset hoarder] [--step a,b] [--send]
 
   --network      mainnet, testnet or sandbox (sandbox needs --rpc)
-  --rpc URL      the RPC to read and send through, in place of the network's FastNEAR RPC
+  --rpc URL[,URL]  the RPCs to read and send through, in place of the network's list; a rate limit moves to the next
   --root         the system's root account. It is the creator: it signs launch and bind and gets the creator Scales.
                  deploy creates it under the signer when it is missing.
   --preset       hoarder (default), steady, dip-hunter, swift, harvester, or drill (testnet only)

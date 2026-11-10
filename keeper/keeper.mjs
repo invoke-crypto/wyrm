@@ -30,10 +30,10 @@ import { accessKeys, connect, failedReceipts, failureOf, finalBlock, mapLimit, p
 const HELP = `The WYRM keeper pokes the Dragon, pushes creator fees, distributes, finalizes, closes the sale and sweeps.
 
   npm run keeper -- --network mainnet --root thewyrm.near [--once] [--dry-run] [--interval 20] [--verbose]
-                    [--rpc URL] [--launch-id N | --symbol WYRM]
+                    [--rpc URL[,URL]] [--launch-id N | --symbol WYRM]
 
   --network       mainnet, testnet or sandbox (sandbox needs --rpc)
-  --rpc URL       the RPC to read and send through, in place of the network's FastNEAR RPC
+  --rpc URL[,URL]  the RPCs to read and send through, in place of the network's list; a rate limit moves to the next
   --root          the system's root account
   --interval      seconds between ticks (default 20)
   --once          run one tick and exit. The sweep pass lives in memory, so --once reads only the first vaults of

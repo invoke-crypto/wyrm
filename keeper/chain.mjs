@@ -1,19 +1,20 @@
 import crypto from "node:crypto";
 
 // Peers (Nearly, DCL, wrap, ash) come from dragon.get_config().peers, never from this table. A sandbox has no
-// indexer, so verify reads its history from the RPC.
+// indexer, so verify reads its history from the RPC. Free RPCs rate-limit a busy client, so mainnet lists more than
+// one: an overloaded answer moves the next attempt to the next URL.
 export const NETWORKS = {
-  mainnet: { rpc: "https://rpc.mainnet.fastnear.com", indexer: "https://tx.main.fastnear.com" },
-  testnet: { rpc: "https://rpc.testnet.fastnear.com", indexer: "https://tx.test.fastnear.com" },
+  mainnet: { rpc: ["https://rpc.mainnet.fastnear.com", "https://near.drpc.org", "https://free.rpc.fastnear.com"], indexer: "https://tx.main.fastnear.com" },
+  testnet: { rpc: ["https://rpc.testnet.fastnear.com"], indexer: "https://tx.test.fastnear.com" },
   sandbox: { rpc: null, indexer: null },
 };
 
 export function connect(opts) {
   const net = NETWORKS[opts.network];
   if (!net) throw new Error(`--network must be one of ${Object.keys(NETWORKS).join(", ")}`);
-  const url = opts.rpc ?? net.rpc;
-  if (!url) throw new Error(`--network ${opts.network} needs --rpc <url>`);
-  return { net, rpc: httpRpc(url, { verbose: Boolean(opts.verbose) }) };
+  const urls = opts.rpc ? opts.rpc.split(",") : net.rpc;
+  if (!urls) throw new Error(`--network ${opts.network} needs --rpc <url>`);
+  return { net, rpc: httpRpc(urls, { verbose: Boolean(opts.verbose) }) };
 }
 
 export class RpcError extends Error {
@@ -27,10 +28,15 @@ const backoff = (attempt) => Math.min(1000 * 2 ** attempt, 15_000);
 
 // The transport is a function so tests can replay recorded responses: (method, params) => result.
 // `rpc.requests` counts HTTP requests, retries included; --verbose logs each one to stderr.
-// Overload arrives as HTTP 429 or, from the public RPC, as JSON-RPC error -429 inside an HTTP 200. Both are retried.
-export function httpRpc(url, { verbose = false, wait = backoff } = {}) {
+// Overload arrives as HTTP 429 or, from the public RPC, as JSON-RPC error -429 inside an HTTP 200. Both are retried,
+// each on the next of `urls` (one URL or a list), which later requests keep using. The wait comes only once every URL
+// has been overloaded in turn.
+export function httpRpc(urls, { verbose = false, wait = backoff } = {}) {
+  const list = [urls].flat();
+  let current = 0;
   const rpc = async (method, params) => {
     for (let attempt = 0; ; attempt++) {
+      const url = list[current];
       rpc.requests++;
       if (verbose) console.error(`rpc ${rpc.requests} ${method} ${params.request_type ?? ""} ${params.account_id ?? ""} ${params.method_name ?? params.block_id ?? params.tx_hash ?? ""}`.replace(/ +/g, " "));
       const res = await fetch(url, {
@@ -46,8 +52,9 @@ export function httpRpc(url, { verbose = false, wait = backoff } = {}) {
       } catch {
         body = null;
       }
-      if ((res.status === 429 || body?.error?.code === -429) && attempt < 8) {
-        await new Promise((r) => setTimeout(r, wait(attempt)));
+      if ((res.status === 429 || body?.error?.code === -429) && attempt < 8 * list.length) {
+        current = (current + 1) % list.length;
+        if ((attempt + 1) % list.length === 0) await new Promise((r) => setTimeout(r, wait(Math.floor(attempt / list.length))));
         continue;
       }
       if (!body) throw new RpcError(method, `HTTP ${res.status} ${text.slice(0, 200)}`);

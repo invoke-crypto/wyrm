@@ -429,6 +429,35 @@ test("an overloaded RPC is retried whether it answers HTTP 429 or JSON-RPC error
   }
 });
 
+test("an overloaded RPC hands the request to the next URL, and later requests stay there", async () => {
+  const hits = { busy: 0, free: 0 };
+  const serve = (name) => http.createServer((req, res) => {
+    req.resume();
+    req.on("end", () => {
+      hits[name]++;
+      res.writeHead(200, { "content-type": "application/json" });
+      const answer = name === "busy" ? { error: { code: -429, message: "Rate limits exceeded" } } : { result: { from: name } };
+      res.end(JSON.stringify({ jsonrpc: "2.0", id: "wyrm", ...answer }));
+    });
+  });
+  const servers = [serve("busy"), serve("free")];
+  await Promise.all(servers.map((s) => new Promise((r) => s.listen(0, "127.0.0.1", r))));
+  const [busy, free] = servers.map((s) => `http://127.0.0.1:${s.address().port}`);
+  let waits = 0;
+  try {
+    const rpc = httpRpc([busy, free], { wait: () => { waits++; return 1; } });
+    assert.deepEqual(await rpc("block", {}), { from: "free" });
+    assert.deepEqual(await rpc("block", {}), { from: "free" });
+    assert.deepEqual([hits.busy, hits.free, waits], [1, 2, 0], "one 429, then the free URL for both requests, with no wait");
+
+    const allBusy = httpRpc([busy, busy], { wait: () => 1 });
+    await assert.rejects(allBusy("block", {}), /Rate limits exceeded/);
+    assert.equal(allBusy.requests, 17, "with every URL overloaded it gives up after 8 rounds of the list");
+  } finally {
+    servers.forEach((s) => s.close());
+  }
+});
+
 test("a signed call carries a valid ed25519 signature over the sha256 of its borsh bytes", () => {
   const blockHash = b58decode("11111111111111111111111111111111");
   const signed = signedFunctionCall({ signer: "keeper.near", seed, publicKey: pub, nonce: 5n, receiver: "dragon.near", blockHash, method: "poke", args: {}, gas: 300n * TGAS });
