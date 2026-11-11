@@ -11,7 +11,7 @@ The pages were sketches, each with a brand sheet and desktop and phone screensho
 3. The five directions
 4. Side by side
 5. Recommendation
-6. What happens next
+6. What was built
 
 ## 1. What every direction keeps
 
@@ -22,7 +22,7 @@ These rules come from the research in section 2. They hold whichever direction w
 - **Obsidian is glass.** The top Scale tier is drawn as violet-black glass with a sheen, never flat black, so it never reads as a "black dragon scale".
 - **Proof, not claims.** Every memecoin lists "renounced, LP burnt" as a bullet. WYRM shows the zero keys with a link that proves it, and lists the refused proposals as evidence.
 - **No memecoin furniture.** No contract-address pill, no trust checklist, no ticker band, no exchange logo wall, no tokenomics pie, no "how to buy in 3 steps", no "frens" or "join the pack", no hacker terminal, no speed claims.
-- **The facts are the same everywhere.** A trade pays 4% tax. The tithe splits it 50/50 between the 100 Scales and the Dragon. The Dragon buys once a day in small slices and keeps every coin. In the Gym's replay of 62 real Nearly coins, buying once a day got a median 1.81 times more WYRM per NEAR than buying instantly. No proposal can move NEAR out of the Dragon.
+- **The facts are the same everywhere.** Every buy and every sell of WYRM pays a 4% tax. Nearly pays the creator's part of the tax and of the pool fee to the tithe, and the tithe splits it 50/50 between the 100 Scales and the Dragon. The Dragon buys once a day in small slices and keeps what it buys, except what its Council votes to grant or burn inside fixed limits. In the Gym's replay of real Nearly coins, WYRM's settings got a median 1.69 times more WYRM per NEAR than buying instantly, on coins they were not tuned on ([PARAMETERS.md](PARAMETERS.md#the-values)). No proposal can move NEAR out of the Dragon.
 - **The opening line of the video is "This dragon has no keys."** Four of the five directions arrived at it on their own.
 
 ## 2. What the research found
@@ -54,7 +54,7 @@ The research agent captured 29 project sites in headless Chrome and recorded the
 
 **Video.** The video runs through one UTC day from dawn to midnight. The dial's "now" marker sweeps between scenes, and the Breath beat lands on the gold arc.
 
-**Best at.** Owning patience, the one idea no memecoin has, and making the 1.81x number the reason to hold.
+**Best at.** Owning patience, the one idea no memecoin has, and making the Gym's 1.69x the reason to hold.
 
 **Worst at.** Energy. For most of the day the page is still and can read as a calm fintech site.
 
@@ -111,7 +111,7 @@ The research agent captured 29 project sites in headless Chrome and recorded the
 
 Embers drift across the background, and their count, speed and colour come from the mood. This direction grows out of the current Lair.
 
-**Voice.** Direct and present-tense, a live report. "WYRM is Stirring. The price fell below step 1 and the Dragon is counting samples, 3 of 5." "Refused. The daily budget can't go above 40%. This proposal asked for 90%."
+**Voice.** Direct and present-tense, a live report. "WYRM is Stirring. The price fell below step 1 and the Dragon is counting samples, 1 of 3." "Refused. The daily budget can't go above 40%. This proposal asked for 90%."
 
 **Fonts.**
 - Grenze Gotisch, a variable font, for the wordmark and mood names. Its weight follows the mood, from 200 asleep to 900 gorged.
@@ -153,7 +153,7 @@ Embers drift across the background, and their count, speed and colour come from 
 
 **Video.** Each beat is a numbered plate. Explorer captures sit in the plate as figures, with a lettered leader line pointing at the fact.
 
-**Best at.** Credibility with the joke intact. No keys, the Leash and the 1.81x all read as observed facts with footnotes, which no memecoin does.
+**Best at.** Credibility with the joke intact. No keys, the Leash and the 1.69x all read as observed facts with footnotes, which no memecoin does.
 
 **Worst at.** Energy. It asks to be read, and in a quick scroll it can look like a museum page.
 
@@ -178,16 +178,29 @@ Build the Lair as **the Living Lair**, with **the Vault's handleless door as the
 - **The Living Lair as the system.** It is the only direction with launch-day energy. It fits dark trading screens, and it teaches the mechanism without a word, because the page changes when the contract changes. It also costs the least, because the current Lair already has the violet dragon, the gold hoard and the moods. Its weakness is that it has no fixed mark to recognise across posts.
 - **The door as the fixed mark.** The handleless vault door with "0" at its centre is the strongest single image in the five. It solves the Living Lair's recognition problem. It works as the logo, the X avatar, the video's opening shot and the "Verify" page hero, and it stays the same while the colours around it change with the mood. Its fine engraving needs a simplified version that still reads at avatar size.
 - **The Field Guide's voice for the copy.** It is deadpan, and every claim carries its source. "The organ was never grown" and "The Dragon cannot be taught to eat faster" are the best lines in the five. They suit a coin whose whole argument is that the evidence is real.
-- **What to keep from the other two.** One Breath's countdown to the next Breath belongs in the Sleeping mood. The Bestiary's ledger of dated lines, including refused proposals, is a good shape for the Lair's event log.
+- **What to keep from the other two.** One Breath's countdown to the next Breath could live in the Sleeping mood. The Bestiary's ledger of dated lines, including refused proposals, is a good shape for the Lair's event log.
 
 This is a recommendation, not a measurement. The choice is yours. If you prefer one direction pure, the Field Guide is the strongest alternative for judges and the Vault the strongest for a single viral image.
 
-## 6. What happens next
+## 6. What was built
 
-1. You pick a direction, or a mix like the one above.
-2. The chosen direction's type, palette and voice move into `lair/`. The Lair's demo data also moves to the current Dragon defaults (20% budget, steps at 20%, 35% and 50%) and to "price impact" wording for the slice cap. Some sketches still say "2.5% of the pool's depth", which is out of date.
-3. The emblem is redrawn as a simple SVG that reads at 48 pixels.
-4. The video script in the master plan, Part 3, gets the chosen opening card and transitions.
-5. Before launch, the ticker, name and art are checked against BLACKDRAGON and "Near Dragons" on Nearly.
+The Lair in `lair/` took the Living Lair as its system: a deep violet ground, gold kept for value and the primary action, the Dragon's moods and the WYRM wordmark in blackletter. Its visual system is in [lair/DESIGN.md](../lair/DESIGN.md). Two things changed after the recommendation.
+
+- **The Lair shows only the past.** The next Breath time, the dip-step thresholds and the reference-price chart were removed, so the page does not announce when or at what price the Dragon will buy. That drops One Breath's countdown. The Dragon page keeps a price chart with a marker at each buy.
+- **The Lair draws three moods.** Its art has Sleeping, Breathing and Hunting. The contract still reports five, with Stirring and Gorged.
+
+The coin icon and the four Scale tier images, Ash, Ember, Molten and Obsidian, are in `media/`, with their SVG sources in `media/src/`.
+
+Every page, post and sketch uses the numbers of the `hoarder` preset as built (`contracts/wyrm-types/src/preset.rs` and [PARAMETERS.md](PARAMETERS.md)):
+
+- **Scales.** 100 Scales. 90 are sold at a flat 2 NEAR for 14 days from bind, and 10 are minted to the creator and never vote. Each sale pays 10% to the creator and 90% to the Dragon. A resale pays a 5% royalty to the creator.
+- **Breath.** The Dragon spends up to 10% of its reserve a day, in one breath at a random minute, in slices at least 60 s apart.
+- **Dips.** Steps at 20%, 35% and 50% below the 24-hour reference change the mood. They add no extra budget.
+- **Slice cap.** No slice may move the price more than 2%.
+- **Tax.** 400 bps on every buy and every sell.
+- **Hunt.** Off at launch. Only a Strict vote can turn it on.
+- **Council.** A Light vote needs 30% turnout and more yes than no. It moves the budget (10% to 40%), the cap (0.5% to 2%), auto-burn, burns and Hunt off. A Strict vote needs two thirds turnout and 80% yes, at least 45 sold Scales and a finished sale. It covers grants and Hunt on. A Scale votes after its owner has held it for 7 days, and a vote lasts 2 days.
+
+Before launch, the ticker, name and art are checked against BLACKDRAGON and "Near Dragons" on Nearly.
 
 All sketch figures that are not from the Gym or the spec are placeholders. That covers slice counts, proposal numbers and the tier mix in the tray.

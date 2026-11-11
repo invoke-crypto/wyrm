@@ -2,7 +2,7 @@
 
 This is the merged design from an arena between two candidate designs, A and B, revised after an adversarial review. Candidate B is the base. The grafts from A, the review's changes and the reason for each are in [the synthesis decision](#synthesis-decision). [invariants.md](invariants.md) lists every invariant and where it is enforced.
 
-Part 7 of the WYRM master plan, which is not in this repository, wins over everything here. Nearly facts come from `docs/research/NEARLY.md` and from Nearly's factory source at `e82bfa0` (`contracts/factory/src/lib.rs`, read on Nov 4). DCL facts come from `docs/research/RHEA-DCL.md`. Strategy numbers come from `docs/PARAMETERS.md` and `gym/out/presets.json`. Every size, gas and cost figure is an estimate unless it cites one of those files or `docs/GAS.md`. No v2 wasm has been built.
+Part 7 of the WYRM master plan, which is not in this repository, wins over everything here. Nearly facts come from `docs/research/NEARLY.md` and from Nearly's factory source at `e82bfa0` (`contracts/factory/src/lib.rs`, read on Nov 4). DCL facts come from `docs/research/RHEA-DCL.md`. Strategy numbers come from `docs/PARAMETERS.md` and `gym/out/presets.json`. Every size, gas and cost figure is an estimate unless it cites one of those files or `docs/GAS.md`. This section was written before the v2 build; "Implementation reconciliation" records where the built contracts differ.
 
 ## The shape in six sentences
 
@@ -961,7 +961,19 @@ Section 1. The creator deploys four accounts, makes the vaults, then calls `drag
 
 ### Implementation reconciliation
 
-Empty until Phase D. Record each accepted deviation here with its source.
+The contracts as built, release v2.0 in `verify/releases.json`, differ from this design in these ways. Each entry names its source. [SPEC.md](../../SPEC.md) describes the code as built.
+
+- **The factory and the Summon wizard are not built** (operator, Nov 8). Sections 1b, 2f, 5c and 8b, the factory rows of section 4 and risks 33 to 36 describe a design. WYRM deploys directly as section 1a lays out, with `keeper/deploy.mjs`. The Council demo used the `deploy.mjs --preset drill` path on testnet, at `council.thewyrm.testnet`.
+- **A Scale costs 2 NEAR** on every mainnet preset (operator, Nov 8), not 5 NEAR. The creator still gets 10% of each sale and the Dragon 90%. Section 3 already shows the built value.
+- **`launch` requires 500 Tgas**, not 450. It pays for four views, the wiring callback with its `get_pool`, the pool callback and Nearly's 300 Tgas (`contracts/dragon/src/launch.rs`). On mainnet, WYRMLING's launch reached Done with 500 attached and 85.11 Tgas burnt.
+- **`nearly_resume` requires 300 Tgas**, not 280, because Nearly's own resume refuses less than 222 Tgas at AddLiquidity, 235 at DevBuy and 263 for a first buy that opens the pool.
+- **The ash deposit is 0.0125 NEAR**, ten times the token's minimum storage deposit of 0.00125 NEAR. The token refunds what it does not use, and all of it once ash is registered.
+- **The grant and burn caps are measured on the hoard at each order** (operator, Nov 6), as in the code before v2. Two maximal grants in one 30-day window add up to 0.995% of the starting hoard, never quite 1%. This is stricter than the design, never looser.
+- **Nearly's overpayment refund stays in the Dragon.** About 0.087 NEAR of each launch deposit comes back from Nearly to the Dragon, on mainnet too, and joins its NEAR reserve.
+- **WYRMLING keeps its keys and is torn down** (operator, Nov 8). It runs the mainnet gates and is then emptied with the `state-cleanup` contract and deleted by `deploy.mjs --step teardown`, which recovers its storage deposits. Key deletion was proven on testnet. WYRMLING published the network's vault code on mainnet for 1.681 NEAR, and WYRM uses it by hash.
+- **Nearly pays `fee_to` on its own schedule.** Its relayer pushed the pool-fee share to WYRMLING's tithe by plain transfer, so the keeper's hourly `push_creator_fees` is best-effort. The tax share is paid only after Nearly's own keeper sells the tax tokens ([THREAT-MODEL.md](../../THREAT-MODEL.md), gate 6).
+- **The RPC client fails over** (operator, Nov 10). `keeper/chain.mjs` lists three free mainnet RPCs and moves to the next one on a rate limit, and `--rpc` takes a comma-separated list. verify against WYRMLING went from 205 s, with one check lost to rate limits, to 8.7 s with every read answered.
+- **The Lair shows only the past** (operator, Nov 9). It does not show the next breath time, the dip-step thresholds or the reference-price chart, so it does not announce when the Dragon will buy. The views stay public on the contracts.
 
 ### Open questions and risks
 

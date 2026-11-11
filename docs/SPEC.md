@@ -1,336 +1,272 @@
 # WYRM contract spec
 
-This file is the contract between the parts of WYRM. Each contract, the Lair, the keeper and `verify` build against the names and shapes here. Change a name here first, then in code.
+This file is the contract between the parts of WYRM v2: the four contracts, the keeper, `verify` and the Lair. It describes the code as built in `contracts/`. The method tables below list every method each contract exports, and `node docs/check-docs.mjs` fails when a table and the code disagree.
 
-Units. NEAR amounts are yoctoNEAR as `U128` strings in JSON. Times are nanoseconds as `U64` strings (`env::block_timestamp()`). Percentages are basis points (`u16`, 10,000 = 100%). Token ids are the strings `"1"` to `"100"`.
+The design and its rationale are in [design.md](design/v2/design.md). Its invariants, with the place each one is enforced, are in [invariants.md](design/v2/invariants.md).
 
-Toolchain. Rust 1.99.0 pinned in `contracts/rust-toolchain.toml`, `near-sdk` 5.29.1, `near-contract-standards` 5.29.1, `near-workspaces` 0.23.0, `cargo-near` 0.22. Release profile keeps `overflow-checks = true`.
+Units. NEAR amounts are yoctoNEAR as `U128` strings in JSON. Times are nanoseconds as `U64` strings. Percentages are basis points (bps, 10,000 = 100%). Token ids are the strings `"1"` to `"100"`.
+
+Toolchain. Rust 1.99.0 pinned in `contracts/rust-toolchain.toml`, `near-sdk` 5.29.1, `near-contract-standards` 5.29.1, `near-workspaces` 0.23.0. Release builds keep `overflow-checks = true`. `contracts/build.sh --reproducible` builds the four deployed contracts with `cargo near build reproducible-wasm`, and `verify/releases.json` holds the code hashes of each release.
 
 ## Accounts
 
-| Account | Contract | Keys after launch |
+| Account | Contract | Keys after deploy |
 |---|---|---|
 | `tithe.<root>` | `tithe` | none |
 | `dragon.<root>` | `dragon` | none |
-| `scales.<root>` | `scales` (NFT collection, sale, market, Council) | none |
+| `scales.<root>` | `scales`: NFT collection, sale, market and Council | none |
 | `001.scales.<root>` to `100.scales.<root>` | `scale-vault`, one global contract by code hash | none |
+| `ash.<root>` | no code. The Dragon burns WYRM by sending it here. | none |
 
-`<root>` is `thewyrm.near` for WYRM and `wyrmling.thewyrm.near` for the rehearsal. Every contract takes its peers' account ids in `new`, so the same code runs both coins and the sandbox.
+`<root>` is `thewyrm.near` for WYRM. The rehearsal system WYRMLING used `wyrmling.thewyrm.near`, and the testnet drill system uses `council.thewyrm.testnet`. Every contract takes its peers' account ids in `new`, so one build runs every system.
 
-Every contract follows the same NEAR rules, taken from the Council-PM audit:
+Rules every contract follows:
 
-- Every callback is `#[private]`.
-- State changes before any cross-contract call, and a failed call restores it in the callback.
-- Methods that move value or change ownership need exactly 1 yoctoNEAR attached, except payable methods that take a price.
-- `new` is `#[init]` and deploy plus init happen in one batch transaction.
+- Every callback is `#[private]`. `obey` and `release` check their caller by hand.
+- State changes before a cross-contract call, and the callback restores it when the call fails.
+- Methods that move a token or an offer need exactly 1 yoctoNEAR attached. Payable methods that take a price take the price.
+- `new` is `#[init]`, and deploy plus init happen in one batch transaction.
 - Text inputs have byte limits. Collections that grow with user input are bounded or paid for by the user.
-- Every action emits an NEP-297 event `EVENT_JSON:{"standard":"wyrm","version":"1.0.0","event":"<name>","data":[...]}`.
+- Every action emits an NEP-297 event: `EVENT_JSON:{"standard":"wyrm","version":"1.0.0","event":"<name>","data":[...]}`.
+
+## Presets
+
+Each system runs one preset from the compiled table in `contracts/wyrm-types/src/preset.rs`. `new` takes the preset's name. Scales and the Dragon both report the preset's hash and `ENGINE_VERSION` (200), and the Dragon's `launch` refuses unless they match.
+
+| Field | hoarder (WYRM) |
+|---|---|
+| Daily breath budget | 1,000 bps of the day's opening reserve. Council range 1,000 to 4,000. |
+| Slice cap | 200 bps of price impact. Council range 50 to 200. |
+| Dip steps | 2,000, 3,500 and 5,000 bps below the reference, with no extra budget |
+| Cadence | one breath a day, at least 60 s between slices |
+| Hunt | off. A Strict vote may switch it on with a sell multiple of at least 20,000 bps of average cost and 1 to 1,500 bps of the hoard a day. |
+| Auto-burn | 0 bps. Council range 0 to 5,000. |
+| Sale | 90 Scales at 2 NEAR each, 1,000 bps to the creator, open 14 days |
+| Royalty | 500 bps of every resale, to the creator |
+| Council times | 7 days of seasoning, 2 days of voting |
+
+The other presets are `steady`, `dip-hunter`, `swift`, `harvester` and `drill`. [design.md section 3](design/v2/design.md#3-the-presets) lists them. `drill` has a 0.1 NEAR price, a 2-hour sale, 10 minutes of seasoning and 30-minute votes, and `Preset::allowed_on` refuses it on any account that does not end in `.testnet`.
+
+The token tax is not a preset field. Every launch uses `envelope::TAX`: 400 bps on buys and on sells, with the whole creator side (10,000 bps) paid to the tithe.
 
 ## tithe
 
-Nearly's `fee_to`. Splits every inflow 50/50 between the Dragon and the 100 Scale vaults.
+Nearly's `fee_to` for the coin. It splits every inflow 50/50 between the Dragon and the 100 Scale vaults. After the sale closes, the shares of unsold Scales go to the Dragon.
 
-```rust
-struct Tithe {
-    dragon: AccountId,
-    scales: AccountId,        // vault i is format!("{:03}.{}", i, scales)
-    wrap: AccountId,          // wrap.near
-    min_round: NearToken,     // 1 NEAR
-    reserve: NearToken,       // kept back for storage, set at init
-    rounds: u64,
-    paid_dragon: u128,
-    paid_scales: u128,
-}
-```
-
-| Method | Kind | Behaviour |
+| Method | Caller | Behaviour |
 |---|---|---|
-| `new(dragon, scales, wrap, min_round, reserve)` | init | registers the tithe on `wrap` with `storage_deposit` |
-| `distribute()` | call, anyone | if `balance - reserve - locked >= min_round`: half to `dragon`, the other half split into 100 equal plain transfers to the vaults, dust stays. Emits `tithe_round`. Otherwise panics `"below min_round"`. |
-| `unwrap()` | call, anyone | reads its own `wrap.ft_balance_of` and calls `near_withdraw` for all of it, so creator fees paid as wNEAR become NEAR for the next round |
-| `forward_ft(token: AccountId)` | call, anyone | reads the tithe's balance of `token` and sends all of it to the Dragon with `ft_transfer` (1 yocto from the tithe). Covers any part of the creator fee Nearly pays in WYRM or another token. Anyone can register the tithe on a token with that token's `storage_deposit`. |
-| `get_stats()` | view | `{ rounds, paid_dragon, paid_scales, min_round, distributable }`. `paid_scales` counts transfers sent; a bounce from a missing vault returns to the tithe. |
+| `new(dragon, scales, wrap, min_round, reserve)` | init | Registers the tithe on `wrap`. `min_round` must be at least 200 yocto. |
+| `distribute()` | anyone | When the free balance reaches `min_round`, sends half to the Dragon and one hundredth of the other half to each vault. Once `retired_from` is set, the Dragon's transfer also carries the hundredths of the retired ids, and retired vaults get nothing. Emits `tithe_round`. Otherwise panics `below min_round`. |
+| `retire(first_unsold)` | only `scales` | `first_unsold` is 1 to 90. Sets `retired_from` once. A repeat with the same value returns quietly, and a different value panics. |
+| `unwrap()` | anyone | Reads the tithe's wNEAR balance and withdraws all of it as NEAR for the next round. |
+| `on_wrap_balance(balance)` | private | Panics `nothing to unwrap` on a zero balance. |
+| `forward_ft(token)` | anyone | Reads the tithe's balance of `token` and sends all of it to the Dragon. wNEAR is unwrapped, not forwarded. |
+| `on_ft_balance(token, balance)` | private | Panics `nothing to forward` on a zero balance. |
+| `get_stats()` | view | `{ rounds, paid_dragon, paid_scales, min_round, distributable, retired_from }` |
+| `get_config()` | view | `{ dragon, scales, wrap, min_round, reserve }` |
 
-A transfer to a vault that does not exist yet refunds to the tithe and joins the next round. Gas of the 100-transfer round is measured in sandbox and written in `docs/PARAMETERS.md`. The launch order creates all 100 vaults before Nearly's launch names the tithe, so bounces only happen in tests.
+A transfer to a vault that does not exist refunds to the tithe and joins a later round. The deploy creates all 100 vaults before the launch names the tithe, so this happens only in tests.
 
 ## scale-vault
 
-```rust
-struct Vault { parent: AccountId }   // set to env::predecessor_account_id() at init
-```
+One vault per Scale. It is written against `near_sdk::env` without the `#[near]` macros, so its 16.8 KB of code costs 1.68 NEAR to publish as a global contract once per network.
 
-| Method | Kind | Behaviour |
+| Method | Caller | Behaviour |
 |---|---|---|
-| `new()` | init | `parent = predecessor` |
-| `release(to: AccountId) -> U128` | call, only `parent` | transfers `balance - VAULT_RESERVE` to `to` and returns the amount |
-| `get_parent()`, `get_claimable()` | view | |
+| `new()` | init | `parent = predecessor`. Panics `already initialized` on a repeat. |
+| `release(to)` | only the parent | Sends `balance - VAULT_RESERVE` to `to` and returns the amount. Takes exactly `{"to":"<account>"}`. |
+| `get_parent()` | view | |
+| `get_claimable()` | view | `balance - VAULT_RESERVE` |
 
-Plain NEAR transfers to the vault need no method. The vault keeps a fixed storage reserve, so `claimable = balance - VAULT_RESERVE`.
+`VAULT_RESERVE` is 0.01 NEAR, and scales funds each new vault with exactly that, so a fresh vault has nothing to claim.
 
 ## scales
 
-One contract holds four things that all read the same token records: the NEP-171 collection, the primary sale, the market, and the Council. They live in one contract because a vote, a sale and a listing all need the token's owner and hold start in the same receipt.
+One contract holds the NEP-171 collection, the primary sale, the market and the Council, because a vote, a sale and a listing all need the token's owner and hold start in the same receipt.
 
-### Tokens
+Ids 1 to 90 are sale Scales and vote. Ids 91 to 100 are the creator's, minted to the creator in `new`, and never vote. A Scale's hold tier comes from the time since its last change of owner: Ash under 3 days, Ember from 3, Molten from 7 and Obsidian from 14. `nft_token` returns the tier's media.
 
-```rust
-struct Scale {
-    owner: AccountId,
-    voting: bool,            // false forever for the creator's Scales
-    hold_start: u64,         // reset on every change of owner
-    claimed_total: u128,
-    claiming_since: Option<u64>, // a vault release is in flight; expires after 10 minutes
-}
-// history per token: a bounded ring of the last 16 entries
-enum ScaleEvent { Minted{to, price, at}, Transferred{from, to, price: Option<U128>, at}, Claimed{by, amount, at} }
-```
+### Collection and vaults
 
-NEP-171 core, NEP-177 metadata, NEP-181 enumeration, NEP-178 approvals and NEP-199 payouts. Every change of owner, by any path, runs one internal hook. The hook resets `hold_start`, clears the token's listing, revokes approvals, and appends history. When `nft_resolve_transfer` returns a token to its sender, the sender's previous `hold_start` is restored. `nft_approve` takes a storage deposit as NEP-178 requires, and a token holds at most 3 approvals.
-
-`nft_token` returns the metadata `media` and `extra` for the hold tier, computed at read time from `hold_start`: Ash under 3 days, Ember from 3, Molten from 7, Obsidian from 14.
-
-`nft_payout` and `nft_transfer_payout` pay `ROYALTY_BPS` (500, 5%) to the Dragon and the rest to the owner, so a Scale sold on near.cooking or any NEP-199 market feeds the Dragon too.
-
-### Vaults and claims
-
-| Method | Kind | Behaviour |
+| Method | Caller | Behaviour |
 |---|---|---|
-| `create_vaults()` | call, anyone | creates the next 25 vault accounts with `use_global_contract(vault_code_hash)` and `new()`, no keys. Repeat until 100 exist. |
-| `claim(token_id)` | call, owner, 1 yocto | delists the token, sets `claiming_since`, calls `vault.release(owner)`, and the callback `on_claimed` clears it and records the amount in history and `claimed_total`. The callback's static gas is tested against a full history ring. |
+| `new(preset, dragon, tithe, creator, vault_code_hash, collection)` | init | Runs `preset.check()`, `allowed_on` and `collection.check()`. Mints 91 to 100 to `creator`. The sale starts Waiting. |
+| `publish_vault_code()` | anyone, payable | The input is the raw vault wasm. It must hash to `vault_code_hash`. Publishes it as a global contract, and the caller pays the burn. |
+| `create_vaults()` | anyone | Creates the next 25 vaults, keyless, on the global vault code. Repeat until 100 exist, then panics `all 100 vaults exist`. |
+| `on_vaults_created(last)` | private | Counts the batch when its last vault answers `get_parent`. |
+| `claim(token_id)` | owner, 1 yocto | Delists the Scale, locks it, and asks its vault to release to the owner. |
+| `on_claimed(token_id, by, started_at)` | private | Records the claim in history and `claimed_total`, or a `Swept` entry when the release went to the Dragon. Clears the lock. |
+| `get_vault(token_id)` | view | the vault account |
+| `nft_transfer`, `nft_transfer_call` | owner or approved, 1 yocto | NEP-171. Refused while a claim is in flight. |
+| `nft_resolve_transfer(...)` | private | NEP-171. A returned token gets back its sender's hold start. |
+| `nft_token`, `nft_metadata`, `nft_total_supply`, `nft_tokens`, `nft_supply_for_owner`, `nft_tokens_for_owner` | view | NEP-171, NEP-177 and NEP-181 |
+| `nft_approve`, `nft_revoke`, `nft_revoke_all` | owner, payable | NEP-178. At most 3 approvals per token. The deposit pays the approval's storage. |
+| `nft_is_approved` | view | NEP-178 |
+| `nft_payout`, `nft_transfer_payout` | view, and owner or approved | NEP-199. 500 bps to the royalty receiver, the rest to the owner. |
 
-While a claim is in flight (under 10 minutes old) the token refuses every transfer, listing, sale and offer acceptance, so an old owner can never be paid after a sale. A claim also removes the listing, so a buyer never pays a price that was set while the vault was full. A late `on_claimed` after the 10 minutes still records the amount. A failed release clears the flag and records nothing.
+A claim in flight locks the Scale for up to 10 minutes: no transfer, listing, sale or offer acceptance. Every change of owner runs one hook that resets the hold start, clears the listing, revokes approvals and appends history. History keeps the last 16 entries per Scale.
 
-### Primary sale
+### Sale
 
-```rust
-struct Tier { price: NearToken, remaining: u32 }
-tiers: Vec<Tier>     // default 20 at 0.5, 30 at 1, 20 at 2 NEAR
-sale_ends_at: u64    // set in new, default 14 days after init
-```
+| Method | Caller | Behaviour |
+|---|---|---|
+| `open_sale()` | only `dragon` | Called by the Dragon at bind. Waiting becomes Open for the preset's sale length. In any other state it changes nothing and does not panic. |
+| `buy_scale()` | anyone, payable | Needs the sale Open, before `ends_at` and under 90 sold, and at least the price attached. Mints the next sale id to the caller, pays `price * creator_bps / 10,000` to the creator and the rest to the Dragon, refunds any excess, then sweeps the new Scale's vault to the Dragon under the claim lock. |
+| `close_sale()` | anyone | When the sale is Open and past `ends_at` or sold out, sets Closed. Then, on this call and every later one until the tithe answers, calls `tithe.retire(sold + 1)`. Returns `not due` or `closed`. |
+| `on_retired()` | private | Records that the tithe was told. A failed `retire` changes nothing, so the next `close_sale` retries. |
+| `sweep(token_ids)` | anyone | 1 to 20 unminted ids. Releases each vault to the Dragon. |
+| `get_sale()` | view | `{ state, price, creator_bps, sold, opened_at, ends_at, retired_from, tithe_told }` |
+| `get_sweepable()` | view | unminted sale ids whose vault exists |
 
-`buy_scale()` is payable. It mints the next token id to the caller with `voting: true` at the cheapest tier that has stock, refunds any excess and sends the price to the Dragon as a plain transfer. The sale mints ids 1 to 70 in order and closes at `sale_ends_at`. Unsold ids are never minted, so they never count in any vote threshold. The creator's 30 Scales, ids 71 to 100, are minted to the `creator` account given to `new`, with `voting: false`.
+Unminted ids never count in any vote. Before the sale closes, a vault's income goes to the Dragon through the mint sweep. After it closes, the tithe pays retired ids' shares to the Dragon directly.
 
 ### Market
 
-The market is built into the collection. The NFT never leaves the seller until a sale, and no approval or second contract is involved.
+The market is built into the collection, so the Scale never leaves the seller until a sale.
 
-```rust
-listings: LookupMap<TokenId, NearToken>
-struct Offer { id: u64, buyer: AccountId, token_id: Option<TokenId>, amount: NearToken, at: u64 }
-offers: IterableMap<u64, Offer>          // token_id None means any Scale
-offers_by_token: LookupMap<TokenId, Vec<u64>>   // at most 20 per token
-escrow: u128                              // sum of open offers and in-flight bonds
-```
-
-Storage. Every offer and every proposal keeps a fixed `STORAGE_FEE` of 0.01 NEAR that is never refunded, and the contract is funded with 8 NEAR of storage before its keys are deleted. Every write that adds state asserts `account_balance - escrow >= storage_usage * byte_cost`, so escrowed NEAR never pays for storage. Bonds or payments that bounce from a deleted account return to the contract outside `escrow`.
-
-| Method | Kind | Behaviour |
+| Method | Caller | Behaviour |
 |---|---|---|
-| `list(token_id, price)` | call, owner, 1 yocto | price at least 0.1 NEAR |
-| `delist(token_id)` | call, owner, 1 yocto | |
-| `buy(token_id)` | payable, anyone | attached must equal the listed price. Transfers the token, pays `price - royalty` to the seller and the royalty to the Dragon. |
-| `make_offer(token_id: Option)` | payable | the attached NEAR minus `STORAGE_FEE` is the offer, at least 0.1 NEAR. It stays in the contract as escrow. One account may hold at most 10 open offers, and one token at most 20. |
-| `cancel_offer(offer_id)` | call, buyer, 1 yocto | refunds the offer |
-| `accept_offer(offer_id, token_id)` | call, owner, 1 yocto | for an any-Scale offer the owner names the token. Transfers, pays the seller minus royalty, royalty to the Dragon. |
-| `get_listings(from, limit)`, `get_offers(from, limit)`, `get_offers_for(token_id)` | view | |
+| `list(token_id, price)` | owner, 1 yocto | price at least 0.1 NEAR |
+| `delist(token_id)` | owner, 1 yocto | |
+| `buy(token_id)` | anyone, payable | The deposit must equal the listed price. The Scale moves first, then the seller gets the price less the royalty, and the royalty receiver gets the royalty. |
+| `make_offer(token_id)` | anyone, payable | `token_id` null is an offer for any Scale. The deposit less the 0.01 NEAR storage fee is the offer, at least 0.1 NEAR, held in escrow. At most 10 open offers per account and 20 per Scale. |
+| `cancel_offer(offer_id)` | buyer, 1 yocto | refunds the offer |
+| `accept_offer(offer_id, token_id)` | owner, 1 yocto | For an any-Scale offer the owner names the Scale. Pays like `buy`. |
+| `get_listings(from, limit)`, `get_offers(from, limit)`, `get_offers_for(token_id)` | view | `get_offers_for` returns offers named for that Scale. Any-Scale offers are in `get_offers`. |
 
-The internal transfer hook clears a token's listing, so a listing never survives a change of owner. The seller cannot be paid twice, because the token moves before any payment is sent.
+Escrow is the sum of open offers and the bonds of open proposals. Every write that adds state checks that the balance less escrow still covers storage.
 
-### The Council
+### Council
 
-Votes are cast per Scale, not per account. That alone stops the vote-sell-vote attack, so there is no activation step.
+A proposal is an `Order` for the Dragon or a `Signal`, a text poll that calls nothing. Votes are cast per Scale. A sale Scale may vote on a proposal when its owner has held it for the preset's season before the proposal was created. The electorate is the number of sale Scales sold when the proposal opens, so a silent or unseasoned Scale counts as a no-show.
 
-```rust
-enum ProposalKind {
-    SetBreath { budget_bps: u16, steps_bps: [u16; 3], extra_bps: [u16; 3] },
-    SetSlices { cap_bps: u16 },
-    SetPosture { hunt: bool, sell_multiple_bps: u32, max_sell_bps: u16 },
-    PauseBuys { hours: u16 },
-    Grant { to: AccountId, amount: U128 },        // WYRM from the hoard
-}
-enum Status { Open, Passed, Rejected, Executing, Executed, LeashHeld { error: String }, Expired }
-// Open -> Passed | Rejected (finalize); Passed -> Executing (execute) | Expired (deadline);
-// Executing -> Executed | LeashHeld (callback). Rejected, Executed, LeashHeld, Expired are terminal.
-struct Proposal {
-    id: u64, kind: ProposalKind, proposer: AccountId, description: String,   // 1,000 bytes max
-    bond: NearToken, created_at: u64, ends_at: u64,
-    electorate: u32, yes: u32, no: u32, status: Status, execute_by: u64,
-}
-votes: LookupMap<(u64, TokenId), bool>
-```
-
-A Scale may vote on a proposal when it has `voting: true` and its current owner has held it since at least `SEASON` (7 days) before the proposal was created. Seasoning decides who may vote. It does not shrink the denominator: `electorate` is the number of minted Scales with `voting: true` when the proposal is created, so a Scale that just changed hands still counts as a silent no.
-
-| Rule | Tune (everything but Grant) | Grant |
+| Order | Class | Effect |
 |---|---|---|
-| Voting period | 3 days | 7 days |
-| Passes when | `(yes + no) * 10 >= electorate * 3` and `yes > no` | `yes * 2 > electorate` and `no * 5 < electorate` |
-| Can open only when | electorate >= 10 | the sale has closed, electorate >= 35, and no other Grant is Open, Passed or Executing |
-| Early execution | no | no |
-| Execution window | 72 hours after `ends_at`, then Expired | 72 hours after `ends_at`, then Expired |
+| `SetBreath { budget_bps }` | Light | the daily budget, inside the preset's bounds |
+| `SetSlices { cap_bps }` | Light | the slice cap, inside the bounds |
+| `SetPosture { hunt: null }` | Light | Hunt off |
+| `SetPosture { hunt: { sell_multiple_bps, max_sell_bps } }` | Strict | Hunt on, or a new Hunt line |
+| `Grant { to, amount }` | Strict | WYRM from the hoard to `to` |
+| `Burn { amount }` | Light | WYRM from the hoard to ash |
+| `SetAutoBurn { bps }` | Light | the share of each buy sent to ash |
 
-With all 70 sold Scales minted, a Grant needs 36 yes votes, and 14 no votes block it. Only one Grant can be in play at a time, and a passed Grant that nobody executes within 72 hours expires, so a captured majority cannot bank grants for later.
-
-| Method | Kind | Behaviour |
+| Class | Passes when | Can open when |
 |---|---|---|
-| `propose(kind, description, token_id)` | payable, 1 NEAR bond plus `STORAGE_FEE`, excess refunded | `token_id` must be an eligible Scale of the caller, which proves the proposer has stake. One Open proposal per proposer. |
-| `vote(proposal_id, token_ids: Vec, approve: bool)` | call, 1 yocto | the proposal must be Open with `now < ends_at`. Each token must be the caller's, eligible, and not yet counted on this proposal. At most 25 tokens per call. |
-| `finalize(proposal_id)` | call, anyone, Open only, after `ends_at` | sets Passed or Rejected and zeroes the bond before sending it. The bond returns to the proposer when turnout reached 30% of the electorate, otherwise it goes to the Dragon. |
-| `execute(proposal_id)` | call, anyone, Passed only, before `execute_by` | sets Executing, then calls the matching Dragon method with 100 Tgas. The callback sets Executed, or `LeashHeld` when the call failed or a grant resolved to `false`. A Passed proposal past `execute_by` becomes Expired when anyone calls `execute` or `finalize` on it. |
-| `get_proposals(from, limit)`, `get_proposal(id)`, `get_votes(id)` | view | |
+| Light | turnout at least 30% of the electorate and more yes than no | electorate at least 10 |
+| Strict | turnout at least two thirds of the electorate and at least 80% yes | electorate at least 45 and the sale is over |
 
-There is no proposal kind that moves NEAR, and none that changes these rules. The thresholds are constants in code, not policy.
+| Method | Caller | Behaviour |
+|---|---|---|
+| `propose(kind, description, token_id)` | holder of a seasoned sale Scale, 1 NEAR bond plus 0.01 NEAR | `Order::check` against the preset, the class's electorate rule, a description of at most 1,000 bytes, one open proposal per proposer. Voting ends after the preset's voting time. |
+| `vote(proposal_id, token_ids, approve)` | holder, 1 yocto | The proposal must be Open and before `ends_at`. Up to 25 of the caller's seasoned Scales, each counted once. |
+| `finalize(proposal_id)` | anyone, at least 150 Tgas | Open and past `ends_at`. Returns the bond when turnout reached 30%, otherwise sends it to the Dragon. A failed vote ends Rejected and a passed Signal ends Carried. A passed Order becomes Executing, and scales calls `dragon.obey` with 100 Tgas in the same transaction. |
+| `on_executed(proposal_id)` | private | `Executed` on the Dragon's `Executed` verdict. `LeashHeld { error }` with the Dragon's reason on a refusal, or "dragon call failed" when the call failed. |
+| `get_council()` | view | the enabled orders with their classes, the class rules, the bounds and the timings |
+| `get_due()` | view | Open proposals past `ends_at` |
+| `get_proposal(id)`, `get_proposals(from, limit)`, `get_votes(id)` | view | |
+
+No order moves NEAR, and no order changes a rule, a bound or a timing. A passed order exists only inside its finalize transaction, so nothing can be banked.
 
 ### Views
 
-`get_config()`, `get_scale(token_id)` with owner, voting, hold_start, tier, claimed_total and the vault account, `get_scales(from, limit)`, `get_history(token_id)`, `get_sale()`, `eligible_now()`.
+| Method | Caller | Behaviour |
+|---|---|---|
+| `get_config()` | view | `{ preset, preset_hash, engine_version, dragon, tithe, creator, royalty_receiver, vault_code_hash, vaults_created, royalty_bps, season_ns, claim_timeout_ns, storage_fee, escrow, sale }` |
+| `get_scale(token_id)`, `get_scales(from, limit)` | view | `{ token_id, owner, voting, hold_start, tier, claimed_total, claiming_since, listed_price, vault }` |
+| `get_history(token_id)` | view | the last 16 `Minted`, `Transferred`, `Claimed` and `Swept` entries |
+| `eligible_now()` | view | sale Scales minted, the electorate a proposal opened now would have |
 
 ## dragon
 
-The treasury. Holds a NEAR reserve and the WYRM hoard. No method sends NEAR anywhere except into a swap, apart from the 1 yocto deposits that `ft_transfer` and `near_withdraw` require.
+The treasury. It launches the coin on Nearly as its creator, binds to it, holds a NEAR reserve and the WYRM hoard, buys in slices through the DCL pool, and obeys only bounded orders from scales. The Dragon sends NEAR to only four places: into a swap, to Nearly for the launch quote, back to the creator from the deposit of the same `launch` call, and into the 1-yocto and storage deposits that tokens require.
 
-### Peers
+Peers, fixed at init: `wrap` (`wrap.near`), `dcl` (`dclv2.ref-labs.near`), `nearly` (`nearlytrade.near`), `tithe`, `scales`, `ash` and `creator`.
 
-`wrap` (`wrap.near`), `dcl` (`dclv2.ref-labs.near`), `pool_id` (`"<token>|wrap.near|<fee>"`, sorted as DCL sorts), `wyrm` (the token), `council` (the scales account).
+### Launch and bind
 
-### DCL interface used
-
-- `get_pool({pool_id})` returns `total_x`, `total_y`, `current_point`, `state`. NEAR depth is the wrap side of `total_x`/`total_y`.
-- `quote({pool_ids:[pool_id], input_token, output_token, input_amount, tag: null})` returns `{amount}`.
-- Swap: `wrap.near_deposit` then `wrap.ft_transfer_call({receiver_id: dcl, amount, msg})` with `msg = {"Swap":{"pool_ids":[pool_id],"output_token":wyrm,"min_output_amount":"<n>"}}`. The bought tokens arrive in a separate receipt.
-
-### State
-
-```rust
-enum Phase { Idle, Observing { step: u64, since: u64 }, Quoting { step: u64, since: u64, side: Side, amount_in: u128 }, Swapping { step: u64, since: u64, side: Side, amount_in: u128, quoted_out: u128, min_out: u128 } }
-// step grows by one per new step; every callback carries it and does nothing when it no longer matches
-enum Side { Buy, Sell }
-struct Settings { budget_bps, steps_bps: [u16;3], extra_bps: [u16;3], cap_bps, hunt: bool, sell_multiple_bps: u32, max_sell_bps, paused_until: u64, pause_cooldown_until: u64 }
-struct Day { index: u64, breath_at: u64, opening_reserve: u128, budget: u128, spent: u128, sold_wyrm: u128 }
-struct Hoard { wyrm: u128, near_spent: u128, wyrm_bought: u128, donated: u128, granted: u128, realized_near: u128 }
-grants: ring of { at: u64, amount: u128 } for the rolling 30-day cap
-samples: ring of 1,440 { at: u64, tokens_per_near: u128 }, at most one per minute
-log: ring of 256 events for buys, sells, grants, Council changes and failures
-```
-
-Price is sampled as the quote for 1 NEAR in, in WYRM out (`tokens_per_near`). A dip of 10% in price is `tokens_per_near >= reference * 10_000 / 9_000`. The reference is the time-weighted mean of samples over 24 hours, where each sample is weighted by the time gap to the next sample, so one late sample cannot drag it.
-
-### Hard limits (constants)
-
-| Setting | Default | Council range |
+| Method | Caller | Behaviour |
 |---|---|---|
-| daily budget | 2,000 bps of the reserve at the day's first observation | 1,000 to 4,000 |
-| dip steps | 2,000, 3,500, 5,000 bps below reference | 500 to 5,000, strictly increasing |
-| extra budget per step | 500, 1,000, 1,500 bps of the day's opening reserve, cumulative: a confirmed step 3 adds all three, and an extra counts only while its step is confirmed in the current observation | each 0 to 2,500; budget plus the sum of extras at most 8,000 |
-| slice cap | 250 bps of price impact | 50 to 300 |
-| spike guard | no buy while `tokens_per_near * 11_500 < reference * 10_000` | fixed |
-| slice gap | 60 s | fixed |
-| slippage | 150 bps under the fresh quote | fixed |
-| dip confirmation | 3 samples over at least 10 minutes | fixed |
-| grant | 50 bps of hoard per grant; executed grants in any rolling 30 days at most 100 bps of the hoard at execution; a failed grant frees its share | fixed |
-| Hunt | off; sell multiple at least 20,000 bps of average cost, at most 1,500 bps of hoard per day | default 25,000 and 1,000 |
-| pause | at most 72 hours, then 7 days cooldown | fixed |
+| `new(preset, peers)` | init | Runs `preset.check()` and `allowed_on`, registers on `wrap`, and starts with the preset's strategy and no coin. |
+| `launch(coin)` | `creator`, payable, at least 500 Tgas | No coin bound, 10 minutes since the last launch, and `CoinArgs::parse` passes. Views the tithe's and scales' configs, Nearly's `quote_launch` and `get_slug_count` in parallel. |
+| `on_wiring(symbol, args, deposit)` | private | Checks that the tithe and scales name this Dragon and its creator, share its preset hash and engine version, that 100 vaults exist, and that the deposit covers the quote plus 0.086 NEAR. Then checks the pool at the coin's predicted id. A refusal returns the whole deposit and emits `launch_refused`. |
+| `on_pool_checked(args, deposit, cost)` | private | Refuses when a pool already exists. Otherwise returns `deposit - cost` to the creator and calls Nearly's `launch` with 300 Tgas, `fee_to` the tithe, fee mode creator and the 400 bps tax. |
+| `on_launch_sent()` | private | Emits `launch_sent {ok}` and moves no NEAR. `ok: false` means the launch may be parked: resume it, do not launch again. |
+| `nearly_resume(launch_id)` | anyone, at least 300 Tgas, before bind | Resumes a parked launch as its creator. |
+| `nearly_cancel_stuck(launch_id)` | `creator` | Cancels a launch parked before its dev buy, so its NEAR returns to the Dragon. After bind, any launch but the bound one. |
+| `bind(launch_id)` | `creator`, at least 150 Tgas | No coin bound. Views Nearly's `get_launch`, `get_fee_to`, `get_fee_opts` and `get_tax`, 5 Tgas each. Writes no state. |
+| `on_launch_record(launch_id)` | private | Checks that the record names this Dragon as creator, the tithe as `fee_to`, fee mode creator, the 400 bps tax and step Done. Then views the pool. |
+| `on_pool_seen(coin)` | private | Checks the pool runs wrap and the coin, sets `coin` once, and calls `scales.open_sale()`. A second bind finds the coin set and does nothing. |
+| `get_coin()` | view | `{ launch_id, token, pool_id, wrap_is_x }` or null. The one mark of the real coin. |
 
-### Methods
+### Buying
 
-The reserve is the Dragon's NEAR balance above its storage cost plus its wNEAR balance. Sale money, royalties and tithe rounds arrive as plain transfers. A buy spends wNEAR first and calls `near_deposit` only for the shortfall.
-
-The slice cap is measured as price impact, not pool depth, because DCL's `total_x`/`total_y` include liquidity far from the current price that anyone can add for free. A slice of `a` NEAR is allowed when `quote(a) * 10_000 >= a * tokens_per_near * (10_000 - cap_bps)`, where `tokens_per_near` is the 1 NEAR quote taken in the same observation. The Dragon starts from the budget-limited amount and halves it until the check passes, at most 6 times, and skips the slice if it is still too large. Hunt sells obey the same cap, measured against the quote for selling 1 NEAR worth of WYRM.
-
-The defaults come from the Gym's held-out replay (`docs/PARAMETERS.md`). Breath alone buys best; the dip ladder at these deeper steps and smaller extras costs about 0.5% on held-out coins and is kept for the Lair's Stirring mood and the Council to tune.
-
-| Method | Kind | Behaviour |
+| Method | Caller | Behaviour |
 |---|---|---|
-| `new(wrap, dcl, pool_id, wyrm, council)` | init | registers on `wrap` and `wyrm` |
-| `poke()` | call, anyone | one step of the machine below. Returns a short status string. Safe to call any time, refuses only when a step is in flight and younger than 5 minutes. |
-| `ft_on_transfer` | NEP-141 receiver | accepts WYRM (adds to the hoard as `donated`, the dev buy arrives this way) and wNEAR. Refuses any other token. |
-| `set_breath(budget_bps: u16, steps_bps: [u16;3], extra_bps: [u16;3])`, `set_slices(cap_bps: u16)`, `set_posture(hunt: bool, sell_multiple_bps: u32, max_sell_bps: u16)`, `pause_buys(hours: u16)` | call, only `council`, no deposit | each panics with a message naming the limit when out of range |
-| `grant(to: AccountId, amount: U128)` | call, only `council`, no deposit | panics when over the cap. Otherwise reserves the amount and calls `wyrm.ft_transfer`. Resolves to `true` when paid; on failure the callback restores the hoard and resolves to `false`. |
-| `get_config()`, `get_state()`, `get_log(from, limit)`, `get_samples(limit)` | view | `get_state` includes `mood`: Sleeping, Stirring, Breathing, Gorged or Hunting |
+| `poke()` | anyone, at least 760 Tgas | `not bound` before bind, `in flight` while a step younger than 5 minutes runs. Otherwise one step of the machine below. The keeper attaches 1,000 Tgas. |
+| `on_observe(step)` | private | Reconciles the hoard and the wNEAR, records a price sample at most once a minute, rolls the day, and decides: Hunt sell, dip buy, breath buy or rest. A rest may send the auto-burn. |
+| `on_quote(step, plan)` | private | Picks the largest of up to 6 halvings that passes the slice cap and sends the swap with `min_out` 150 bps under its quote. |
+| `on_swap(step, ticket)` | private | Settles the swap and logs the slice, or logs `swap_failed` and returns the unused budget. |
+| `ft_on_transfer` | NEP-141 receiver | The bound coin joins the hoard as donated, and wNEAR joins the reserve. Before bind only wNEAR is accepted. Any other token panics. |
 
-### poke() machine
+The reserve is the Dragon's NEAR above its storage plus its wNEAR. Sale money, royalties and tithe rounds arrive as plain transfers. A buy spends wNEAR first and wraps only the shortfall.
 
-1. Idle: start Observing with a new `step`. Batch `wyrm.ft_balance_of(self)`, `wrap.ft_balance_of(self)`, `dcl.get_pool(pool_id)`, `dcl.quote(1 NEAR)` and call back `on_observe(step)`.
-2. `on_observe`: reconcile the hoard. A WYRM increase since the last observation is credited to `wyrm_bought` up to the `quoted_out` of the swap that ran since then, and any rest goes to `donated`, so donations never lower the average cost. Grants in flight are subtracted. Record a sample if a minute has passed, roll the day. Decide: Hunt sell, dip buy, breath buy, or nothing. A slice needs 60 s since the last one and no spike. If nothing, go Idle.
-3. For a trade, go Quoting, quote the candidate amount and halve it per the slice cap, then swap with `min_out = quote * (10_000 - 150) / 10_000`, and go Swapping. `Day.spent` grows when the swap is sent.
-4. `on_swap`: go Idle, log the slice. A refund leaves wNEAR in the Dragon, gives the amount back to `Day.spent`, and logs `swap_failed`.
+The machine:
 
-A step older than 5 minutes may be replaced by `poke`. Its late callbacks see a different `step` and do nothing, except that a late swap result still frees or keeps `Day.spent` correctly.
+1. Observe. Batch the coin and wNEAR balances, `dcl.get_pool` and the quote for 1 NEAR, then `on_observe`.
+2. Decide. The breath minute of each UTC day comes from `env::random_seed()` at the day's first observation. From that minute the day's budget may be spent, slice by slice, at least 60 s apart. A dip below a confirmed step (3 samples over at least 10 minutes) also buys, and the preset's extras add budget. No buy happens without a 24-hour reference, or while the price is more than 15% above it.
+3. Quote. A slice of `a` NEAR is allowed when `quote(a) * 10,000 >= a * tokens_per_near * (10,000 - cap_bps)`. The smallest slice is 0.01 NEAR of value.
+4. Swap. `wrap.ft_transfer_call` to DCL with 180 Tgas. A buy's `min_out` is on the gross quote, and the Dragon books only the net arrival, 4% less after the buy tax. A sell is quoted and its `min_out` set on the net input.
 
-The breath minute of each UTC day is drawn from `env::random_seed()` at the day's first `on_observe`. From that minute on, the remaining daily budget may be spent, slice by slice.
+A step older than 5 minutes may be replaced. Its late callbacks see another step and change nothing, except that a late swap result still corrects the day's spend.
+
+### Council and views
+
+| Method | Caller | Behaviour |
+|---|---|---|
+| `obey(order)` | only `scales` | Runs the order through `Order::check` and the outflow windows. A refusal emits `order_refused {reason}` and answers `Refused { reason }` with no change. Settings orders write the strategy and answer `Executed`. Grant and Burn reserve the amount from the hoard and send it, and `on_outflow` settles them. |
+| `on_outflow(seq)` | private | A failed transfer restores the amount to the hoard and frees its window share. |
+| `get_config()` | view | `{ preset, preset_value, preset_hash, engine_version, peers, strategy, coin, engine }`. `engine` holds the tax, spike guard, slippage, dip confirmation, outflow caps, stale time and launch margin. |
+| `get_state()` | view | `{ mood, phase, coin, reserve, reserve_near, reserve_wnear, spot, reference, hoard, day, strategy, dip, last_slice_at, last_launch_at, pending, samples, log_next }` |
+| `get_log(from, limit)` | view | the last 256 events |
+| `get_samples(limit)` | view | `[{ at, tokens_per_near }]`, at most 1,440 |
+
+Grants and burns each take at most 50 bps of the hoard per order and 100 bps of it in any rolling 30 days, measured on the hoard at the time of each order. At most 3 outflows may be in flight. An outflow whose callback has not run after 10 minutes counts as settled at the next observation. `mood` is Sleeping, Stirring, Breathing, Gorged or Hunting.
 
 ## Events
 
 | Contract | Events |
 |---|---|
 | tithe | `tithe_round {round, to_dragon, per_scale, dust}` |
-| scales | `scale_minted`, `scale_claimed`, `nft_transfer` (NEP-171), `scale_listed`, `scale_delisted`, `scale_sold {token_id, from, to, price, royalty}`, `offer_made`, `offer_cancelled`, `proposal_created`, `vote_cast`, `proposal_finalized`, `proposal_executed`, `leash_held` |
-| dragon | `observe`, `breath_slice`, `dip_slice`, `hunt_slice`, `swap_failed`, `grant_paid`, `grant_failed`, `settings_changed` |
+| scales | `scale_minted`, `scale_swept`, `scale_claimed`, `scale_listed`, `scale_delisted`, `scale_sold`, `offer_made`, `offer_cancelled`, `sale_opened`, `sale_closed`, `tithe_told`, `proposal_created`, `vote_cast`, `proposal_finalized`, `proposal_executed`, and the NEP-171 `nft_mint` and `nft_transfer` |
+| dragon | `observe`, `breath_slice`, `dip_slice`, `hunt_slice`, `swap_failed`, `grant_paid`, `burn_paid`, `auto_burn`, `outflow_failed`, `settings_changed`, `order_refused`, `launch_refused`, `launch_sent`, `bind_refused`, `bound` |
+
+## Event fields read by verify
+
+A missing field fails the check that reads it.
+
+| Event | Fields |
+|---|---|
+| `tithe_round` | `round, to_dragon, per_scale, dust` |
+| `breath_slice` | `at, breath_at, amount_in, quoted_out, min_out, tokens_per_near, reference, cap_bps, budget` |
+| `dip_slice` | the `breath_slice` fields plus `step_bps, confirmations, confirmed_since` |
+| `grant_paid`, `burn_paid` | `at, amount, hoard` (the hoard when the order was admitted), and `to` for a grant |
+| `scale_minted` | `token_id, price` |
+| `scale_swept` | `token_ids` |
+| `proposal_finalized` | `proposal_id, status` |
 
 ## Refusal messages
 
-The keeper treats these panics as "nothing to do". Each contract panics with exactly this text.
+The keeper reads these panics as "nothing to do".
 
 | Contract | Method | Message |
 |---|---|---|
 | tithe | `distribute` | `below min_round` |
 | tithe | `unwrap` | `nothing to unwrap` |
 | tithe | `forward_ft` | `nothing to forward` |
-| dragon | `poke` | `in flight` |
+| dragon | `poke` | `not bound` or `in flight` |
 | scales | `create_vaults` | `all 100 vaults exist` |
 | scales | `finalize` | `not open` or `voting still open` |
-| scales | `execute` | `not passed` |
 
-## Event fields read by verify and audit-dragon
+## Gas
 
-A missing field fails the check that reads it. Amounts are yocto strings and times nanosecond strings.
-
-| Event | Fields |
-|---|---|
-| `observe` | `at, tokens_per_near, reserve, hoard_wyrm, breath_at` |
-| `breath_slice` | `at, breath_at, amount_in, quoted_out, tokens_per_near, reference, cap_bps, budget` |
-| `dip_slice` | the `breath_slice` fields plus `step_bps, confirmations, confirmed_since` |
-| `scale_minted` | `token_id, to, price` |
-| `grant_paid` | `at, to, amount, hoard` (the hoard before this grant) |
-| `settings_changed` | the changed setting fields by their `Settings` names |
-
-View shapes: `get_proposals({from, limit})` and `get_scales({from, limit})` return arrays, and each `get_scales` item carries `vault`. `dragon.get_config()` returns `wrap, dcl, pool_id, wyrm, council` and a `settings` object.
-
-## Shapes the Lair reads
-
-- `dragon.get_state()` returns `{ mood, phase, reserve, spot, reference, hoard: {wyrm, near_spent, wyrm_bought, donated, granted, realized_near}, day: {index, breath_at, opening_reserve, budget, spent, sold_wyrm}, settings: {...}, dip: {step, samples, first_at} | null }`.
-- `scales.get_sale()` returns `{ tiers: [{price, remaining}], sold, sale_ends_at }`.
-- `scales.get_scale(token_id)` includes `claiming_since` (null when no claim is in flight).
-- `get_listings` returns `[{token_id, price}]`. `get_offers` and `get_offers_for` return `[{id, buyer, token_id, amount, at}]`. `get_votes(id)` returns `[{token_id, approve}]`.
-- `scales.eligible_now()` returns the current electorate: minted Scales with `voting: true`.
-- `VAULT_RESERVE` is 0.01 NEAR. WYRM has 18 decimals, as every Nearly coin does.
-
-## Decisions made while building scales (Nov 3)
-
-- `create_vaults()` checks only the batch's last vault with `get_parent` after creation. Joining 25 results costs about 9.4 Tgas each and does not fit. A batch fails or succeeds as a whole, and a retry is safe because creating an existing vault fails and refunds. A batch in flight refuses with "the remaining vaults are being created" for up to 10 minutes.
-- `publish_vault_code(code)` is payable. It checks the code against the `vault_code_hash` fixed in `new` and publishes it as a global contract. The caller pays the burn. This is the one-transaction publish step on mainnet, and the only way near-workspaces can publish global code.
-- The vault is written without the `#[near]` macros, 17 KB instead of 95 KB, so publishing it burns about 1.7 NEAR. `release` takes exactly `{"to":"<account>"}`.
-- Votes are stored as two 100-bit sets on each proposal. `get_votes` and the counts are unchanged.
-- Proposal ids and offer ids are JSON numbers.
-- `execute` on a Passed proposal past `execute_by` sets Expired and returns `false` instead of panicking, so the status change sticks.
-- `get_offers_for(token_id)` returns offers named for that Scale. Any-Scale offers are in `get_offers`.
-- `new(dragon, creator, vault_code_hash, metadata, tier_media: [String; 4], tiers: Option, sale_ends_at: Option)`.
-- History keeps the last 16 entries per Scale. The full history is in the events. The scales account is funded with 8 NEAR before its keys are deleted: about 3.9 NEAR for the 394 KB of code and the rest for tokens, history, offers and proposals.
-
-## Decisions made while building the dragon (Nov 3)
-
-- `poke` refuses below 600 Tgas, and the keeper attaches 1,000 Tgas. The chain of a buy (observe batch, parallel halving quotes, deposit, swap) uses about 570 Tgas including what it attaches. Mainnet protocol 86 allows 1,000 Tgas per transaction (checked with `EXPERIMENTAL_protocol_config` on Nov 3).
-- The halving candidates are quoted in one parallel round and the largest that passes is used. The smallest slice is 0.01 NEAR of value.
-- No buy happens until a reference exists. Hunt needs no reference and ignores the spike guard and `pause_buys`.
-- `realized_near` is gross Hunt proceeds, not profit.
-- `get_state().dip` is `{step, step_bps, samples, first_at, confirmed}` for the newest run below a step, where `step` is the deepest step crossed, 1 to 3, or `null` with no dip.
-- Mood precedence: a swap in flight sets the mood (sell is Hunting, buy is Breathing); otherwise Hunting, Gorged, Breathing, Stirring, Sleeping in that order.
-- The grant ring holds 32 entries, so a 33rd grant in 30 days is refused. Grants in flight count toward the window. A reconcile that lands between a grant's transfer and its callback can undercount the hoard by that grant, which errs toward smaller caps.
-- The reserve holds back storage for ring slots not yet filled, about 2.1 NEAR at launch.
-- `pause_buys` takes 1 to 72 hours. `max_sell_bps` takes 1 to 1,500.
-
-## Decisions from the sandbox run (Nov 3)
-
-- A `LeashHeld` status carries "the dragon refused the call" or "the grant resolved to false". NEAR gives a callback no failure payload, so the Dragon's own limit message is visible only in the receipt failures of the `execute` transaction. The Lair links that transaction.
-- A new vault starts with a few attoNEAR claimable, from the gas reward of its `new()` call. The first claim pays it out.
-- Measured gas is in `docs/GAS.md`. A poke that ends in a buy burns about 41 Tgas on the mocks, far under the 600 Tgas the Dragon requires attached. The 600 Tgas floor stays, because static gas for the chained callbacks must be prepaid and unused gas is refunded.
+Measured gas is in [GAS.md](GAS.md). On mainnet, WYRMLING's launch reached Done with 500 Tgas attached and 85.11 Tgas burnt, and its first buy chain against the real DCL completed within the 1,000 Tgas the keeper attaches ([THREAT-MODEL.md](THREAT-MODEL.md)).
