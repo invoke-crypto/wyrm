@@ -54,7 +54,7 @@ function setAccount(id) {
 async function getConnector() {
   if (connector) return connector;
   const { NearConnector } = await import(CONNECTOR_URL);
-  connector = new NearConnector({ network: config.network, providers: { [config.network]: [config.rpc] } });
+  connector = new NearConnector({ network: config.network, providers: { [config.network]: config.rpcs } });
   connector.on('wallet:signIn', (e) => setAccount(e.accounts[0]?.accountId ?? null));
   connector.on('wallet:signOut', () => setAccount(null));
   return connector;

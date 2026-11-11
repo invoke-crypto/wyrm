@@ -10,6 +10,7 @@ let inFlight = 0;
 let maxInFlight = 0;
 const calls = [];
 const kinds = [];
+const urls = [];
 globalThis.location = { search: '' };
 const stored = new Map();
 globalThis.sessionStorage = { getItem: (k) => stored.get(k) ?? null, setItem: (k, v) => stored.set(k, String(v)) };
@@ -19,12 +20,13 @@ globalThis.fetch = async (url, init) => {
   const { params } = body;
   calls.push(params.account_id);
   kinds.push(params.request_type);
+  urls.push(String(url));
   const account = ['view_account', 'view_access_key_list'].includes(params.request_type);
   if (account) inFlight++;
   maxInFlight = Math.max(maxInFlight, inFlight);
   try {
     await new Promise((r) => setTimeout(r, 1));
-    const refusal = limit(body);
+    const refusal = limit(body, String(url));
     if (refusal === 'throw') throw new TypeError('fetch failed');
     if (refusal === 'http') return { ok: false, status: 429, json: async () => ({}) };
     if (refusal === 'error') return { ok: true, status: 200, json: async () => ({ jsonrpc: '2.0', id: 'lair', error: { code: -32000, message: 'Server error', data: 'wasm execution failed' } }) };
@@ -50,6 +52,7 @@ const reset = (fn) => {
   limit = fn;
   calls.length = 0;
   kinds.length = 0;
+  urls.length = 0;
   maxInFlight = 0;
 };
 const count = (kind) => kinds.filter((k) => k === kind).length;
@@ -85,10 +88,26 @@ test('a read refused with HTTP 429, a JSON-RPC -429 or a failed fetch is retried
   }
 });
 
+test('an RPC that rate-limits is left for the next one in the list, and later reads stay there', async () => {
+  const want = await chain.getSale();
+  config.rpcRetryMs = [60_000];
+  try {
+    let refusing = null;
+    reset((_, url) => ((refusing ??= url) === url ? 'http' : null));
+    assert.deepEqual(await chain.getSale(), want);
+    await chain.getSale();
+    const next = config.rpcs[(config.rpcs.indexOf(refusing) + 1) % config.rpcs.length];
+    assert.equal(urls.filter((u) => u === refusing).length, 1, 'the refusing RPC is asked once');
+    assert.ok(urls.length > 1 && urls.slice(1).every((u) => u === next), 'every later read goes to the next RPC');
+  } finally {
+    config.rpcRetryMs = [0, 0, 0, 0, 0];
+  }
+});
+
 test('a read still refused after every retry fails, and other RPC errors are not retried', async () => {
   reset(() => 'http');
   await assert.rejects(chain.getSale(), /RPC 429/);
-  assert.equal(calls.length, config.rpcRetryMs.length + 1);
+  assert.equal(calls.length, (config.rpcRetryMs.length + 1) * config.rpcs.length, 'each round asks every RPC once');
   reset(() => 'error');
   await assert.rejects(chain.getSale(), /wasm execution failed/);
   assert.equal(calls.length, 1);
@@ -232,4 +251,10 @@ test('a chain reset under the same root shows its vaults missing, not the cached
   const page = String(verify.view(await inWorld({ created: 0 }, verify.load)));
   assert.deepEqual(vaultsRead(), [], 'a vault the chain says is missing is not read');
   assert.match(page, /\b0 of 100 exist\./);
+});
+
+test('the Lair pins the mainnet code hashes of the release verify/releases.json names', () => {
+  const { releases } = JSON.parse(readFileSync(new URL('../verify/releases.json', import.meta.url), 'utf8'));
+  const { code } = releases.at(-1);
+  assert.deepEqual(config.expectedCodeHashes, { tithe: code.tithe, dragon: code.dragon, scales: code.scales, vault: code.scale_vault });
 });

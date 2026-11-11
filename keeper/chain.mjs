@@ -4,7 +4,7 @@ import crypto from "node:crypto";
 // indexer, so verify reads its history from the RPC. Free RPCs rate-limit a busy client, so mainnet lists more than
 // one: an overloaded answer moves the next attempt to the next URL.
 export const NETWORKS = {
-  mainnet: { rpc: ["https://rpc.mainnet.fastnear.com", "https://near.drpc.org", "https://free.rpc.fastnear.com"], indexer: "https://tx.main.fastnear.com" },
+  mainnet: { rpc: ["https://rpc.mainnet.fastnear.com", "https://near.drpc.org", "https://rpc.shitzuapes.xyz", "https://free.rpc.fastnear.com"], indexer: "https://tx.main.fastnear.com" },
   testnet: { rpc: ["https://rpc.testnet.fastnear.com"], indexer: "https://tx.test.fastnear.com" },
   sandbox: { rpc: null, indexer: null },
 };

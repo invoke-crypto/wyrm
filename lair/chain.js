@@ -36,10 +36,10 @@ export async function ready() {
 
 class Busy extends Error {}
 
-async function rpcOnce(params, method) {
+async function rpcOnce(url, params, method) {
   let res;
   try {
-    res = await fetch(config.rpc, {
+    res = await fetch(url, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ jsonrpc: '2.0', id: 'lair', method, params: { finality: 'final', ...params } }),
@@ -57,13 +57,21 @@ async function rpcOnce(params, method) {
 }
 
 // Public RPCs answer a burst of reads with HTTP 429 or a JSON-RPC -429, and a dropped connection fails the fetch.
+// A refused read moves every later read to the next RPC in the list; the Lair waits only once all of them refused.
+let current = Math.floor(Math.random() * config.rpcs.length);
+
 async function rpc(params, method = 'query') {
-  for (let attempt = 0; ; attempt++) {
+  for (let waits = 0, refused = 0; ; ) {
+    const at = current;
     try {
-      return await rpcOnce(params, method);
+      return await rpcOnce(config.rpcs[at], params, method);
     } catch (e) {
-      if (!(e instanceof Busy) || attempt >= config.rpcRetryMs.length) throw e;
-      await new Promise((r) => setTimeout(r, config.rpcRetryMs[attempt] * (1 + Math.random())));
+      if (!(e instanceof Busy)) throw e;
+      if (current === at) current = (at + 1) % config.rpcs.length;
+      if (++refused < config.rpcs.length) continue;
+      if (waits >= config.rpcRetryMs.length) throw e;
+      refused = 0;
+      await new Promise((r) => setTimeout(r, config.rpcRetryMs[waits++] * (1 + Math.random())));
     }
   }
 }
