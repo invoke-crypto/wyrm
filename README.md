@@ -98,6 +98,31 @@ python -m http.server 8000 -d lair
 
 `http://localhost:8000/` reads WYRM on mainnet. `?mock=1` runs on built-in sample data. `?network=testnet&root=council.thewyrm.testnet` reads the drill system and shows the drill banner on every page.
 
+## Built at NEAR HACKATHON
+
+WYRM is a solo entry by [invoke-crypto](https://github.com/invoke-crypto), built for NEAR HACKATHON. The first commit is from Nov 2, 2026, and no code predates the hackathon.
+
+It fits two tracks:
+
+- **Memecoins With Mechanics.** WYRM is a NEP-141 coin whose trading fees fund a treasury with fixed rules and no owner.
+- **NFTs That Do Something.** Each Scale is a NEP-171 NFT with its own sub-account, such as `042.scales.thewyrm.near`. That account holds the Scale's earnings, and the Scale carries a Council vote.
+
+What NEAR makes possible here:
+
+- **Deleted access keys.** An account with no keys can never be redeployed or drained, so the Dragon, the tithe and the Scales have no owner. `npm run verify` checks it.
+- **Named sub-accounts.** Each of the 100 vaults is an account of its own, so a Scale's income moves with the Scale when it is sold.
+- **Global contracts.** The 100 vaults run one published copy of the vault code.
+
+Who did what. invoke-crypto designed WYRM: the mechanism, the economics, the Council's limits and every product decision. invoke-crypto also directed the Gym study, reviewed the work and ran the mainnet launch. The code, tests and documents were written with Claude Code, an AI coding assistant, under that direction and review.
+
+What WYRM builds on:
+
+- **Contracts:** Rust with `near-sdk` and `near-contract-standards` 5.29.1. The sandbox tests use `near-workspaces` 0.23 and `near-sandbox`.
+- **Tools:** the keeper, verify and the Gym are plain Node.js with no npm dependencies.
+- **Lair:** plain JavaScript with no framework. Wallets connect through `@hot-labs/near-connect` 0.11.4. The fonts are Bricolage Grotesque and Grenze Gotisch.
+- **On chain:** WYRM launches on [Nearly](https://nearly.trade) and trades in a Rhea DCL pool (`dclv2.ref-labs.near`) against `wrap.near`.
+- **Data:** reads go through public RPCs, and verify reads history from FastNEAR's indexer.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
