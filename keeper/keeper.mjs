@@ -1,5 +1,7 @@
 // The WYRM keeper (design.md 1d). Each tick reads the chain at one final block, plans what is due, and sends it.
-//   every minute       dragon.poke()                    once the Dragon is bound (get_config().coin)
+//   every minute       dragon.poke()                    once the Dragon is bound (get_config().coin), sent once per
+//                      slot whatever the answer: a free RPC can time out on a poke that landed, and the next
+//                      minute pokes again anyway
 //                      dragon.nearly_resume(id)         before bind, while the creator's launch is parked
 //   fees, from :15     nearly.push_creator_fees(tithe), hourly and sent once per slot whatever the answer. It is
 //                      best-effort: Nearly's own relayer pushes at :10 to :14, so the keeper's push is usually refused
@@ -72,7 +74,7 @@ const PARKED = (step) => step !== "Done" && step !== "Failed";
 const hourSlot = (t) => Math.floor((t - FEES_AT) / HOUR);
 const SLOT = { minute: (t) => Math.floor(t / MINUTE), fees: hourSlot, hourly: hourSlot, daily: (t) => Math.floor(t / (24 * HOUR)) };
 export const STEPS = Object.keys(SLOT);
-export const MAX_TRIES = { minute: 3, fees: 1, hourly: 3, daily: 3, sweep: 3 };
+export const MAX_TRIES = { minute: 1, fees: 1, hourly: 3, daily: 3, sweep: 3 };
 export const newState = () => ({ lastRun: {}, sweep: null, tries: {} });
 export const dueSteps = (nowMs, lastRun) => STEPS.filter((s) => lastRun[s] === undefined || SLOT[s](nowMs) > SLOT[s](lastRun[s]));
 

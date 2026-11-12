@@ -250,6 +250,23 @@ test("a push refused with an unknown text, or lost in transport, closes its hour
   }
 });
 
+test("a poke lost in transport or refused is sent once in its minute, and the next minute pokes again", async () => {
+  const T = Date.UTC(2026, 10, 9, 0, 15);
+  for (const answer of [unseen, down]) {
+    const rpc = live("hold-world-keeper-bound.json", refuse("poke", answer));
+    const state = newState();
+    const out = [];
+    // The keeper ticks every 20 seconds, so three ticks fall in one minute.
+    for (const s of [0, 20, 40]) out.push(...(await ticks(rpc, 1, { sends: true, state, start: T + s * 1000 })).out);
+    assert.equal(sends(rpc, "poke"), 1, answer.name);
+    assert.equal(state.lastRun.minute, T, answer.name);
+    const gaveUp = out.flatMap((t) => t.lines).filter((l) => l.event === "gave_up" && l.step === "minute");
+    assert.deepEqual(gaveUp.map((l) => l.tries), [1], answer.name);
+    await ticks(rpc, 1, { sends: true, state, start: T + 60_000 });
+    assert.equal(sends(rpc, "poke"), 2, `${answer.name}: the next minute pokes again`);
+  }
+});
+
 test("a call that fails with an unknown refusal or in transport is sent at most 3 times in its slot, logged once, and is due again in the next slot", async () => {
   const T = Date.UTC(2026, 10, 9, 0, 15);
   for (const answer of [unseen, down]) {
