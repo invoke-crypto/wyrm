@@ -15,6 +15,7 @@ dist/
 .near-credentials/
 
 # Local data and tooling
+*.mp4
 *.sqlite
 *.sqlite-*
 .claude/settings.local.json

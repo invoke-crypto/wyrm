@@ -25,7 +25,19 @@ curl -s https://rpc.mainnet.fastnear.com -H 'content-type: application/json' \
 
 The inner `result` holds `{ launch_id, token, pool_id, wrap_is_x }` as a list of JSON bytes.
 
-To check every promise against the chain, follow [JUDGES.md](JUDGES.md). It runs 15 checks with Node.js and no API key. Against WYRM a run took 5.7 s (measured Nov 11).
+To check every promise against the chain, follow [JUDGES.md](JUDGES.md). It runs 15 checks with Node.js and no API key. Against WYRM the six checks that read only current state took 5 s, and all 15 took about 2 minutes (measured Nov 14). The free history API sets that time, so give the full run a timeout of 5 minutes.
+
+## Try it
+
+Each step needs only this repository and Node.js 22.5 or newer. There is no `npm install`.
+
+| Do | See |
+|---|---|
+| Open [thewyrm.xyz](https://thewyrm.xyz) | The Dragon's NEAR reserve, its hoard of WYRM, and a log line for its first buy: 0.49 NEAR on Nov 12. |
+| `npm run verify -- --network mainnet --root thewyrm.near --only 1,2,3,4,10,12` | Six `PASS` lines in about 5 s: 104 accounts with zero access keys, the code hashes of release v2.0, the coin the Dragon launched, the 4% tax, the 100 Scales and no dev wallet. |
+| `npm run verify -- --network mainnet --root thewyrm.near` | 15 `PASS` lines and `all checks PASSED` in about 2 minutes. The extra checks replay every fee split and every Dragon buy from the chain's history. |
+| `npm test` | 233 tests pass in about 7 s. |
+| Open [thewyrm.xyz/#/scales](https://thewyrm.xyz/#/scales) with a NEAR wallet | Buy a Scale for 2 NEAR. It appears under Yours, and Claim pays its share of the fees to your wallet. |
 
 The same release first ran on mainnet as a rehearsal system, WYRMLING (`wyrmling.thewyrm.near`), against the real Nearly and the real DCL. It passed the seven mainnet gates of the design and refused 15 attempts to rob it. [docs/THREAT-MODEL.md](docs/THREAT-MODEL.md) has the results.
 
@@ -33,7 +45,7 @@ The same release first ran on mainnet as a rehearsal system, WYRMLING (`wyrmling
 
 A WYRM vote cannot happen before the hackathon deadline. A Scale must be held for 7 days before it can vote, and a vote lasts 2 days. The Council was therefore shown on testnet, on the drill system at `council.thewyrm.testnet`. It runs the same code with the testnet-only `drill` preset: a 0.1 NEAR Scale, a 2-hour sale, 10 minutes of seasoning and 30-minute votes. Nearly exists only on mainnet, so the drill system trades against our own mock Nearly, mock DCL pool and mock taxed token.
 
-Every Council scene in the demo is labelled "testnet, mock Nearly". The drill ran seven proposals:
+In the demo video, the Council's vote history is labelled "testnet rehearsal". The drill ran seven proposals:
 
 - A Light vote set the slice cap to 1%, and it passed.
 - A Strict grant passed.

@@ -25,7 +25,15 @@ You need a copy of this repository and Node.js 22.5 or newer. Nothing else is re
    npm run verify -- --network mainnet --root thewyrm.near
    ```
 
-verify prints one line for each of its 15 checks, `PASS` or `FAIL`, with the check's number, its title and a summary. It ends with `all checks PASSED` and the number of RPC requests it made, and exits with code 0. Any failing check prints the evidence that failed and makes the command exit with code 1. A timed run against WYRM took 5.7 s, with 355 RPC requests (measured Nov 11, after the keys were deleted).
+verify prints one line for each of its 15 checks, `PASS` or `FAIL`, with the check's number, its title and a summary. It ends with `all checks PASSED` and the number of RPC requests it made, and exits with code 0. Any failing check prints the evidence that failed and makes the command exit with code 1. A timed run against WYRM took 134 s, with 328 RPC requests (measured Nov 14).
+
+Most of that time is one read. Nine checks replay the history of the Dragon, the tithe and the Scales, and the Dragon's history holds 2,367 transactions. The free FastNEAR transactions API returns 20 transactions for each request and answers about one request a second. verify sends those requests one at a time, waits when the API answers with a rate limit, and prints a progress line to stderr. If you run verify from a tool with a command timeout, set it to 5 minutes.
+
+For a first look, run only the six checks that read current state. They took 5 s (measured Nov 14):
+
+```sh
+npm run verify -- --network mainnet --root thewyrm.near --only 1,2,3,4,10,12
+```
 
 verify only reads. It asks a NEAR RPC node for contract state and the FastNEAR transactions API for each account's history. Both are free and need no key.
 
