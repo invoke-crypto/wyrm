@@ -23,7 +23,7 @@ curl -s https://rpc.mainnet.fastnear.com -H 'content-type: application/json' \
   -d '{"jsonrpc":"2.0","id":1,"method":"query","params":{"request_type":"call_function","finality":"final","account_id":"dragon.thewyrm.near","method_name":"get_coin","args_base64":"e30="}}'
 ```
 
-The inner `result` holds `{ launch_id, token, pool_id, wrap_is_x }` as a list of JSON bytes.
+The inner `result` holds `{ launch_id, token, pool_id, wrap_is_x }` as a list of JSON bytes. If the answer is an error with code `-429`, the node is rate-limiting you: wait a minute, or send the same request to `https://near.drpc.org`.
 
 To check every promise against the chain, follow [JUDGES.md](JUDGES.md). It runs 15 checks with Node.js and no API key. Against WYRM the six checks that read only current state took 5 s, and all 15 took about 2 minutes (measured Nov 14). The free history API sets that time, so give the full run a timeout of 5 minutes.
 
@@ -38,6 +38,16 @@ Each step needs only this repository and Node.js 22.5 or newer. There is no `npm
 | `npm run verify -- --network mainnet --root thewyrm.near` | 15 `PASS` lines and `all checks PASSED` in about 2 minutes. The extra checks replay every fee split and every Dragon buy from the chain's history. |
 | `npm test` | 233 tests pass in about 7 s. |
 | Open [thewyrm.xyz/#/scales](https://thewyrm.xyz/#/scales) with a NEAR wallet | Buy a Scale for 2 NEAR. It appears under Yours, and Claim pays its share of the fees to your wallet. |
+
+### If a step fails
+
+Everything above reads free public services, and they limit how fast one address may ask.
+
+- **The full verify seems to hang.** It is reading the Dragon's history at the pace the free API allows. It prints a progress line every 400 transactions and finishes in about 2 minutes. A tool that stops commands after 2 minutes will cut it short, so allow 5.
+- **A check prints `FAIL` with "could not read" and `429`.** The services refused the read. No rule was broken. Run verify again a few minutes later, or pass your own nodes with `--rpc`. A real violation prints the evidence that failed, not "could not read".
+- **verify fails before it prints a check.** Check `node --version`. It must be 22.5 or newer.
+- **The Lair shows "could not read the chain".** Its RPC nodes refused the browser. Reload after a minute. Opened from a `file://` path it loads nothing, so serve the folder as shown under "Run the Lair".
+- **The contract tests do not start on Windows.** The sandbox has no Windows build. Use `npm run test:wsl`, or run them on Linux. Verifying WYRM does not need them.
 
 The same release first ran on mainnet as a rehearsal system, WYRMLING (`wyrmling.thewyrm.near`), against the real Nearly and the real DCL. It passed the seven mainnet gates of the design and refused 15 attempts to rob it. [docs/THREAT-MODEL.md](docs/THREAT-MODEL.md) has the results.
 
