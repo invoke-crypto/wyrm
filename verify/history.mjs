@@ -5,20 +5,32 @@
 
 const TX_BATCH = 20;
 
-export function fastnear(base, fetchImpl = fetch) {
-  return async (path, body) => {
+// The API is free and rate-limits bursts. Requests go out one at a time, and a 429 waits (as long as the API asks, or
+// 1 s doubling to 30 s) and retries, so a long history reads slowly, not wrongly. Only a limit that lasts through
+// every wait, about four minutes, fails the read.
+const RETRY_WAITS_MS = [1, 2, 4, 8, 16, 30, 30, 30, 30, 30, 30].map((s) => s * 1000);
+
+export function fastnear(base, fetchImpl = fetch, sleep = (ms) => new Promise((r) => setTimeout(r, ms))) {
+  const post = async (path, body) => {
     for (let attempt = 0; ; attempt++) {
       const res = await fetchImpl(base + path, {
         signal: AbortSignal.timeout(60_000), method: "POST",
         headers: { "content-type": "application/json" }, body: JSON.stringify(body),
       });
-      if (res.status === 429 && attempt < 5) {
-        await new Promise((r) => setTimeout(r, 1000 * 2 ** attempt));
+      if (res.status === 429 && attempt < RETRY_WAITS_MS.length) {
+        const asked = Number(res.headers?.get?.("retry-after")) * 1000;
+        await sleep(asked > 0 ? Math.min(asked, 60_000) : RETRY_WAITS_MS[attempt]);
         continue;
       }
       if (!res.ok) throw new Error(`${base}${path}: HTTP ${res.status} ${await res.text()}`);
       return res.json();
     }
+  };
+  let queue = Promise.resolve();
+  return (path, body) => {
+    const sent = queue.then(() => post(path, body));
+    queue = sent.catch(() => {});
+    return sent;
   };
 }
 
@@ -139,10 +151,12 @@ export function touching(receipts, account) {
   return receipts.filter((r) => txs.has(r.tx));
 }
 
-export async function accountReceipts(post, account) {
+// `progress(done, total)` is called before each batch, so a caller can show that a long read is still moving.
+export async function accountReceipts(post, account, progress = () => {}) {
   const hashes = await accountTxHashes(post, account);
   const out = [];
   for (let i = 0; i < hashes.length; i += TX_BATCH) {
+    progress(i, hashes.length);
     const { transactions } = await post("/v0/transactions", { tx_hashes: hashes.slice(i, i + TX_BATCH) });
     for (const t of transactions) if (t) out.push(...flatten(t));
   }

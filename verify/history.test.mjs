@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { accountReceipts, accountTxHashes, chainReceipts, chainTransactions, flatten, parseEvent, touching, wyrmEvents } from "./history.mjs";
+import { accountReceipts, accountTxHashes, chainReceipts, chainTransactions, fastnear, flatten, parseEvent, touching, wyrmEvents } from "./history.mjs";
 
 const fixture = (name) => JSON.parse(fs.readFileSync(new URL(`./fixtures/${name}`, import.meta.url)));
 
@@ -118,4 +118,39 @@ test("touching keeps every receipt of each transaction that reached or left the 
   const r = (tx, predecessor, receiver) => ({ tx, predecessor, receiver });
   const all = [r("A", "k.near", "dragon.near"), r("A", "dragon.near", "wrap.near"), r("B", "k.near", "wrap.near"), r("C", "wrap.near", "x.near"), r("C", "x.near", "dragon.near")];
   assert.deepEqual(touching(all, "dragon.near").map((x) => x.tx), ["A", "A", "C", "C"]);
+});
+
+const reply = (status, body = {}, headers = {}) => ({ status, ok: status < 400, headers: new Headers(headers), json: async () => body, text: async () => JSON.stringify(body) });
+
+test("a rate-limited read waits and retries until the API answers, for as long as the API asks", async () => {
+  const waits = [];
+  const answers = [reply(429), reply(429, {}, { "retry-after": "7" }), reply(200, { ok: 1 })];
+  const post = fastnear("https://api", async () => answers.shift(), async (ms) => waits.push(ms));
+  assert.deepEqual(await post("/v0/account", {}), { ok: 1 });
+  assert.deepEqual(waits, [1000, 7000]);
+});
+
+test("a rate limit that never lifts fails the read, and any other error fails it at once", async () => {
+  let calls = 0;
+  const limited = fastnear("https://api", async () => (calls++, reply(429)), async () => {});
+  await assert.rejects(limited("/v0/account", {}), /HTTP 429/);
+  assert.equal(calls, 12);
+  calls = 0;
+  const broken = fastnear("https://api", async () => (calls++, reply(500)), async () => {});
+  await assert.rejects(broken("/v0/account", {}), /HTTP 500/);
+  assert.equal(calls, 1);
+});
+
+test("requests go out one at a time, and a failed one does not block the next", async () => {
+  let open = 0;
+  let most = 0;
+  const post = fastnear("https://api", async (url) => {
+    most = Math.max(most, ++open);
+    await new Promise((r) => setTimeout(r, 5));
+    open--;
+    return url.endsWith("/bad") ? reply(500) : reply(200, { url });
+  });
+  const results = await Promise.allSettled([post("/a", {}), post("/bad", {}), post("/c", {})]);
+  assert.deepEqual(results.map((r) => r.status), ["fulfilled", "rejected", "fulfilled"]);
+  assert.equal(most, 1);
 });

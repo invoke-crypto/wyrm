@@ -55,10 +55,14 @@ export async function context(opts) {
     return cache.get(key);
   };
   const indexer = opts.indexer ?? net.indexer;
+  const post = indexer ? fastnear(indexer) : null;
   // An empty history must not read as "no violations", so a missing account fails the read.
   const history = (account) => memo(`history ${account}`, async () => {
     if ((await viewAccount(rpc, account)) === null) throw new Error(`${account} does not exist`);
-    if (indexer) return accountReceipts(fastnear(indexer), account);
+    // The free indexer answers about one batch of 20 transactions a second, so a long history takes minutes.
+    if (indexer) return accountReceipts(post, account, (done, total) => {
+      if (total > 400 && done % 400 === 0) console.error(`reading the history of ${account}: ${done} of ${total} transactions`);
+    });
     return touching(await memo("chain", () => chainReceipts(rpc)), account);
   });
   return {
